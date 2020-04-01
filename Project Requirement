@@ -1,0 +1,66 @@
+Data
+
+•	dataset was created by querying Wikipedia API (Links to an external site.) to English Wikipedia page: https://en.wikipedia.org/w/api.php. 
+Function 
+
+- Main/Landing Page
+
+  •	display key information about the application:   
+      Wikipdia Analytics 
+      (text, images, description, sample analytics graphsn)
+
+  •	provide three options: Sign-up, Login and Reset Password 
+    o	Sign-up 
+      	first name 
+      	last name
+      	email address (as username)
+      	password (hashing must be implemented)
+      	reset password question/answer
+      	account to be maintained in DB 
+      	data validation required!!
+    o	Login
+      	Login by email and password 
+      	To enable analytic functionality 
+      	Session must be managed
+    o	Reset Password 
+      	By answer password questions
+    o	Logout 
+
+  - Analytic Function Page
+
+   •	Article Analytics 
+    o	The top two articles with the highest number of revisions and their number of revisions.
+    o	The top two articles with the lowest number of revisions and their number of revisions.
+    o	The top two articles edited by the largest group of registered users (non bots) and their group size. Each wiki article is edited by a number of users, some making multiple revisions. The number of unique users is a good indicator of an article’s popularity.
+    o	The top two articles edited by the smallest group of registered users and their group size.
+    o	The top two articles with the longest history (measured by age) and and their age (in days). For each article, the revision with the smallest timestamp is the first revision, indicating the article’s creation time. An article’s age is the duration between now and the article's creation time.
+    o	The top two articles with the shortest history (measured by age) and their age (in days).
+    o	The user should be provided with a way to change the number of top articles shown, e.g. for highest and lowest number of revisions. The selected number should be applied to all categories above. 
+
+  •	User determination – anonymous, admin, bot and regular user 
+    o	  
+    o	 
+  •	Visual analytics 
+    o	Bar chart of revision number by year 
+    o	Pie chart of revision number by user type 
+
+  •	Individual Article Analytics 
+
+  •	Author Analytics 
+
+
+
+
+Design and Implementation Requirements
+1.	Operate on a single/two page 
+2.	Client – server comms need to be asynchronous 
+3.	Main landing page can be in a separate page 
+4.	All other functionalities in one single page ( SPA principles) 
+5.	MVC
+6.	JS only 
+7.	Node JS + MongoDB
+8.	You can use other popular JavaScript libraries not covered in this course.
+9.	communications among tiers and database design and implementation
+10.	design and implementation should not be specific for the provided dataset
+11.	dynamic design and implementation that work properly and scale with any dataset.
+12.	
