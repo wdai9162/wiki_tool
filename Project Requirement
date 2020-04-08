@@ -1,7 +1,7 @@
 Data
 
-•	dataset was created by querying Wikipedia API (Links to an external site.) to English Wikipedia page: https://en.wikipedia.org/w/api.php. 
-Function 
+•	demonstrate that your application can communicate with third party web site through published web services.
+•	You may also need to download latest data from the original data source and append that to the data set.
 
 - Main/Landing Page
 
@@ -37,14 +37,19 @@ Function
     o	The top two articles with the shortest history (measured by age) and their age (in days).
     o	The user should be provided with a way to change the number of top articles shown, e.g. for highest and lowest number of revisions. The selected number should be applied to all categories above. 
 
-  •	User determination – anonymous, admin, bot and regular user 
-    o	  
-    o	 
+    (User determination – anonymous, admin, bot and regular user )
   •	Visual analytics 
     o	Bar chart of revision number by year 
     o	Pie chart of revision number by user type 
 
   •	Individual Article Analytics 
+  a simple drop-down list 
+  show total number of revisions
+  check if the history of that article in the database is up to date. (less than one day old as up to date)
+  need to query MediaWiki API to pull all possible new revisions made after last update.
+  need to confirm success of downloading and numbers of revs. 
+  
+  
 
   •	Author Analytics 
 
