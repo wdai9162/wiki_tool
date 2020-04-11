@@ -1,4 +1,4 @@
-Data
+﻿Data
 
 •	demonstrate that your application can communicate with third party web site through published web services.
 •	You may also need to download latest data from the original data source and append that to the data set.
@@ -68,4 +68,3 @@ Design and Implementation Requirements
 9.	communications among tiers and database design and implementation
 10.	design and implementation should not be specific for the provided dataset
 11.	dynamic design and implementation that work properly and scale with any dataset.
-12.	

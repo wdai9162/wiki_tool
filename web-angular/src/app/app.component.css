@@ -1,4 +1,27 @@
-.my_title
-{
-  margin: auto;width: 100%;text-align: center;color: blue;
-}
+
+/*.main*/
+/*{*/
+/*  text-align: center; !*让div内部文字居中*!*/
+/*  border-radius: 20px;*/
+/*  width: 70%;*/
+/*  height: 70%;*/
+/*  margin: auto;*/
+/*  background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);;*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*  bottom: 0;*/
+/*}*/
+
+/*.login-page*/
+/*{*/
+/*  text-align: center;*/
+
+/*  border-radius: 20px;*/
+/*  width: 80%;*/
+/*  position: absolute;*/
+/*  left: 50%;*/
+/*  top: 50%;*/
+/*  transform: translate(-50%,-50%);*/
+/*}*/
