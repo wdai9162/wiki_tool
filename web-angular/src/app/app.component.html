@@ -1,29 +1,37 @@
 <!-- NG-ZORRO -->
 
 
-<div class = "right">
-  <app-login></app-login>
-</div>
+<!--<div class = "right">-->
+<!--  <app-login></app-login>-->
+<!--</div>-->
 <div class = "left">
 
 
 
-  <ul nz-menu nzMode="horizontal" style="height: 5%">
+  <ul nz-menu nzMode="horizontal" style="height: 5%;" nzTheme="dark">
 <!--    <li nz-menu-item nzMatchRouter>-->
 <!--      <a [routerLink]="['/']">Login</a>-->
 <!--    </li>-->
-    <li nz-menu-item nzMatchRouter style="height: 80%">
-      <a [routerLink]="['/']"><span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size: 20px">Introduction</span></a>
+    <li nz-menu-item nzMatchRouter>
+      <a [routerLink]="['/']"><span style="font-family: 'Helvetica';font-size: 20px">INTRODUCTION</span></a>
     </li>
-    <li nz-menu-item nzMatchRouter style="height: 80%">
-      <a [routerLink]="['/landOverall']"><span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size: 20px">Overall Analytics</span></a>
+    <li nz-menu-item nzMatchRouter style="bottom: 10%">
+      <a [routerLink]="['/landOverall']"><span style="font-family: 'Helvetica';font-size: 20px">OVERALL ANALYTICS</span></a>
     </li>
-    <li nz-menu-item nzMatchRouter style="height: 80%">
-      <a [routerLink]="['/landAuthor']"><span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size: 20px">Author Analytics</span></a>
+    <li nz-menu-item nzMatchRouter style="bottom: 10%">
+      <a [routerLink]="['/landAuthor']"><span style="font-family: 'Helvetica';font-size: 20px">AUTHOR ANALYTICS</span></a>
     </li>
-    <li nz-menu-item nzMatchRouter style="height: 80%">
-      <a [routerLink]="['/landIndiv']"><span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size: 20px">Individual Article Analytics</span></a>
+    <li nz-menu-item nzMatchRouter style="bottom: 10%">
+      <a [routerLink]="['/landIndiv']"><span style="font-family: 'Helvetica';font-size: 20px">INDIVIDUAL ARTICLE ANALYTICS</span></a>
     </li>
+
+    <li nz-menu-item nzMatchRouter style="bottom: 10%;float: right">
+      <a [routerLink]="['/register']"><span style="font-family: 'Helvetica';font-size: 20px">SIGN UP</span></a>
+    </li>
+    <li nz-menu-item nzMatchRouter style="bottom: 10%;float: right">
+      <a [routerLink]="['/login']"><span style="font-family: 'Helvetica';font-size: 20px">LOGIN</span></a>
+    </li>
+
   </ul>
   <router-outlet></router-outlet>
 
