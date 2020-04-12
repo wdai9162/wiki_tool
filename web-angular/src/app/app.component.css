@@ -17,21 +17,23 @@
 
 .left
 {
-  width: 65%;
-  background-image:url('http://pic1.win4000.com/wallpaper/a/58ed8f0ff2513.jpg');background-size:cover;background-position:center center;
-  height: 100%;
-  float: left;
-}
+  width: 100%;
 
-.right
-{
-  text-align: center;
-  float: right;
   height: 100%;
 
-  border-radius: 20px;
-  width: 35%;
 
-  transform: translateY(20%);
-  /*transform: translate(-50%,-50%);*/
 }
+
+/*.right*/
+/*{*/
+/*  text-align: center;*/
+/*  float: right;*/
+/*  height: 100%;*/
+/*  border-left:1px solid #000;*/
+/*  !*border-radius: 20px;*!*/
+/*  width: 35%;*/
+/*  !*background-image:url('http://pic1.win4000.com/wallpaper/a/58ed8f0ff2513.jpg');background-size:cover;background-position:center center;*!*/
+/*  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);*/
+/*  !*transform: translateY(20%);*!*/
+/*  !*transform: translate(-50%,-50%);*!*/
+/*}*/

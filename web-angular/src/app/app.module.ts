@@ -45,7 +45,9 @@ registerLocaleData(en);
       { path: '', component: IntroductionComponent },
       { path: 'landOverall', component: LandOverAllComponent },
       { path: 'landAuthor', component: LandAuthorComponent },
-      { path: 'landIndiv', component: LandIndivComponent}
+      { path: 'landIndiv', component: LandIndivComponent},
+      { path: 'login', component: LoginComponent},
+      { path: 'register', component: RegisterComponent}
     ])
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
