@@ -23,6 +23,7 @@
     "angular-chart.js": "^1.1.1",
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
+    "nan": "^2.14.0",
     "ng-chartjs": "^0.1.8",
     "ng-zorro-antd": "^8.5.2",
     "ng2-charts": "^2.3.0",
