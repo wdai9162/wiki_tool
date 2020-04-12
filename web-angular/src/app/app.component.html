@@ -1,11 +1,31 @@
 <!-- NG-ZORRO -->
 
-<div class = "main">
-<!--  <a [routerLink]="['/']">主页</a>-->
-<!--  <a [routerLink]="['/product']">商品详情</a>-->
 
-  <router-outlet></router-outlet>
-<!--  <div class = "login-page">-->
-<!--  <app-login ></app-login>-->
-<!--  </div>-->
+<div class = "right">
+  <app-login></app-login>
 </div>
+<div class = "left">
+
+
+
+  <ul nz-menu nzMode="horizontal" style="height: 5%">
+<!--    <li nz-menu-item nzMatchRouter>-->
+<!--      <a [routerLink]="['/']">Login</a>-->
+<!--    </li>-->
+    <li nz-menu-item nzMatchRouter style="height: 80%">
+      <a [routerLink]="['/']"><span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size: 20px">Introduction</span></a>
+    </li>
+    <li nz-menu-item nzMatchRouter style="height: 80%">
+      <a [routerLink]="['/landOverall']"><span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size: 20px">Overall Analytics</span></a>
+    </li>
+    <li nz-menu-item nzMatchRouter style="height: 80%">
+      <a [routerLink]="['/landAuthor']"><span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size: 20px">Author Analytics</span></a>
+    </li>
+    <li nz-menu-item nzMatchRouter style="height: 80%">
+      <a [routerLink]="['/landIndiv']"><span style="font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size: 20px">Individual Article Analytics</span></a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+
+</div>
+

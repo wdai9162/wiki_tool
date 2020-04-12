@@ -1,6 +1,6 @@
 
       .login-form {
-        max-width: 80%;
+        max-width: 30%;
         margin:auto;
 
 
@@ -13,3 +13,14 @@
       .login-form-button {
         width: 100%;
       }
+
+      /*.login-page*/
+      /*{*/
+      /*  text-align: center;*/
+
+      /*  border-radius: 20px;*/
+      /*  width:100%;*/
+      /*  left: 50%;*/
+      /*  top: 50%;*/
+
+      /*}*/

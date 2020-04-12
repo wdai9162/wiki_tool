@@ -9,8 +9,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { LoginComponent } from './login/login.component';
-import { MainpageComponent } from './mainpage/mainpage.component';
 import {RouterModule} from '@angular/router';
+import { IntroductionComponent } from './introduction/introduction.component';
+import { RegisterComponent } from './register/register.component';
+import { LandOverAllComponent } from './land-over-all/land-over-all.component';
+import { LandIndivComponent } from './land-indiv/land-indiv.component';
+import { LandAuthorComponent } from './land-author/land-author.component';
+import { NgChartjsModule } from 'ng-chartjs';
+import { ChartsModule } from 'ng2-charts';
 
 
 registerLocaleData(en);
@@ -19,7 +25,11 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     LoginComponent,
-    MainpageComponent
+    IntroductionComponent,
+    RegisterComponent,
+    LandOverAllComponent,
+    LandIndivComponent,
+    LandAuthorComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +38,14 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    NgChartjsModule,
+    ChartsModule,
+
     RouterModule.forRoot([
-      { path: '', component: LoginComponent },
-      { path: 'products', component: MainpageComponent },
+      { path: '', component: IntroductionComponent },
+      { path: 'landOverall', component: LandOverAllComponent },
+      { path: 'landAuthor', component: LandAuthorComponent },
+      { path: 'landIndiv', component: LandIndivComponent}
     ])
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
