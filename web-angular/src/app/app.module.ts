@@ -8,15 +8,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { LoginComponent } from './login/login.component';
-import {RouterModule} from '@angular/router';
+
+
+import { LoginComponent } from './users/login/login.component';
 import { IntroductionComponent } from './introduction/introduction.component';
-import { RegisterComponent } from './register/register.component';
 import { LandOverAllComponent } from './land-over-all/land-over-all.component';
 import { LandIndivComponent } from './land-indiv/land-indiv.component';
 import { LandAuthorComponent } from './land-author/land-author.component';
+
+import { HeaderComponent } from './header/header.component';
+
+
 import { NgChartjsModule } from 'ng-chartjs';
 import { ChartsModule } from 'ng2-charts';
+import { AppRoutingModule } from './app-routing.module';
+import { SignupComponent } from './users/signup/signup.component';
 
 
 registerLocaleData(en);
@@ -25,11 +31,15 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     LoginComponent,
+    SignupComponent,
+
     IntroductionComponent,
-    RegisterComponent,
+
     LandOverAllComponent,
     LandIndivComponent,
-    LandAuthorComponent
+    LandAuthorComponent,
+
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,15 +50,7 @@ registerLocaleData(en);
     ReactiveFormsModule,
     NgChartjsModule,
     ChartsModule,
-
-    RouterModule.forRoot([
-      { path: '', component: IntroductionComponent },
-      { path: 'landOverall', component: LandOverAllComponent },
-      { path: 'landAuthor', component: LandAuthorComponent },
-      { path: 'landIndiv', component: LandIndivComponent},
-      { path: 'login', component: LoginComponent},
-      { path: 'register', component: RegisterComponent}
-    ])
+    AppRoutingModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

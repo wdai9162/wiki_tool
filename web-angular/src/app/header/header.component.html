@@ -1,0 +1,31 @@
+
+<div>
+  <ul nz-menu nzMode="horizontal" nzTheme="dark" class = "header">
+    <li nz-menu-item nzMatchRouter>
+      <a [routerLink]="['/']">INTRODUCTION</a>
+    </li>
+
+    <li nz-menu-item nzMatchRouter>
+      <a [routerLink]="['/landOverall']">OVERALL ANALYTICS</a>
+    </li>
+
+    <li nz-menu-item nzMatchRouter>
+      <a [routerLink]="['/landAuthor']">AUTHOR ANALYTICS</a>
+    </li>
+
+    <li nz-menu-item nzMatchRouter>
+      <a [routerLink]="['/landIndiv']">INDIVIDUAL ARTICLE ANALYTICS</a>
+    </li>
+
+    <li nz-menu-item nzMatchRouter id = "right">
+      <button nz-button nzType="default" (click)=onClickSignup()>Sign up</button>
+    </li>
+
+    <li nz-menu-item nzMatchRouter id = "right">
+      <button nz-button nzType="primary" (click)=onClickLogin()>Log in</button>
+    </li>
+    <!--    <li nz-menu-item nzMatchRouter>-->
+    <!--      <a [routerLink]="['/']">Login</a>-->
+    <!--    </li>-->
+  </ul>
+</div>

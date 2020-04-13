@@ -1,0 +1,45 @@
+
+<nz-drawer
+[nzMaskClosable]="true"
+[nzMask]="true"
+[nzHeight]="480"
+[nzVisible]="visible"
+[nzPlacement]="'top'"
+nzTitle="Log in"
+(nzOnClose)="closeLogin()"
+>
+<div style="text-align: center"><img src="../../assets/user.png" ></div>
+<div class="login-page">
+  <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your E-mail address to log in!">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="email" nz-input formControlName="userEmail" placeholder="Useremail">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <label nz-checkbox formControlName="remember" class="login-form-remeber">
+          <span>Remember me</span>
+        </label>
+        <a class="login-form-forgot" >Forgot password</a>
+        <button nz-button class="login-form-button" [nzType]="'primary'" type="submit">Log in</button>
+        <button nz-button class="login-form-button" [nzType]="'default'" (click)="openSignup()">Sign up</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+</nz-drawer>
+
+
+
+
+<!--<div class="login-page"></div>-->
