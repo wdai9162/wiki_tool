@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {LocalStorage} from '../../local.storage';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private ls: LocalStorage) {}
 
   visible = false;
   loginForm: FormGroup;
@@ -32,6 +33,8 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls[i].markAsDirty();
       this.loginForm.controls[i].updateValueAndValidity();
     }
+    this.ls.setObject('isLogin', true);
+    this.closeLogin();
 
     fetch('http://127.0.0.1:3000/', {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.

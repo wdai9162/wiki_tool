@@ -13,7 +13,7 @@ import {LocalStorage} from '../local.storage';
 
 export class LandAuthorComponent implements OnInit {
   constructor(
-    private MylocalStorage: LocalStorage
+    private ls: LocalStorage
   ) {}
   chartOptions = {
     responsive: true
@@ -26,14 +26,13 @@ export class LandAuthorComponent implements OnInit {
   chartLabels = ['January', 'February', 'Mars', 'April'];
 
   // tslint:disable-next-line:triple-equals
-  isLogin = this.MylocalStorage.getObject('isLogin');
+  isLogin = this.ls.getObject('isLogin');
 
 
   onChartClick(event) {
     console.log(event);
   }
   ngOnInit(): void {
-    this.MylocalStorage.setObject('isLogin', 'false');
   }
 
 }
