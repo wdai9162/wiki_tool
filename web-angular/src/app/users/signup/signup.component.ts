@@ -20,12 +20,12 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.invalid){
       return;
     }
-    this.userService.createUser(this.signupForm.value.userEmail, this.signupForm.value.password)
+    this.userService.createUser(this.signupForm.value.userEmail, this.signupForm.value.password);
   }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
-      userEmail: [null, [Validators.required,Validators.email]],
+      userEmail: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],
       remember: [true]
     });
