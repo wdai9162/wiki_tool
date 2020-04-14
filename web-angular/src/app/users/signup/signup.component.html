@@ -1,0 +1,42 @@
+
+<nz-drawer
+[nzMaskClosable]="true"
+[nzMask]="true"
+
+[nzVisible]="visible"
+[nzPlacement]="'right'"
+nzTitle="Sign up"
+(nzOnClose)="closeSignup()"
+>
+<div class="signup-page">
+ <form nz-form [formGroup]="signupForm" class="signup-form" (ngSubmit)="onSignup()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your E-mail address to Sign up!">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="email" nz-input formControlName="userEmail" placeholder="Useremail">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password">
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+
+
+        <button nz-button id="signup-submit-button" [nzType]="'primary'" type="submit">Submit</button>
+
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+</nz-drawer>
+
+
+
+
+<!--<div class="login-page"></div>-->
