@@ -2,7 +2,7 @@
 <nz-drawer
 [nzMaskClosable]="true"
 [nzMask]="true"
-[nzHeight]="480"
+[nzWidth]="400"
 [nzVisible]="visible"
 [nzPlacement]="'right'"
 nzTitle="Log in"
@@ -30,7 +30,7 @@ nzTitle="Log in"
         <label nz-checkbox formControlName="remember" class="login-form-remeber">
           <span>Remember me</span>
         </label>
-        <a class="login-form-forgot" >Forgot password</a>
+        <a class="login-form-forgot">>Forgot password</a>
         <button nz-button class="login-form-button" [nzType]="'primary'" type="submit" >Log in</button>
         <button nz-button class="login-form-button" [nzType]="'default'" (click)="openSignup()">Sign up</button>
       </nz-form-control>

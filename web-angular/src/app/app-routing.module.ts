@@ -7,6 +7,7 @@ import { LandAuthorComponent } from './land-author/land-author.component';
 import { LandIndivComponent } from './land-indiv/land-indiv.component';
 
 
+
 const routes: Routes = [
   { path: '', component: IntroductionComponent },
   { path: 'landOverall', component: LandOverAllComponent },

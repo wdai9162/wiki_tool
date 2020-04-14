@@ -23,6 +23,7 @@ import { NgChartjsModule } from 'ng-chartjs';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './users/signup/signup.component';
+import { LocalStorage} from './local.storage';
 
 
 registerLocaleData(en);
@@ -52,7 +53,7 @@ registerLocaleData(en);
     ChartsModule,
     AppRoutingModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [LocalStorage,{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
