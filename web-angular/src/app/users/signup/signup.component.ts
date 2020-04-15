@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public userService: UserService) {}
 
+  selectedValue = 'question1';
   onSignup(): void {
     if (this.signupForm.invalid){
       return;

@@ -14,12 +14,18 @@ export class HeaderComponent{
   //create event emitter on click Signup
   @Output() clickSignup = new EventEmitter();
 
+  @Output() clickReset = new EventEmitter();
+
   onClickLogin() {
     this.clickLogin.emit();
   }
 
   onClickSignup() {
     this.clickSignup.emit();
+  }
+
+  onClickReset() {
+    this.clickReset.emit();
   }
 
 }

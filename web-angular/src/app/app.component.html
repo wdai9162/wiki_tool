@@ -1,7 +1,6 @@
-<app-header (clickLogin)="login.openLogin()" (clickSignup)="signup.openSignup()"></app-header>
-
-<app-login #login (clickSignup)="signup.openSignup()"></app-login><app-signup #signup></app-signup>
-
+<app-header (clickLogin)="login.openLogin()" (clickSignup)="signup.openSignup()" ></app-header>
+<app-reset-pwd #reset></app-reset-pwd>
+<app-login #login (clickSignup)="signup.openSignup()" (clickReset)="reset.openReset()" ></app-login><app-signup #signup></app-signup>
 <main>
   <router-outlet></router-outlet>
 </main>

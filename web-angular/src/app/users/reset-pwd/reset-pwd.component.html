@@ -1,0 +1,62 @@
+<nz-drawer
+  [nzMaskClosable]="true"
+  [nzMask]="true"
+  [nzWidth]="400"
+  [nzVisible]="visible"
+  [nzPlacement]="'right'"
+  nzTitle="Reset"
+  (nzOnClose)="closeReset()"
+>
+
+  <div class="login-page">
+    <form [ngSwitch]="switch_expression" nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="onReset()">
+      <div *ngSwitchCase="0">
+        <div style="text-align: center"><img src="../../assets/user.png" ></div>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your E-mail address!">
+          <nz-input-group nzPrefixIcon="user">
+            <input  autofocus type="email" nz-input formControlName="userEmail" placeholder="Useremail">
+          </nz-input-group>
+        </nz-form-control>
+
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button class="login-form-button" [nzType]="'primary'" (click)="openQuestion()" >Confirm</button>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-form-item>
+      </div>
+
+
+      <div *ngSwitchCase="1">
+        <nz-form-item>
+        <nz-form-control nzErrorTip="Please Answer your Question">
+          <span> what's your favourite food?</span>
+
+            <input  autofocus nz-input formControlName="Answer" placeholder="Answer">
+
+        </nz-form-control>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button class="login-form-button" [nzType]="'primary'" (click)="openNewPwd()" >Next</button>
+            </nz-form-control>
+          </nz-form-item>
+      </nz-form-item>
+      </div>
+      <div *ngSwitchCase="2">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your New Password!">
+
+            <input nz-input formControlName="NewPassword" placeholder="NewPassword" autofocus>
+
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button class="login-form-button" [nzType]="'primary'" type="submit" >Reset</button>
+        </nz-form-control>
+      </nz-form-item>
+      </div>
+    </form>
+  </div>
+</nz-drawer>

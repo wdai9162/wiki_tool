@@ -10,6 +10,21 @@ nzTitle="Sign up"
 >
 <div class="signup-page">
  <form nz-form [formGroup]="signupForm" class="signup-form" (ngSubmit)="onSignup()">
+   <div style="text-align: center"><img src="../../assets/user.png" ></div>
+   <nz-form-item>
+     <nz-form-control nzErrorTip="Please input your First Name">
+       <nz-input-group nzPrefixIcon="user">
+         <input nz-input formControlName="FirstName" placeholder="FirstName">
+       </nz-input-group>
+     </nz-form-control>
+   </nz-form-item>
+   <nz-form-item>
+     <nz-form-control nzErrorTip="Please input your Last Name">
+       <nz-input-group nzPrefixIcon="user">
+         <input nz-input formControlName="LastName" placeholder="LastName">
+       </nz-input-group>
+     </nz-form-control>
+   </nz-form-item>
     <nz-form-item>
       <nz-form-control nzErrorTip="Please input your E-mail address to Sign up!">
         <nz-input-group nzPrefixIcon="user">
@@ -24,11 +39,30 @@ nzTitle="Sign up"
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
+
+   <nz-form-item>
+
+     <nz-form-control nzErrorTip="user">
+       <nz-select [(ngModel)]="selectedValue" nzAllowClear nzPlaceHolder="select the security question">
+         <nz-option nzValue="question1" nzLabel="what's your favourite color?"></nz-option>
+         <nz-option nzValue="question2" nzLabel="what's your mother's name?"></nz-option>
+         <nz-option nzValue="question3" nzLabel="what's your favourite number?"></nz-option>
+       </nz-select>
+     </nz-form-control>
+   </nz-form-item>
+   <nz-form-item>
+
+     <nz-form-control nzErrorTip="user">
+       <nz-input-group >
+         <input nz-input formControlName="answer" placeholder="Your Answer">
+       </nz-input-group>
+     </nz-form-control>
+   </nz-form-item>
     <nz-form-item>
       <nz-form-control>
 
 
-        <button nz-button id="signup-submit-button" [nzType]="'primary'" type="submit">Submit</button>
+        <button nz-button class="signup-submit-button" [nzType]="'primary'" type="submit">Register</button>
 
       </nz-form-control>
     </nz-form-item>

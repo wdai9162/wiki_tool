@@ -24,6 +24,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './users/signup/signup.component';
 import { LocalStorage} from './local.storage';
+import { ResetPwdComponent } from './users/reset-pwd/reset-pwd.component';
 
 
 registerLocaleData(en);
@@ -33,14 +34,12 @@ registerLocaleData(en);
     AppComponent,
     LoginComponent,
     SignupComponent,
-
     IntroductionComponent,
-
     LandOverAllComponent,
     LandIndivComponent,
     LandAuthorComponent,
-
     HeaderComponent,
+    ResetPwdComponent,
   ],
   imports: [
     BrowserModule,

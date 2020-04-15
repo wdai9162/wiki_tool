@@ -1,27 +1,27 @@
-import { Component, OnInit, EventEmitter, Output} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LocalStorage} from '../../local.storage';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-reset-pwd',
+  templateUrl: './reset-pwd.component.html',
+  styleUrls: ['./reset-pwd.component.css']
 })
-export class LoginComponent implements OnInit {
+export class ResetPwdComponent implements OnInit {
+
   constructor(private fb: FormBuilder, private ls: LocalStorage) {}
 
   visible = false;
   loginForm: FormGroup;
   // tslint:disable-next-line:variable-name
+  switch_expression: string;
 
   // create event emitter on click Signup
   @Output() clickSignup = new EventEmitter();
-  @Output() clickReset  = new EventEmitter();
 
 
-  onLogin(): void {
-
-
+  onReset(): void {
+    this.closeReset();
     if (this.loginForm.invalid) {
       return;
     }
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls[i].updateValueAndValidity();
     }
     this.ls.setObject('isLogin', true);
-    this.closeLogin();
+    this.closeReset();
 
     fetch('http://127.0.0.1:3000/', {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       .then(function(mydata) {
         console.log(mydata);
 
-    });
+      });
   }
 
   ngOnInit(): void {
@@ -57,31 +57,32 @@ export class LoginComponent implements OnInit {
       password: [null, [Validators.required]],
       remember: [true]
     });
+    this.switch_expression = '0';
   }
 
-  openLogin(): void {
+  openReset(): void {
     this.visible = true;
 
   }
 
-  closeLogin(): void{
+  openQuestion(): void
+  {
+    this.switch_expression = '1';
+  }
+
+  openNewPwd(): void
+  {
+    this.switch_expression = '2';
+  }
+
+
+  closeReset(): void{
+    this.switch_expression = '0';
     this.visible = false;
   }
 
-  openSignup(): void{
-    this.visible = false;
-    this.clickSignup.emit();
-  }
 
-  openReset(): void{
-    this.visible = false;
-    this.clickReset.emit();
-  }
-  Login(): void {
-    const username = document.getElementById('username');
-    const password = document.getElementById('password');
 
-  }
 
 }
 
