@@ -1,3 +1,4 @@
+<div *ngIf="!isLogin">
 <div>
   <div>
     <div class="chart">
@@ -18,4 +19,8 @@
   <button mat-button mat-raised-button color="primary" (click)="addSlice()">Add Slice</button>
   <button mat-button mat-raised-button color="primary" (click)="removeSlice()">Remove Slice</button>
   <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Change Legend Position</button>
+</div>
+</div>
+<div *ngIf="isLogin">
+  <app-login-indiv></app-login-indiv>
 </div>

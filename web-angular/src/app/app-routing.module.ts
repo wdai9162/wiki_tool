@@ -8,12 +8,14 @@ import { LandIndivComponent } from './land-indiv/land-indiv.component';
 import {ResetPwdComponent} from './users/reset-pwd/reset-pwd.component';
 
 
+
 const routes: Routes = [
   { path: '', component: IntroductionComponent },
   { path: 'landOverall', component: LandOverAllComponent },
   { path: 'landAuthor', component: LandAuthorComponent },
   { path: 'landIndiv', component: LandIndivComponent },
-  { path: 'Reset', component: ResetPwdComponent}
+  { path: 'Reset', component: ResetPwdComponent},
+
 ];
 
 @NgModule({

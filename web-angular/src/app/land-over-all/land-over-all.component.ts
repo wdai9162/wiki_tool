@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
+import {LocalStorage} from '../local.storage';
 
 @Component({
   selector: 'app-land-over-all',
@@ -30,8 +31,8 @@ export class LandOverAllComponent implements OnInit {
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
   ];
 
-  constructor() { }
-
+  constructor(private ls: LocalStorage) { }
+  isLogin = this.ls.getObject('isLogin');
   ngOnInit() {
   }
 

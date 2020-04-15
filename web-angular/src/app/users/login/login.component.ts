@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {LocalStorage} from '../../local.storage';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import {LocalStorage} from '../../local.storage';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private fb: FormBuilder, private ls: LocalStorage) {}
+  constructor(private fb: FormBuilder, private ls: LocalStorage, public router: Router) {}
 
   visible = false;
   loginForm: FormGroup;
@@ -35,7 +36,9 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls[i].updateValueAndValidity();
     }
     this.ls.setObject('isLogin', true);
+    window.location.assign('/');
     this.closeLogin();
+
 
     fetch('http://127.0.0.1:3000/', {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -77,11 +80,7 @@ export class LoginComponent implements OnInit {
     this.visible = false;
     this.clickReset.emit();
   }
-  Login(): void {
-    const username = document.getElementById('username');
-    const password = document.getElementById('password');
 
-  }
 
 }
 

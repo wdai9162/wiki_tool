@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!isLogin">
   <div>
     <div style="display: block">
       <canvas baseChart
@@ -12,4 +12,7 @@
     </div>
     <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
   </div>
+</div>
+<div *ngIf="isLogin">
+  <app-login-over-all></app-login-over-all>
 </div>

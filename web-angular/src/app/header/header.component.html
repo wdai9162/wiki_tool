@@ -1,6 +1,6 @@
 
-<div>
-  <ul nz-menu nzMode="horizontal" nzTheme="dark" class = "header">
+<div >
+  <ul  [ngSwitch]="isLogin" nz-menu nzMode="horizontal" nzTheme="dark" class = "header">
     <li nz-menu-item nzMatchRouter>
       <a [routerLink]="['/']">INTRODUCTION</a>
     </li>
@@ -17,12 +17,17 @@
       <a [routerLink]="['/landIndiv']">INDIVIDUAL ARTICLE ANALYTICS</a>
     </li>
 
-    <li nz-menu-item nzMatchRouter id = "right">
+
+    <li   *ngSwitchCase=false nz-menu-item nzMatchRouter class = "right">
       <button nz-button nzType="default" (click)=onClickSignup()>Sign up</button>
     </li>
 
-    <li nz-menu-item nzMatchRouter id = "right">
+    <li *ngSwitchCase=false nz-menu-item nzMatchRouter class = "right">
       <button nz-button nzType="primary" (click)=onClickLogin()>Log in</button>
     </li>
+    <li *ngSwitchCase=true nz-menu-item nzMatchRouter class = "signout">
+      <button nz-button nzType="primary" (click)="onClickLogout()">Log out</button>
+    </li>
+
   </ul>
 </div>

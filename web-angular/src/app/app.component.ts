@@ -11,7 +11,12 @@ import {LocalStorage} from './local.storage';
 
 export class AppComponent {
   constructor(private MylocalStorage: LocalStorage) {
-  this.MylocalStorage.setObject('isLogin', false);
+
+    if (this.MylocalStorage.exist('isLogin') === false) {
+    this.MylocalStorage.setObject('isLogin', false);
+  }
+
+
   }
 
   title = 'helloword';

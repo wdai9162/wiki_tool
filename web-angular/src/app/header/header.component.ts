@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from "@angular/core";
+import {LocalStorage} from '../local.storage';
 
 @Component({
   selector: "app-header",
@@ -8,13 +9,18 @@ import { Component, EventEmitter, Output } from "@angular/core";
 
 export class HeaderComponent{
 
-  //create event emitter on click Login
+  // create event emitter on click Login
   @Output() clickLogin = new EventEmitter();
 
-  //create event emitter on click Signup
+  // create event emitter on click Signup
   @Output() clickSignup = new EventEmitter();
 
   @Output() clickReset = new EventEmitter();
+
+  @Output() clickLogout = new EventEmitter();
+  constructor(private ls: LocalStorage) {
+  }
+  isLogin = this.ls.getObject('isLogin');
 
   onClickLogin() {
     this.clickLogin.emit();
@@ -24,8 +30,10 @@ export class HeaderComponent{
     this.clickSignup.emit();
   }
 
-  onClickReset() {
-    this.clickReset.emit();
+  onClickLogout() {
+    // @ts-ignore
+    this.ls.remove('isLogin');
+    window.location.assign('');
   }
 
 }

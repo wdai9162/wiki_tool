@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Label} from 'ng2-charts';
 import {ChartOptions, ChartType} from 'chart.js';
+import {LocalStorage} from '../local.storage';
 
 @Component({
   selector: 'app-land-indiv',
@@ -34,7 +35,9 @@ export class LandIndivComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private ls: LocalStorage) {
+  }
+  isLogin = this.ls.getObject('isLogin');
 
   ngOnInit() {
   }

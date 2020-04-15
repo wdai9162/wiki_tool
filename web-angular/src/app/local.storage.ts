@@ -17,6 +17,17 @@ export class LocalStorage {
   public get(key: string): string {
     return this.localStorage[key] || false;
   }
+  public exist(key: string): boolean {
+    if(this.localStorage[key])
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+
+  }
 
   public setObject(key: string, value: any): void {
     this.localStorage[key] = JSON.stringify(value);
