@@ -12,10 +12,11 @@ mongodb.connection.on("error", (error) => {
 module.exports = mongodb;
 */
 
-
 //connecting to David's database
 const mongoose = require ("mongoose");
 mongoose.connect("mongodb+srv://user-post-project:HhFKyQ8hUTDZZUzt@cluster0-yc3oa.mongodb.net/node-angular?retryWrites=true&w=majority")
 .then(()=> {
   console.log("Connected to David's test Database! ");
 })
+
+
