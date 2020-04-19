@@ -1,7 +1,10 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {LocalStorage} from '../../local.storage';
+import {LocalStorage} from '../../../local.storage';
 import {Router} from '@angular/router';
+import {UserService} from '../../../controller/user/user.service';
+import {visitValue} from '@angular/compiler/src/util';
+
 
 @Component({
   selector: 'app-login',
@@ -13,6 +16,9 @@ export class LoginComponent implements OnInit {
 
   visible = false;
   loginForm: FormGroup;
+  testvalue: string;
+
+
   // tslint:disable-next-line:variable-name
 
   // create event emitter on click Signup
@@ -35,21 +41,24 @@ export class LoginComponent implements OnInit {
       this.loginForm.controls[i].markAsDirty();
       this.loginForm.controls[i].updateValueAndValidity();
     }
-    this.ls.setObject('isLogin', true);
-    window.location.assign('/');
-    this.closeLogin();
 
+    // 实例化类使用方法
 
-    fetch('http://127.0.0.1:3000/', {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    })
+    const userService = new  UserService(null, this.ls);
+    const thisCompoement = this;
+
+    // tslint:disable-next-line:only-arrow-functions
+    fetch('http://localhost:4200').then(re => re.text()).then( function(re) {
+         // 这里是相当于用controller的方法直接去根据返回值渲染具体状态，状态设置完全由loginStatus控制
+        userService.loginStatus(re);
+        window.location.assign('/');
+        thisCompoement.closeLogin();
+      }
       // tslint:disable-next-line:only-arrow-functions
-      .then(response => response.text() )
-      // tslint:disable-next-line:only-arrow-functions
-      .then(function(mydata) {
-        console.log(mydata);
-
+    ).catch(function(error) {
+      alert(error);
     });
+
   }
 
   ngOnInit(): void {
