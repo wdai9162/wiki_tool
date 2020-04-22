@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { NzListModule } from 'ng-zorro-antd/list'
+import { NzListModule } from 'ng-zorro-antd/list';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 import {OverallService} from '../../../controller/Overall/OverallService';
-// @ts-ignore
-import fetch = require('node-fetch');
 
-async function getData(id) {
-  // tslint:disable-next-line:one-variable-per-declaration
-    const url     = id,
-    request = await fetch(url);
-    return await request.text();
-}
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+
+
 
 
 @Component({
@@ -22,6 +17,9 @@ async function getData(id) {
 })
 export class LoginOverAllComponent implements OnInit {
 
+  // @ts-ignore
+  OverallService = new OverallService();
+  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales', 'hi', 'who'];
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {
@@ -36,20 +34,11 @@ export class LoginOverAllComponent implements OnInit {
       },
     }
   };
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData: number[] = [300, 500, 100];
-  public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
-  // @ts-ignore
-  OverallService = new OverallService();
-  test = '123';
-  longest:[];
 
-  public pieChartColors = [
-    {
-      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
-    },
-  ];
+  public pieChartData: number[] = [300, 500, 100, 10, 5 ];
+  test = '123';
+  longest: [];
+  public pieChartPlugins = [pluginDataLabels];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -63,9 +52,8 @@ export class LoginOverAllComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = [];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
+  public barChartLabels: Label[];
+
   // public barChartPlugins = [pluginDataLabels];
 
   public barChartData: ChartDataSets[] =  [];
@@ -78,6 +66,7 @@ export class LoginOverAllComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.longest = await this.OverallService.getTextData('http://127.0.0.1:3000/api/overall/overallstats/');
+
     this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
     this.barChartData = [
       {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},

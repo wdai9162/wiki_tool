@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Label} from 'ng2-charts';
 import {ChartOptions, ChartType} from 'chart.js';
 import {LocalStorage} from '../../local.storage';
+import {Chart} from 'chart.js';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-land-indiv',
@@ -9,6 +11,7 @@ import {LocalStorage} from '../../local.storage';
   styleUrls: ['./land-indiv.component.css']
 })
 export class LandIndivComponent implements OnInit {
+  isLogin = this.ls.getObject('isLogin');
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -28,16 +31,14 @@ export class LandIndivComponent implements OnInit {
   public pieChartData: number[] = [300, 500, 100];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
-
+  // public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
       backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
     },
   ];
 
-  constructor(private ls: LocalStorage) {
-  }
-  isLogin = this.ls.getObject('isLogin');
+  constructor(private ls: LocalStorage) { }
 
   ngOnInit() {
   }
