@@ -1,1 +1,89 @@
 <p>login-indiv works!</p>
+<div id="main"  >
+  <div class = "text">
+    view:<select style="width: 80%;margin: auto">
+    <option>2</option>
+    <option>5</option>
+    <option>10</option>
+  </select><button style="float: right">select</button>
+    <nz-list nzHeader="highest number of revisions"  style="text-align: center" nzFooter="">
+      <ul nz-list nzBordered nzSize="middle">
+
+        <nz-list-item>
+          1
+        </nz-list-item>
+        <nz-list-item>
+          2
+        </nz-list-item>
+      </ul>
+    </nz-list>
+
+    <nz-list nzHeader="lowest number of revisions"  style="text-align: center" nzFooter="">
+      <ul nz-list nzBordered nzSize="middle">
+        <nz-list-item>
+          1
+        </nz-list-item>
+        <nz-list-item>
+          2
+        </nz-list-item>
+      </ul>
+    </nz-list>
+    <nz-list nzHeader="largest group of registered users"  style="text-align: center" nzFooter="">
+      <ul nz-list nzBordered nzSize="middle">
+        <nz-list-item>
+          1
+        </nz-list-item>
+        <nz-list-item>
+          2
+        </nz-list-item>
+      </ul>
+    </nz-list>
+    <nz-list nzHeader="longest history"  style="text-align: center" nzFooter="">
+      <ul nz-list nzBordered nzSize="middle">
+        <nz-list-item>
+          1
+        </nz-list-item>
+        <nz-list-item>
+          2
+        </nz-list-item>
+      </ul>
+    </nz-list>
+    <nz-list nzHeader="shortest history"  style="text-align: center" nzFooter="">
+      <ul nz-list nzBordered nzSize="middle">
+        <nz-list-item>
+          1
+        </nz-list-item>
+        <nz-list-item>
+          2
+        </nz-list-item>
+      </ul>
+    </nz-list>
+
+  </div>
+  <div class = "graph">
+    <div>
+      <div>
+        <div class="chart">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [chartType]="pieChartType"
+                  [options]="pieChartOptions"
+                  [colors]="pieChartColors"
+                  [legend]="pieChartLegend">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+  </div>
+</div>

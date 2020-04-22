@@ -1,60 +1,44 @@
 <div id="main"  >
   <div class = "text">
-    view:<select style="width: 70%;margin: auto">
+    view:<select style="width: 80%;margin: auto">
     <option>2</option>
     <option>5</option>
     <option>10</option>
-  </select><button style="float: right">select</button>
-    <nz-list nzHeader="highest number of revisions"  style="text-align: center" nzFooter="">
+  </select><button style="float: right" (click)="updateData()">select</button>
+    <nz-list nzHeader="highest number of revisions"  style="text-align: center;" >
     <ul nz-list nzBordered nzSize="middle">
-
-      <nz-list-item>
-       1
-      </nz-list-item>
-      <nz-list-item>
-        2
-      </nz-list-item>
+      <li nz-list-item *ngFor="let item of longest" nzNoFlex style="text-align: left">
+        {{item['_id']}}<span style="float: right">{{item['count']}}</span>
+      </li>
     </ul>
     </nz-list>
 
     <nz-list nzHeader="lowest number of revisions"  style="text-align: center" nzFooter="">
     <ul nz-list nzBordered nzSize="middle">
-      <nz-list-item>
-        1
-      </nz-list-item>
-      <nz-list-item>
-        2
-      </nz-list-item>
+      <li nz-list-item *ngFor="let item of longest" nzNoFlex style="text-align: left">
+        {{item['_id']}}<span style="float: right">{{item['count']}}</span>
+      </li>
     </ul>
     </nz-list>
     <nz-list nzHeader="largest group of registered users"  style="text-align: center" nzFooter="">
     <ul nz-list nzBordered nzSize="middle">
-      <nz-list-item>
-        1
-      </nz-list-item>
-      <nz-list-item>
-        2
-      </nz-list-item>
+      <li nz-list-item *ngFor="let item of longest" nzNoFlex style="text-align: left">
+        {{item['_id']}}<span style="float: right">{{item['count']}}</span>
+      </li>
     </ul>
     </nz-list>
     <nz-list nzHeader="longest history"  style="text-align: center" nzFooter="">
       <ul nz-list nzBordered nzSize="middle">
-        <nz-list-item>
-          1
-        </nz-list-item>
-        <nz-list-item>
-          2
-        </nz-list-item>
+        <li nz-list-item *ngFor="let item of longest" nzNoFlex style="text-align: left">
+          {{item['_id']}}<span style="float: right">{{item['count']}}</span>
+        </li>
       </ul>
     </nz-list>
     <nz-list nzHeader="shortest history"  style="text-align: center" nzFooter="">
       <ul nz-list nzBordered nzSize="middle">
-        <nz-list-item>
-          1
-        </nz-list-item>
-        <nz-list-item>
-          2
-        </nz-list-item>
+        <li nz-list-item *ngFor="let item of longest" nzNoFlex style="text-align: left">
+          {{item['_id']}}<span style="float: right">{{item['count']}}</span>
+        </li>
       </ul>
     </nz-list>
 

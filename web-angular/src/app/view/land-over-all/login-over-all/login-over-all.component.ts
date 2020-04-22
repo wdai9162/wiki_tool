@@ -3,6 +3,18 @@ import { NzListModule } from 'ng-zorro-antd/list'
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
+import {OverallService} from '../../../controller/Overall/OverallService';
+// @ts-ignore
+import fetch = require('node-fetch');
+
+async function getData(id) {
+  // tslint:disable-next-line:one-variable-per-declaration
+    const url     = id,
+    request = await fetch(url);
+    return await request.text();
+}
+
+
 @Component({
   selector: 'app-login-over-all',
   templateUrl: './login-over-all.component.html',
@@ -28,6 +40,10 @@ export class LoginOverAllComponent implements OnInit {
   public pieChartData: number[] = [300, 500, 100];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
+  // @ts-ignore
+  OverallService = new OverallService();
+  test = '123';
+  longest:[];
 
   public pieChartColors = [
     {
@@ -37,6 +53,7 @@ export class LoginOverAllComponent implements OnInit {
 
   public barChartOptions: ChartOptions = {
     responsive: true,
+
     // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
     plugins: {
@@ -46,18 +63,26 @@ export class LoginOverAllComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels: Label[] = [];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   // public barChartPlugins = [pluginDataLabels];
 
-  public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-  ];
-  constructor() { }
+  public barChartData: ChartDataSets[] =  [];
+   constructor() {
+   }
+   async updateData(): Promise<void>{
+     this.test = await this.OverallService.getData('http://127.0.0.1:4200/');
+   };
 
-  ngOnInit(): void {
+
+  async ngOnInit(): Promise<void> {
+    this.longest = await this.OverallService.getTextData('http://127.0.0.1:3000/api/overall/overallstats/');
+    this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+    this.barChartData = [
+      {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+      {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    ];
   }
 
 }

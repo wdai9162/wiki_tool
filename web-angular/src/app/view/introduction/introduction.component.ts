@@ -10,6 +10,7 @@ import {LocalStorage} from '../../local.storage';
 })
 
 export class IntroductionComponent implements OnInit {
+
   constructor(private ls: LocalStorage) { }
 
   isLogin = this.ls.getObject('isLogin');
