@@ -1,15 +1,15 @@
-/**
- * overall.controller.js 
- * 
- * This controller module exposes three methods: 
- *  - sendOverallStats is used for sending the overall statistic data 
+﻿/**
+ * overall.controller.js
+ *
+ * This controller module exposes three methods:
+ *  - sendOverallStats is used for sending the overall statistic data
  *  - sendBarChartData is used for sending the data to graph a bar chart, describing revision number distribution by year and by user
  *  - sendPieChartData is used for sending the data to graph a pie chart, describing revision number distribution by user type ('Administrator', 'Anonymous', 'Bot' and 'Regular user')
- * 
+ *
  */
 
 const express = require ('express');
-const Revinfo = require ('../model/revinfo');  //all articles 
+const Revinfo = require ('../model/revinfo');  //all articles
 const fs = require ('fs');
 const path = require('path');
 
@@ -19,21 +19,24 @@ var botUser = fs.readFileSync(path.join(__dirname,  '/../user_filter/bots.txt'))
 
 module.exports.sendOverallStats = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
-    //const queryNumber = req.body.userSelection; 
-    const queryNumber = 2; 
-    
-    //Return sorted count of total revisions of each article, top 2 and bottom 2 are needed 
+    //const queryNumber = req.body.userSelection;
+    const queryNumber = 2;
+
+    //Return sorted count of total revisions of each article, top 2 and bottom 2 are needed
     const aggCountOps1 = [
         {
             $group : {
                  _id : "$title",
                  count: { $sum: 1 }
             }
-        }, 
-        { $sort: { count: -1 } }
+        },
+        { $sort: { count: -1 } },
+        {
+          $limit: 2
+        }
     ]
 
-    //Return sorted count of groups of registered users (non bots) for each article. 
+    //Return sorted count of groups of registered users (non bots) for each article.
     //BOT NOT FILTERED YET!!!!
     const aggCountOps2 = [
         {
@@ -43,13 +46,13 @@ module.exports.sendOverallStats = function (req, res) {
                     user: "$user"
                 }
             }
-        }, 
-        { 
+        },
+        {
             $group : {
                 _id : "$_id.title",
                 count: { $sum: 1 }
             }
-        }, 
+        },
         { $sort: { count: -1 } }
     ]
 
@@ -100,12 +103,12 @@ module.exports.sendOverallStats = function (req, res) {
                     }
                 }
             }
-        }, 
+        },
         { "$sort": { "users": -1 } }
     ]
-
+/*
     var data = [123];
-    
+
     Revinfo.aggregate(aggCountOps1, (err, result) => {
         if (err) {
             res.json({
@@ -115,15 +118,16 @@ module.exports.sendOverallStats = function (req, res) {
         };
         data.push(result[0,3]);
     })
-    
-    res.status(200).send(data);
 
-    /*
+    res.status(200).send(data);
+*/
+
+
     Revinfo.aggregate(aggCountOps1)
     .then(revs => {
         res.status(200).json({
             message: 'success',
-            data:revs[0]
+            data:revs
         })
     })
     .catch(err => {
@@ -132,7 +136,7 @@ module.exports.sendOverallStats = function (req, res) {
             message: err
         })
     });
-    */
+
 }
 
 module.exports.sendBarChartData = function (req, res) {
