@@ -1,0 +1,28 @@
+#main
+{
+  width: 100%;
+
+
+  min-height: 100%;
+
+
+
+}
+
+.text
+{
+  width: 50%;
+
+  float: left;
+  height: 100%;
+
+}
+
+.graph
+{
+  width: 50%;
+
+  float: right;
+  height: 100%;
+
+}
