@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import {LocalStorage} from '../local.storage';
+import {LocalStorage} from '../../local.storage';
 
 @Component({
   selector: 'app-header',

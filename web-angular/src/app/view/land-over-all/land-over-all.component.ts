@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
-import {LocalStorage} from '../local.storage';
+import {LocalStorage} from '../../local.storage';
+import { Overall } from '../../model/overall/overall.model';
+
 
 @Component({
   selector: 'app-land-over-all',
@@ -25,6 +27,7 @@ export class LandOverAllComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   // public barChartPlugins = [pluginDataLabels];
+
 
   public barChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },

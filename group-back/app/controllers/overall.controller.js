@@ -144,6 +144,7 @@ module.exports.byArticleHistory = function (req, res) {
     ];
 
 
+
     Revinfo.aggregate(queryByHistory)
     .then(result => {
         res.status(200).json({

@@ -3,12 +3,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
-
-
-
-
-
-
+import {OverallService} from '../../../controller/overall/overall.service';
+import {Overall} from '../../../model/overall/overall.model';
 
 @Component({
   selector: 'app-login-over-all',
@@ -18,6 +14,7 @@ import {Label} from 'ng2-charts';
 export class LoginOverAllComponent implements OnInit {
 
 
+  OverallModel;
   public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales', 'hi', 'who'];
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -36,19 +33,7 @@ export class LoginOverAllComponent implements OnInit {
 
   public pieChartData: number[] = [300, 500, 100, 10, 5 ];
   test = '123';
-  // Textdata
-  // tslint:disable-next-line:variable-name
-  hi_longest: [];
-  // tslint:disable-next-line:variable-name
-  hi_shortest: [];
-  // tslint:disable-next-line:variable-name
-  re_highest: [];
-  // tslint:disable-next-line:variable-name
-  re_lowest: [];
-  // tslint:disable-next-line:variable-name
-  user_largest: [];
-  // tslint:disable-next-line:variable-name
-  user_least: [];
+
 
 
   public barChartOptions: ChartOptions = {
@@ -68,19 +53,57 @@ export class LoginOverAllComponent implements OnInit {
   // public barChartPlugins = [pluginDataLabels];
 
   public barChartData: ChartDataSets[] =  [];
-   constructor() {
+   constructor(public OLService: OverallService) {
+     this.OverallModel = new Overall();
+
    }
    async updateData(): Promise<void>{
-     this.test = await this.getData('http://127.0.0.1:4200/');
-   };
+   }
 
-  async getData(url) {
-    // tslint:disable-next-line:one-variable-per-declaration
-    const request = await fetch(url);
-    return await request.json();
+
+
+  // tslint:disable-next-line:variable-name
+async getHistory( number: string): Promise<void>
+  {
+    // @ts-ignore
+    const data = await this.OLService.getOverllHistoryService(number);
+    // @ts-ignore
+    this.OverallModel.hi_longest = await data.longest;
+    // @ts-ignore
+    this.OverallModel.hi_shortest = await data.shortest;
+  }
+
+  // tslint:disable-next-line:variable-name
+  async getReNum( number: string): Promise<void>
+  {
+    // @ts-ignore
+    const data = await this.OLService.getOverallReNumberService(number)
+    // @ts-ignore
+    this.OverallModel.re_highest = await data.highest;
+    // @ts-ignore
+    this.OverallModel.re_lowest = await data.lowest;
+  }
+
+  // tslint:disable-next-line:variable-name
+  async getReUser( number: string): Promise<void>
+  {
+    // @ts-ignore
+
+    const data = await this.OLService.getOverallReUserService(number);
+    // @ts-ignore
+    this.OverallModel.user_largest = await data.largest;
+    // @ts-ignore
+    this.OverallModel.user_least = await data.least;
   }
 
 
+  // tslint:disable-next-line:variable-name
+  async SetRandData( number: string): Promise<void>
+  {
+    await this.getHistory(number);
+    await this.getReNum(number);
+    await this.getReUser(number);
+  }
 
   async ngOnInit(): Promise<void> {
     this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
@@ -88,20 +111,10 @@ export class LoginOverAllComponent implements OnInit {
       {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
       {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
     ];
-
-    const history = await this.getData('http://127.0.0.1:3000/api/overall/history');
-    this.hi_longest = history.longest;
-    this.hi_shortest = history.shortest;
-    const renumber = await this.getData('http://127.0.0.1:3000/api/overall/revnumbers');
-    this.re_highest = await renumber.highest;
-    this.re_lowest = await  renumber.lowest;
-    const reuser = await this.getData('http://127.0.0.1:3000/api/overall/regusers');
-    this.user_largest = await reuser.largest;
-    this.user_least = await reuser.least;
-
-
+    await this.SetRandData('2');
 
 
   }
+
 
 }
