@@ -16,8 +16,9 @@ module.exports.login = function (req, res) {
     
     const usrEmail = "testuser@gmail.com" || req.userEmail;
     const userPsd= "Welcome1" || req.password;
-    let userLogin;
+    let user;
 
+    //query database for the login email submitted
     User.findOne({ "email" : usrEmail })
     .then(result => {
         if (result===null) {
@@ -26,9 +27,10 @@ module.exports.login = function (req, res) {
                 err: "We cannot find an account with that email address"
             })
         }
-        userLogin = result.email;
+        user = result.email;
+        
+        //compare password and return true of false 
         return bcrypt.compare(userPsd, result.password);
-
     })
     .then (result => {
         if (result===false) {
@@ -37,16 +39,15 @@ module.exports.login = function (req, res) {
                 err: "Incorrect password"
         })}
 
-        else {
-            return res.status(200).json({
-                confirmation: "success",
-                user: userLogin,
-                session: req.session
-            })
-        }
+        //return result if not password check is true 
+        return res.status(200).json({
+            confirmation: "success",
+            user: user,
+            session: req.session
+        })
+        
     })    
 }
-
 
 module.exports.signup = function (req, res) {
 
