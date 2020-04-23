@@ -15,8 +15,7 @@ import {Overall} from '../../../model/overall/overall.model';
 export class LoginOverAllComponent implements OnInit {
   OverallModel;
 
-  number = '2';
-  info = '';
+
 
   public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales', 'hi', 'who'];
   public pieChartOptions: ChartOptions = {
