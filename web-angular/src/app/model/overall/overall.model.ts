@@ -1,6 +1,29 @@
 import {Label} from 'ng2-charts';
 
 export class Overall {
+  get numbers(): string[] {
+    return this._numbers;
+  }
+
+  set numbers(value: string[]) {
+    this._numbers = value;
+  }
+
+  get number(): string {
+    return this._number;
+  }
+
+  set number(value: string) {
+    this._number = value;
+  }
+
+  get info(): string {
+    return this._info;
+  }
+
+  set info(value: string) {
+    this._info = value;
+  }
 
   // tslint:disable-next-line:variable-name
   private _hi_longest: [] ;
@@ -19,6 +42,13 @@ export class Overall {
   private _pieChartLabels: Label[];
   // tslint:disable-next-line:variable-name
   private _pieChartData: number[];
+
+  // tslint:disable-next-line:variable-name
+  private _numbers: string [] = ['2', '3', '5'];
+  // tslint:disable-next-line:variable-name
+  private _number = '2';
+  // tslint:disable-next-line:variable-name
+  private _info = '';
 
   get pieChartLabels(): Label[] {
     return this._pieChartLabels;
