@@ -6,8 +6,11 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var overallRouter = require('./routes/overall');
+var userRouter = require('./routes/user');
+
 const mongoose = require ('mongoose');
 
+var session = require('express-session');
 
 var app = express(); 
 const mongoDB = "mongodb+srv://admin:Welcome1@cluster0-yc3oa.mongodb.net/node-angular?retryWrites=true&w=majority"; 
@@ -35,13 +38,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// the session will expire in 60 seconds (60,000 milliseconds)
+app.use(session({
+  secret: 'g24r9yfb3J',
+  cookie: {maxAge: 1800000},
+  resave: true,
+  saveUninitialized: true
+}));
 
 //define paths for each function 
 app.use('/', indexRouter);
-app.use('/api/user', (req,res) => {
-  res.end("this is the user service endpoint.")
-  });
-
+app.use('/api/user', userRouter);
 app.use('/api/overall', overallRouter); 
 
 app.use('/api/individual', (req,res) => {
@@ -51,16 +58,6 @@ app.use('/api/individual', (req,res) => {
 app.use('/api/author', (req,res) => {
   res.end("this is the AUTHOR analytics endpoint")
   }); 
-
-
-//route to user api 
-//app.use('/api/user',xxxxx);
-//route to analytics api
-//app.use('/api/analytics', userRouter);
-
-
-
-
 
 
 // catch 404 and forward to error handler
