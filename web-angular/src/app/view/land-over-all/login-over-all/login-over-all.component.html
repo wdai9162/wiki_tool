@@ -1,6 +1,6 @@
 <div id="main"  >
   <div class = "text">
-    view: <select [(ngModel)]="OverallModel.number" (ngModelChange)="number=$event;setInfo()" style="width: 80%;margin: auto">
+    view: <select [(ngModel)]="OverallModel.number" (ngModelChange)="OverallModel.number=$event;setInfo()" style="width: 80%;margin: auto">
       <option *ngFor="let item of OverallModel.numbers" [value]='item' >{{item}}</option>
     </select>
    <button style="float: right" (click)="updateData()">select</button>
