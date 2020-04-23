@@ -16,6 +16,7 @@ module.exports.login = function (req, res) {
     
     const usrEmail = "testuser@gmail.com" || req.userEmail;
     const userPsd= "Welcome1" || req.password;
+    let userLogin;
 
     User.findOne({ "email" : usrEmail })
     .then(result => {
@@ -25,7 +26,7 @@ module.exports.login = function (req, res) {
                 err: "We cannot find an account with that email address"
             })
         }
-        
+        userLogin = result.email;
         return bcrypt.compare(userPsd, result.password);
 
     })
@@ -39,6 +40,7 @@ module.exports.login = function (req, res) {
         else {
             return res.status(200).json({
                 confirmation: "success",
+                user: userLogin,
                 session: req.session
             })
         }
