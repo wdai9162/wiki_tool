@@ -6,15 +6,18 @@ import {Label} from 'ng2-charts';
 import {OverallService} from '../../../controller/overall/overall.service';
 import {Overall} from '../../../model/overall/overall.model';
 
+
 @Component({
   selector: 'app-login-over-all',
   templateUrl: './login-over-all.component.html',
   styleUrls: ['./login-over-all.component.css']
 })
 export class LoginOverAllComponent implements OnInit {
-
-
   OverallModel;
+
+  number = '2';
+  info = '';
+
   public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales', 'hi', 'who'];
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -32,7 +35,6 @@ export class LoginOverAllComponent implements OnInit {
   };
 
   public pieChartData: number[] = [300, 500, 100, 10, 5 ];
-  test = '123';
 
 
 
@@ -58,7 +60,14 @@ export class LoginOverAllComponent implements OnInit {
 
    }
    async updateData(): Promise<void>{
+     await this.SetRandData(this.OverallModel.info);
    }
+
+
+  setInfo(){
+    this.OverallModel.info = this.OverallModel.number;
+  }
+
 
 
 
@@ -77,7 +86,7 @@ async getHistory( number: string): Promise<void>
   async getReNum( number: string): Promise<void>
   {
     // @ts-ignore
-    const data = await this.OLService.getOverallReNumberService(number)
+    const data = await this.OLService.getOverallReNumberService(number);
     // @ts-ignore
     this.OverallModel.re_highest = await data.highest;
     // @ts-ignore

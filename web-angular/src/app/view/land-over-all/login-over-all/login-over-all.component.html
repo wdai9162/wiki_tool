@@ -1,10 +1,9 @@
 <div id="main"  >
   <div class = "text">
-    view:<select style="width: 80%;margin: auto">
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="5">5</option>
-  </select><button style="float: right" (click)="updateData()">select</button>
+    view: <select [(ngModel)]="OverallModel.number" (ngModelChange)="number=$event;setInfo()" style="width: 80%;margin: auto">
+      <option *ngFor="let item of OverallModel.numbers" [value]='item' >{{item}}</option>
+    </select>
+   <button style="float: right" (click)="updateData()">select</button>
     <nz-list nzHeader="highest number of revisions"  style="text-align: center;" >
     <ul nz-list nzBordered nzSize="small">
       <li nz-list-item *ngFor="let item of OverallModel.re_highest" nzNoFlex style="text-align: left">

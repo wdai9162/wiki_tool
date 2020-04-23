@@ -1,29 +1,12 @@
 export class Login {
-  private _UserEmail: string;
-  private _Password: string;
-  private _remember: string;
-
-  get UserEmail(): string {
-    return this._UserEmail;
+  get User(): { remember: boolean; password: string; userEmail: string } {
+    return this._User;
   }
 
-  set UserEmail(value: string) {
-    this._UserEmail = value;
+  set User(value: { remember: boolean; password: string; userEmail: string }) {
+    this._User = value;
   }
+  // tslint:disable-next-line:variable-name
+  private _User = {userEmail: '', password: '', remember: false};
 
-  get Password(): string {
-    return this._Password;
-  }
-
-  set Password(value: string) {
-    this._Password = value;
-  }
-
-  get remember(): string {
-    return this._remember;
-  }
-
-  set remember(value: string) {
-    this._remember = value;
-  }
 }

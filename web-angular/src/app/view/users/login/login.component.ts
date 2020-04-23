@@ -2,7 +2,8 @@ import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {LocalStorage} from '../../../local.storage';
 import {Router} from '@angular/router';
-
+import {LoginService} from '../../../controller/login/login.service';
+import {Login} from '../../../model/login/login.model';
 
 
 @Component({
@@ -11,21 +12,21 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private fb: FormBuilder, private ls: LocalStorage, public router: Router) {}
+  LoginModel;
+  constructor(private fb: FormBuilder, private ls: LocalStorage, public router: Router, public LoginSer: LoginService) {
+    this.LoginModel = new Login();
+  }
 
   visible = false;
   loginForm: FormGroup;
-  testvalue: string;
 
-
-  // tslint:disable-next-line:variable-name
 
   // create event emitter on click Signup
   @Output() clickSignup = new EventEmitter();
   @Output() clickReset  = new EventEmitter();
 
 
-  onLogin(): void {
+  async onLogin(): Promise<void> {
 
 
     if (this.loginForm.invalid) {
@@ -43,20 +44,28 @@ export class LoginComponent implements OnInit {
 
     // 实例化类使用方法
 
-    // const userService = new  UserService(null, this.ls);
-    const thisCompoement = this;
+    if(await this.LoginSer.loginStatus(this.loginForm.value))
+    {
+      window.location.assign('/');
+      this.closeLogin();
+    }
+    else
+    {
+      alert('login fail');
+    }
+
 
     // tslint:disable-next-line:only-arrow-functions
-    fetch('http://localhost:4200').then(re => re.text()).then( function(re) {
-         // 这里是相当于用controller的方法直接去根据返回值渲染具体状态，状态设置完全由loginStatus控制
-        thisCompoement.loginStatus(re);
-        window.location.assign('/');
-        thisCompoement.closeLogin();
-      }
-      // tslint:disable-next-line:only-arrow-functions
-    ).catch(function(error) {
-      alert(error);
-    });
+    // fetch('http://localhost:4200').then(re => re.text()).then( function(re) {
+    //      // 这里是相当于用controller的方法直接去根据返回值渲染具体状态，状态设置完全由loginStatus控制
+    //     thisCompoement.loginStatus(re);
+    //     window.location.assign('/');
+    //     thisCompoement.closeLogin();
+    //   }
+    //   // tslint:disable-next-line:only-arrow-functions
+    // ).catch(function(error) {
+    //   alert(error);
+    // });
 
   }
 
