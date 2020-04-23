@@ -6,9 +6,7 @@ import { Injectable } from '@angular/core';
 export class OverallService {
 
   constructor() { }
-  reUser = [];
-  revnumbers = [];
-  history = [];
+
   async getData(url) {
     // tslint:disable-next-line:one-variable-per-declaration
     const request = await fetch(url);
@@ -16,24 +14,18 @@ export class OverallService {
   }
   // tslint:disable-next-line:variable-name
   async getOverllHistoryService(number: string): Promise<[]> {
-    this.history = await this.getData('http://127.0.0.1:3000/api/overall/history');
-    // @ts-ignore
-    return this.history;
+    return await this.getData('http://127.0.0.1:3000/api/overall/history?number=' + number);
   }
 
 
   // tslint:disable-next-line:variable-name
   async getOverallReNumberService( number: string): Promise<[]> {
-    this.revnumbers = await this.getData('http://127.0.0.1:3000/api/overall/revnumbers');
-    // @ts-ignore
-    return this.revnumbers;
+    return  await this.getData('http://127.0.0.1:3000/api/overall/revnumbers?number=' + number);
   }
 
   // tslint:disable-next-line:variable-name
   async getOverallReUserService( number: string): Promise<[]> {
-    this.reUser = await this.getData('http://127.0.0.1:3000/api/overall/regusers');
-    // @ts-ignore
-    return this.reUser;
+    return await this.getData('http://127.0.0.1:3000/api/overall/regusers?number=' + number);
   }
 
 }

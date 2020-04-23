@@ -20,7 +20,7 @@ var botUser = fs.readFileSync(path.join(__dirname,  '/../user_filter/bots.txt'))
 module.exports.byRevNumbers = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
-    const queryNumber = 3;
+    const queryNumber = parseInt(req.query.number);
 
     //Return sorted count of total revisions of each article, top 2 and bottom 2 are needed
     const queryByRevNumber = [
@@ -53,7 +53,7 @@ module.exports.byRevNumbers = function (req, res) {
 module.exports.byRegUsers  = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
-    const queryNumber = 3;
+    const queryNumber =parseInt(req.query.number);;
 
     //The top two articles edited by the largest group of registered users (non bots) and their group size.
     //Each wiki article is edited by a number of users, some making multiple revisions.
@@ -128,7 +128,7 @@ module.exports.byRegUsers  = function (req, res) {
 module.exports.byArticleHistory = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
-    const queryNumber = 3;
+    const queryNumber = parseInt(req.query.number);
     var currentTime = new Date();
     var currentUtcTime = currentTime.toUTCString();
 
