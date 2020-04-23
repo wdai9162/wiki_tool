@@ -20,6 +20,7 @@ var botUser = fs.readFileSync(path.join(__dirname,  '/../user_filter/bots.txt'))
 module.exports.byRevNumbers = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
+
     const queryNumber = parseInt(req.query.number);
 
     //Return sorted count of total revisions of each article, top 2 and bottom 2 are needed

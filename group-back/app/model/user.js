@@ -10,4 +10,4 @@ const userSchema = mongoose.Schema({
 //validate unique entry of email address
 userSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model("User", userSchema)
+module.exports = mongoose.model("User", userSchema, "users");
