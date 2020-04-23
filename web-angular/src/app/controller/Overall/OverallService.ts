@@ -17,12 +17,12 @@ export class  OverallService{
     return await request.json();
   }
 
-  async getTextData(url)
-  {
-    const text = await fetch(url);
-    const data = await text.json();
-    return await data.data;
-  }
+  // async getReUserData(url)
+  // {
+  //   const text = await fetch(url);
+  //   const data = await text.json();
+  //   return await data.data;
+  // }
 
   async getBarData(url)
   {

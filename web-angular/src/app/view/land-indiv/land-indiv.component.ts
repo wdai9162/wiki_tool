@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Label} from 'ng2-charts';
 import {ChartOptions, ChartType} from 'chart.js';
 import {LocalStorage} from '../../local.storage';
-import {Chart} from 'chart.js';
-import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+
 
 @Component({
   selector: 'app-land-indiv',

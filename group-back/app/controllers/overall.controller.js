@@ -21,7 +21,7 @@ module.exports.byRevNumbers = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
     const queryNumber = 3;
-    
+
     //Return sorted count of total revisions of each article, top 2 and bottom 2 are needed
     const queryByRevNumber = [
         {
@@ -54,9 +54,9 @@ module.exports.byRegUsers  = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
     const queryNumber = 3;
-    
-    //The top two articles edited by the largest group of registered users (non bots) and their group size. 
-    //Each wiki article is edited by a number of users, some making multiple revisions. 
+
+    //The top two articles edited by the largest group of registered users (non bots) and their group size.
+    //Each wiki article is edited by a number of users, some making multiple revisions.
     //The number of unique users is a good indicator of an article’s popularity.
     const queryByRegUsers = [
         {
@@ -129,7 +129,7 @@ module.exports.byArticleHistory = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
     const queryNumber = 3;
-    var currentTime = new Date()
+    var currentTime = new Date();
     var currentUtcTime = currentTime.toUTCString();
 
     //Return articles and its first revision data/creation date, in decending order
@@ -139,9 +139,9 @@ module.exports.byArticleHistory = function (req, res) {
                 _id: "$title",
                 firstRev: { $min: "$timestamp" }
             }
-        }, 
+        },
         { $sort: { firstRev: -1 } }
-    ]
+    ];
 
 
     Revinfo.aggregate(queryByHistory)
@@ -163,7 +163,7 @@ module.exports.byArticleHistory = function (req, res) {
     function calculateAge(date1,date2) {
         var now = Date.parse(date2);
         var start = Date.parse(date1);
-        var diff = Math.abs(now - start); 
+        var diff = Math.abs(now - start);
         var ageInDays = diff/60/60/24/1000;
         return ageInDays.toFixed(1);
     }
@@ -171,17 +171,17 @@ module.exports.byArticleHistory = function (req, res) {
     function resultConsolidationShort(data,queryNumber) {
         var result = [];
         for (i=0;i<queryNumber;i++){
-            result.push({title: data[i]._id, age_in_days: Number(calculateAge(data[i].firstRev, currentUtcTime))}) 
+            result.push({title: data[i]._id, age_in_days: Number(calculateAge(data[i].firstRev, currentUtcTime))})
         }
-        return result; 
+        return result;
     }
-    
+
     function resultConsolidationLong(data,queryNumber) {
         var result = [];
         for (i=data.length-1;i>data.length-queryNumber-1;i--){
-            result.push({title: data[i]._id, age_in_days: Number(calculateAge(data[i].firstRev, currentUtcTime))}) 
+            result.push({title: data[i]._id, age_in_days: Number(calculateAge(data[i].firstRev, currentUtcTime))})
         }
-        return result; 
+        return result;
     }
 }
 
@@ -206,7 +206,7 @@ module.exports.byArticleHistory = function (req, res) {
         { $sort: { count: -1 } }
     ]
 
-    
+
 
 
 

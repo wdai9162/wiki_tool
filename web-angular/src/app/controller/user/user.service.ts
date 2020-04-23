@@ -8,10 +8,7 @@ export class UserService {
   constructor(private http: HttpClient, private ls: LocalStorage) {
   }
 
-  createUser(email: string, password: string, questionOption, LastName: string, FirstName: string) {
 
-
-  }
 
   // tslint:disable-next-line:ban-types
   loginStatus(status: string): string {
