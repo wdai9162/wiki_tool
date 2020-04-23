@@ -3,7 +3,7 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
-import {OverallService} from '../../../controller/Overall/OverallService';
+
 
 
 
@@ -17,8 +17,7 @@ import {OverallService} from '../../../controller/Overall/OverallService';
 })
 export class LoginOverAllComponent implements OnInit {
 
-  // @ts-ignore
-  OverallService = new OverallService();
+
   public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales', 'hi', 'who'];
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -72,8 +71,15 @@ export class LoginOverAllComponent implements OnInit {
    constructor() {
    }
    async updateData(): Promise<void>{
-     this.test = await this.OverallService.getData('http://127.0.0.1:4200/');
+     this.test = await this.getData('http://127.0.0.1:4200/');
    };
+
+  async getData(url) {
+    // tslint:disable-next-line:one-variable-per-declaration
+    const request = await fetch(url);
+    return await request.json();
+  }
+
 
 
   async ngOnInit(): Promise<void> {
@@ -83,13 +89,13 @@ export class LoginOverAllComponent implements OnInit {
       {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
     ];
 
-    const history = await this.OverallService.getData('http://127.0.0.1:3000/api/overall/history');
+    const history = await this.getData('http://127.0.0.1:3000/api/overall/history');
     this.hi_longest = history.longest;
     this.hi_shortest = history.shortest;
-    const renumber = await this.OverallService.getData('http://127.0.0.1:3000/api/overall/revnumbers');
+    const renumber = await this.getData('http://127.0.0.1:3000/api/overall/revnumbers');
     this.re_highest = await renumber.highest;
     this.re_lowest = await  renumber.lowest;
-    const reuser = await this.OverallService.getData('http://127.0.0.1:3000/api/overall/regusers');
+    const reuser = await this.getData('http://127.0.0.1:3000/api/overall/regusers');
     this.user_largest = await reuser.largest;
     this.user_least = await reuser.least;
 

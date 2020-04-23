@@ -10,25 +10,25 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 
 
-import { LoginComponent } from './view/users/login/login.component';
-import { IntroductionComponent } from './view/introduction/introduction.component';
-import { LandOverAllComponent } from './view/land-over-all/land-over-all.component';
-import { LandIndivComponent } from './view/land-indiv/land-indiv.component';
-import { LandAuthorComponent } from './view/land-author/land-author.component';
+import { LoginComponent } from './users/login/login.component';
+import { IntroductionComponent } from './introduction/introduction.component';
+import { LandOverAllComponent } from './land-over-all/land-over-all.component';
+import { LandIndivComponent } from './land-indiv/land-indiv.component';
+import { LandAuthorComponent } from './land-author/land-author.component';
 
-import { HeaderComponent } from './view/header/header.component';
+import { HeaderComponent } from './header/header.component';
 
 
 import { NgChartjsModule } from 'ng-chartjs';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
-import { SignupComponent } from './view/users/signup/signup.component';
+import { SignupComponent } from './users/signup/signup.component';
 import { LocalStorage} from './local.storage';
-import { ResetPwdComponent } from './view/users/reset-pwd/reset-pwd.component';
-import { LoginIntroductionComponent } from './view/introduction/login-introduction/login-introduction.component';
-import { LoginOverAllComponent } from './view/land-over-all/login-over-all/login-over-all.component';
-import { LoginAuthorComponent } from './view/land-author/login-author/login-author.component';
-import { LoginIndivComponent } from './view/land-indiv/login-indiv/login-indiv.component';
+import { ResetPwdComponent } from './users/reset-pwd/reset-pwd.component';
+import { LoginIntroductionComponent } from './introduction/login-introduction/login-introduction.component';
+import { LoginOverAllComponent } from './land-over-all/login-over-all/login-over-all.component';
+import { LoginAuthorComponent } from './land-author/login-author/login-author.component';
+import { LoginIndivComponent } from './land-indiv/login-indiv/login-indiv.component';
 
 
 

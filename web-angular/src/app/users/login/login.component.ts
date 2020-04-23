@@ -1,8 +1,8 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {LocalStorage} from '../../../local.storage';
+import {LocalStorage} from '../../local.storage';
 import {Router} from '@angular/router';
-import {UserService} from '../../../controller/user/user.service';
+
 import {visitValue} from '@angular/compiler/src/util';
 
 
@@ -44,13 +44,13 @@ export class LoginComponent implements OnInit {
 
     // 实例化类使用方法
 
-    const userService = new  UserService(null, this.ls);
+    // const userService = new  UserService(null, this.ls);
     const thisCompoement = this;
 
     // tslint:disable-next-line:only-arrow-functions
     fetch('http://localhost:4200').then(re => re.text()).then( function(re) {
          // 这里是相当于用controller的方法直接去根据返回值渲染具体状态，状态设置完全由loginStatus控制
-        userService.loginStatus(re);
+        thisCompoement.loginStatus(re);
         window.location.assign('/');
         thisCompoement.closeLogin();
       }
@@ -88,6 +88,19 @@ export class LoginComponent implements OnInit {
   openReset(): void{
     this.visible = false;
     this.clickReset.emit();
+  }
+
+  loginStatus(status: string): string {
+    // tslint:disable-next-line:prefer-const
+    const jsonStatus = status;
+    if (jsonStatus) {
+      this.ls.setObject('isLogin', true);
+      this.ls.setObject('username', 'sam');
+      return jsonStatus;
+    } else {
+      alert('password error');
+
+    }
   }
 
 

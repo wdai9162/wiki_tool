@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgChartjsModule } from 'ng-chartjs';
 import { ChartsModule } from 'ng2-charts';
 
-import {LocalStorage} from '../../local.storage';
+import {LocalStorage} from '../local.storage';
 
 @Component({
   selector: 'app-land-author',

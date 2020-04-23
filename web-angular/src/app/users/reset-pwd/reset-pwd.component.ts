@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LocalStorage} from '../../../local.storage';
+import {LocalStorage} from '../../local.storage';
 
 @Component({
   selector: 'app-reset-pwd',
