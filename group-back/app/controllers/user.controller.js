@@ -14,6 +14,7 @@ const bcrypt = require ("bcrypt");
 
 module.exports.login = function (req, res) {
     
+
     const usrEmail = "testuser@gmail.com" || req.userEmail;
     const userPsd= "Welcome1" || req.password;
     let user;

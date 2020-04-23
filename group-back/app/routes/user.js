@@ -6,8 +6,8 @@ router.get('', (req, res, next) => {
     res.status(200).end("This is the user management route root path!");
   });
 
-router.get('/login', controller.login);
-router.get('/signup', controller.signup);
+router.post('/login', controller.login);
+router.post('/signup', controller.signup);
 //router.get('/logout', controller.);
 
 module.exports = router;
