@@ -56,8 +56,12 @@ module.exports.signup = function (req, res) {
     bcrypt.hash(req.body.password,10).then(
         hash=> {
             const user = new User ({
+                firstname: req.body.firstname,
+                lastname: req.body.lastname, 
                 email: req.body.email,
-                password: hash
+                password: hash,
+                question: req.body.question, 
+                answer: req.body.answer
         });
         user.save()
         .then(result => {
