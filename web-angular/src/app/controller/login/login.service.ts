@@ -14,7 +14,7 @@ export class LoginService {
 
   async postData(url, data) {
     // tslint:disable-next-line:one-variable-per-declaration
-    const request = await fetch(url, { body: JSON.stringify(data), method: 'POST'});
+    const request = await fetch(url, { body: JSON.stringify(data), method: 'POST', headers: {'Content-Type': 'application/json'}});
     return await request.json();
   }
 

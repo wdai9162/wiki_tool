@@ -4,6 +4,7 @@ module.exports = (req, res, next) => {
     console.log(req.headers.authorization)
     const token = req.headers.authorization
     decoded=jwt.varify(token, "thisisgroup6wikiprojectforcomp5347webapplicationusyd")
+    console.log(decoded);
     if (decoded===true) {
         next(); 
     }

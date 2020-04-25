@@ -13,9 +13,8 @@ const jwt = require("jsonwebtoken");
 
 module.exports.login = function (req, res) {
     
-    //console.log(req);
-    const userEmail = "testuser@gmail.com" || req.userEmail;
-    const userPsd= "Welcome1" || req.password;
+    const userEmail = req.body.userEmail;
+    const userPsd= req.body.password;
     let user;
 
     //query database for the login email submitted
