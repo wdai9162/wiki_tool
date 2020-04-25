@@ -8,7 +8,6 @@
  *
  */
 
-const express = require ('express');
 const Revinfo = require ('../model/revinfo');  //all articles
 const fs = require ('fs');
 const path = require('path');
