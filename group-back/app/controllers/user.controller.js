@@ -6,21 +6,20 @@
  *
  */
 
-const express = require ('express');
 const User = require ('../model/user'); 
-
 const bcrypt = require ("bcrypt"); 
+const jwt = require("jsonwebtoken"); 
 
 
 module.exports.login = function (req, res) {
     
-
-    const usrEmail = "testuser@gmail.com" || req.userEmail;
+    //console.log(req);
+    const userEmail = "testuser@gmail.com" || req.userEmail;
     const userPsd= "Welcome1" || req.password;
     let user;
 
     //query database for the login email submitted
-    User.findOne({ "email" : usrEmail })
+    User.findOne({ "email" : userEmail })
     .then(result => {
         if (result===null) {
             return res.status(401).json({
@@ -28,6 +27,7 @@ module.exports.login = function (req, res) {
                 err: "We cannot find an account with that email address"
             })
         }
+        //load user email prior to exit this context
         user = result.email;
         
         //compare password and return true of false 
@@ -39,12 +39,16 @@ module.exports.login = function (req, res) {
                 confirmation: "Login Failed",
                 err: "Incorrect password"
         })}
-
+        //if logged in successful, create JWT token for respsone
+        var token = jwt.sign(
+            { user: user }, 
+            'thisisgroup6wikiprojectforcomp5347webapplicationusyd',
+            { expiresIn: '1h'});
         //return result if not password check is true 
         return res.status(200).json({
             confirmation: "success",
             user: user,
-            session: req.session
+            jst: token
         })
         
     })    

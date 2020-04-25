@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
+
 
 var indexRouter = require('./routes/index');
 var overallRouter = require('./routes/overall');
@@ -21,10 +23,14 @@ mongoose.connect(mongoDB).then(() => {
 })
 
 app.use((req,res,next) => {
+  console.log(req);
+  console.log(res);
   res.setHeader('Access-Control-Allow-Origin', "*");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS");
   next();
+
+
 })
 
 // view engine setup
@@ -33,11 +39,13 @@ app.set('view engine', 'jade');
 
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*
 // the session will expire in 60 seconds (60,000 milliseconds)
 app.use(session({
   secret: 'g24r9yfb3J',
@@ -45,6 +53,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+*/
 
 //define paths for each function 
 app.use('/', indexRouter);
