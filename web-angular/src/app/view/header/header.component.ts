@@ -35,8 +35,8 @@ export class HeaderComponent{
 
   onClickLogout() {
     // @ts-ignore
-
-    this.ls.remove('isLogin');
+    this.ls.remove('token');
+    this.ls.setObject('isLogin', false);
     window.location.assign('');
   }
 

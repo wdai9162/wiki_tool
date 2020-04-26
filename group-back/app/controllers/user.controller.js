@@ -54,6 +54,35 @@ module.exports.login = function (req, res) {
 
     })
 }
+module.exports.LoginStatus = function (req, res) {
+
+    if(req.headers.authorization)
+{
+    const token = req.headers.authorization
+    console.log(token)
+    decoded = jwt.verify(token, "thisisgroup6wikiprojectforcomp5347webapplicationusyd", function (err, decoded) {
+        if (err) {
+            res.status(401).json({
+                // confirmation: "failed",
+                // message: "Invalid token!"
+                err: err
+            })
+
+
+        } else {
+            res.status(200).json({
+                decode:decoded
+            })
+
+        }// bar
+    })
+}
+else
+{
+
+}
+
+};
 
 module.exports.signup = function (req, res) {
 
