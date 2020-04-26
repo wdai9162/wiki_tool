@@ -25,6 +25,7 @@ export class LoginService {
         console.log(jsonStatus);
         await this.ls.setObject('isLogin', true);
         await this.ls.setObject('username', jsonStatus.user );
+        await this.ls.setObject('token', jsonStatus.jst);
         return  true;
     } else {
       await this.ls.remove('isLogin');

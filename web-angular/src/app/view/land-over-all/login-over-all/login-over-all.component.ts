@@ -5,6 +5,7 @@ import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 import {OverallService} from '../../../controller/overall/overall.service';
 import {Overall} from '../../../model/overall/overall.model';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 
 @Component({
@@ -26,14 +27,23 @@ export class LoginOverAllComponent implements OnInit {
     plugins: {
       datalabels: {
         formatter: (value, ctx) => {
+          let sum = 0;
           const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label;
+          const dataArr = ctx.chart.data.datasets[0].data;
+          // @ts-ignore
+          dataArr.map(data => {
+            sum += data;
+          });
+          const percentage = (value * 100 / sum).toFixed(2) + '%';
+          return label + ':' + percentage;
         },
       },
     }
   };
 
   public pieChartData: number[] = [300, 500, 100, 10, 5 ];
+  public pieChartPlugins = [pluginDataLabels];
+
 
 
 

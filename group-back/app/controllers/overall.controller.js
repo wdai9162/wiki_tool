@@ -128,6 +128,7 @@ module.exports.byRegUsers  = function (req, res) {
 module.exports.byArticleHistory = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
+    console.log(req);
     const queryNumber = parseInt(req.query.number);
     var currentTime = new Date();
     var currentUtcTime = currentTime.toUTCString();

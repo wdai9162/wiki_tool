@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
 
     if(await this.LoginSer.loginStatus(this.loginForm.value))
     {
-      window.location.assign('/');
-      this.closeLogin();
+      // window.location.assign('/');
+       this.closeLogin();
     }
     else
     {

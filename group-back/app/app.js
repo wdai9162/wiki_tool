@@ -14,8 +14,8 @@ const mongoose = require ('mongoose');
 
 var session = require('express-session');
 
-var app = express(); 
-const mongoDB = "mongodb+srv://admin:Welcome1@cluster0-yc3oa.mongodb.net/node-angular?retryWrites=true&w=majority"; 
+var app = express();
+const mongoDB = "mongodb+srv://admin:Welcome1@cluster0-yc3oa.mongodb.net/node-angular?retryWrites=true&w=majority";
 mongoose.connect(mongoDB).then(() => {
   console.log('Connected to mongoDB Atlas Database!');
 }).catch((err) => {
@@ -26,7 +26,7 @@ app.use((req,res,next) => {
   //console.log(req);
   //console.log(res);
   res.setHeader('Access-Control-Allow-Origin', "*");
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Authorization");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS");
   next();
 
@@ -56,18 +56,18 @@ app.use(session({
 
 */
 
-//define paths for each function 
+//define paths for each function
 app.use('/', indexRouter);
 app.use('/api/user', userRouter);
-app.use('/api/overall', overallRouter); 
+app.use('/api/overall', overallRouter);
 
 app.use('/api/individual', (req,res) => {
   res.end("this is the INDIVIDUAL analytics endpoint")
-  }); 
+  });
 
 app.use('/api/author', (req,res) => {
   res.end("this is the AUTHOR analytics endpoint")
-  }); 
+  });
 
 
 // catch 404 and forward to error handler

@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
+import {LocalStorage} from '../../local.storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OverallService {
 
-  constructor() { }
+  constructor(private ls: LocalStorage) { }
 
   async getData(url) {
     // tslint:disable-next-line:one-variable-per-declaration
-    const request = await fetch(url);
+    // @ts-ignore
+    const request = await fetch(url, {headers: {authorization: this.ls.getObject('token')}});
+    console.log(request);
     return await request.json();
   }
   // tslint:disable-next-line:variable-name
@@ -28,4 +31,4 @@ export class OverallService {
     return await this.getData('http://127.0.0.1:3000/api/overall/regusers?number=' + number);
   }
 
-}
+};
