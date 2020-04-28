@@ -68,13 +68,14 @@
       </div>
     </div>
     <div style="display: block">
+      <button (click)="this.selectLine()">Line</button><button (click)="this.selectBar()">Bar</button>
       <canvas baseChart
               [datasets]="barChartData"
               [labels]="barChartLabels"
               [options]="barChartOptions"
 
               legend="true"
-              chartType="bar">
+              [chartType]=this.OverallModel.chartype>
       </canvas>
     </div>
   </div>

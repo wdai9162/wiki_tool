@@ -17,7 +17,6 @@ export class LoginOverAllComponent implements OnInit {
   OverallModel;
 
 
-
   public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales', 'hi', 'who'];
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -123,7 +122,17 @@ async getHistory( number: string): Promise<void>
     await this.getReUser(number);
   }
 
+  selectLine()
+  {
+    this.OverallModel.chartype = "line";
+  }
+  selectBar()
+  {
+    this.OverallModel.chartype = "bar";
+  }
+
   async ngOnInit(): Promise<void> {
+    this.OverallModel.chartype = 'bar';
     this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
     this.barChartData = [
       {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},

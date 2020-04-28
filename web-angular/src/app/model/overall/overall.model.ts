@@ -1,6 +1,15 @@
 import {Label} from 'ng2-charts';
 
 export class Overall {
+  get chartype(): string {
+    return this._chartype;
+  }
+
+  set chartype(value: string) {
+    this._chartype = value;
+  }
+
+
   get numbers(): string[] {
     return this._numbers;
   }
@@ -25,6 +34,8 @@ export class Overall {
     this._info = value;
   }
 
+  // tslint:disable-next-line:variable-name
+  private _chartype: string;
   // tslint:disable-next-line:variable-name
   private _hi_longest: [] ;
   // tslint:disable-next-line:variable-name

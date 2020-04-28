@@ -20,19 +20,5 @@ module.exports = (req, res, next) => {
             next()
         }// bar
     })
-    // console.log(decoded);
-    // if (decoded===true) {
-    //     next();
-    // }
-    // else {
-    //     console.log("test")
-    //     res.status(401).json({
-    //         // confirmation: "failed",
-    //         // message: "Invalid token!"
-    //         decode:decoded
-    //     })
-    //
-    //
-    // }
-    //console.log(decoded.foo)
-}
+
+};
