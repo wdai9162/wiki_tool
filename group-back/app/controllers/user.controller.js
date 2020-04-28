@@ -75,11 +75,15 @@ module.exports.LoginStatus = function (req, res) {
             })
 
         }// bar
-    })
+    }
+    )
 }
 else
 {
 
+    res.status(200).json({
+        err: "error"
+    })
 }
 
 };
