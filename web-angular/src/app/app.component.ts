@@ -25,7 +25,7 @@ export class AppComponent {
       else {
         this.MylocalStorage.setObject('isLogin', false);
       }
-    });
+    }).catch(error => this.MylocalStorage.setObject('isLogin', false));
     // if (this.MylocalStorage.exist('isLogin') === false) {
     //   this.MylocalStorage.setObject('isLogin', false);
     // }
