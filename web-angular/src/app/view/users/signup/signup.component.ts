@@ -1,6 +1,7 @@
 import { Component, OnInit , EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+// tslint:disable-next-line:import-spacing
+import  {SignupService} from '../../../controller/signup/signup.service';
 
 
 @Component({
@@ -15,24 +16,26 @@ export class SignupComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private  SUservice: SignupService) {}
 
   selectedValue = 'question1';
-  onSignup(): void {
-    if (this.signupForm.invalid){
+  async onSignup(): Promise<void> {
+    if (this.signupForm.invalid) {
       return;
     }
-    console.log(this.signupForm);
+    console.log(this.signupForm.value);
+    await this.SUservice.createuser(this.signupForm.value);
+    this.closeSignup();
     // this.userService.createUser(this.signupForm.value.userEmail, this.signupForm.value.password);
   }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
-      FirstName: [null , [Validators.required, Validators.required]],
-      LastName: [null,  [Validators.required, Validators.required]],
-      userEmail:[null, [Validators.required, Validators.email]],
+      firstname: [null , [Validators.required, Validators.required]],
+      lastname: [null,  [Validators.required, Validators.required]],
+      email:[null, [Validators.required, Validators.email]],
       password:[null, [Validators.required, Validators.required]],
-      Answer:[null,  [Validators.required, Validators.required]],
+      answer:[null,  [Validators.required, Validators.required]],
       question : [null]
 
 
