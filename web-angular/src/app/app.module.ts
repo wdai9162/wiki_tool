@@ -29,7 +29,7 @@ import { LoginIntroductionComponent } from './view/introduction/login-introducti
 import { LoginOverAllComponent } from './view/land-over-all/login-over-all/login-over-all.component';
 import { LoginAuthorComponent } from './view/land-author/login-author/login-author.component';
 import { LoginIndivComponent } from './view/land-indiv/login-indiv/login-indiv.component';
-
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 registerLocaleData(en);
@@ -61,6 +61,8 @@ registerLocaleData(en);
     NgChartjsModule,
     ChartsModule,
     AppRoutingModule,
+    ScrollingModule,
+
   ],
   providers: [LocalStorage,{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

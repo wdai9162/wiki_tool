@@ -8,6 +8,10 @@ import {Label} from 'ng2-charts';
   styleUrls: ['./login-indiv.component.css']
 })
 export class LoginIndivComponent implements OnInit {
+
+  // tslint:disable-next-line:max-line-length
+  individual = [{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223},{_id: 123, title:223}]
+
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {

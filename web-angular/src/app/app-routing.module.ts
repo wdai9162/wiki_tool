@@ -1,4 +1,4 @@
-//This is used to split out routing module from main app-module for easier maintenance and more visibility.
+// This is used to split out routing module from main app-module for easier maintenance and more visibility.
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { IntroductionComponent } from './view/introduction/introduction.component';

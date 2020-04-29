@@ -12,7 +12,7 @@ export class OverallService {
     // tslint:disable-next-line:one-variable-per-declaration
     // @ts-ignore
     const request = await fetch(url, {headers: {authorization: this.ls.getObject('token')}});
-    console.log(request);
+    // console.log(request);
     return await request.json();
   }
   // tslint:disable-next-line:variable-name
