@@ -1,4 +1,3 @@
-
 <nz-drawer
 [nzMaskClosable]="true"
 [nzMask]="true"
@@ -8,7 +7,7 @@
 nzTitle="Sign up"
 (nzOnClose)="closeSignup()"
 >
-<div class="signup-page">
+<div class="signup-page" >
  <form nz-form [formGroup]="signupForm" class="signup-form" (ngSubmit)="onSignup()">
    <div style="text-align: center"><img src="../../assets/user.png" ></div>
    <nz-form-item>
@@ -25,7 +24,7 @@ nzTitle="Sign up"
        </nz-input-group>
      </nz-form-control>
    </nz-form-item>
-    <nz-form-item>
+   <nz-form-item>
       <nz-form-control nzErrorTip="Please input your E-mail address to Sign up!">
         <nz-input-group nzPrefixIcon="user">
           <input type="email" nz-input formControlName="userEmail" placeholder="Useremail">
@@ -41,29 +40,24 @@ nzTitle="Sign up"
     </nz-form-item>
 
    <nz-form-item>
-
-     <nz-form-control nzErrorTip="user">
-       <nz-select [(ngModel)]="selectedValue" nzAllowClear nzPlaceHolder="select the security question">
+     <nz-form-control >
+       <nz-select [(ngModel)]="selectedValue" nzAllowClear nzPlaceHolder="select the security question" formControlName="question" >
          <nz-option nzValue="question1" nzLabel="what's your favourite color?"></nz-option>
          <nz-option nzValue="question2" nzLabel="what's your mother's name?"></nz-option>
          <nz-option nzValue="question3" nzLabel="what's your favourite number?"></nz-option>
        </nz-select>
      </nz-form-control>
    </nz-form-item>
-   <nz-form-item>
 
-     <nz-form-control nzErrorTip="user">
-       <nz-input-group >
-         <input nz-input formControlName="answer" placeholder="Your Answer">
-       </nz-input-group>
+   <nz-form-item>
+     <nz-form-control nzErrorTip="Please input your Answer">
+         <input id="Answer" nz-input formControlName="Answer" placeholder="Your Answer">
      </nz-form-control>
    </nz-form-item>
-    <nz-form-item>
+
+   <nz-form-item>
       <nz-form-control>
-
-
         <button nz-button class="signup-submit-button" [nzType]="'primary'" type="submit">Register</button>
-
       </nz-form-control>
     </nz-form-item>
   </form>

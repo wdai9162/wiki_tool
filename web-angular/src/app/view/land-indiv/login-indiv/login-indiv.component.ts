@@ -23,6 +23,9 @@ export class LoginIndivComponent implements OnInit {
     }
   };
 
+  listOfPosition: string[] = ['bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'];
+
+
   public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
   public pieChartData: number[] = [300, 500, 100];
   public pieChartType: ChartType = 'pie';
@@ -53,6 +56,12 @@ export class LoginIndivComponent implements OnInit {
   public barChartData: ChartDataSets[] =[];
 
   constructor() { }
+
+  log(data: string): void
+  {
+    console.log(data);
+
+  }
 
   ngOnInit(): void {
   }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , EventEmitter, Output} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -21,14 +22,21 @@ export class SignupComponent implements OnInit {
     if (this.signupForm.invalid){
       return;
     }
+    console.log(this.signupForm);
     // this.userService.createUser(this.signupForm.value.userEmail, this.signupForm.value.password);
   }
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
-      userEmail: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required]],
-      remember: [true]
+      FirstName: [null , [Validators.required, Validators.required]],
+      LastName: [null,  [Validators.required, Validators.required]],
+      userEmail:[null, [Validators.required, Validators.email]],
+      password:[null, [Validators.required, Validators.required]],
+      Answer:[null,  [Validators.required, Validators.required]],
+      question : [null]
+
+
+
     });
   }
 
