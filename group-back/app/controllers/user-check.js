@@ -13,10 +13,11 @@ module.exports = (req, res, next) => {
         }
         next();
     })
-    .catch(err => {
+/*    .catch(err => {
         res.status(401).json({
             confirmation: "failed",
             message: err,
         });
     });
+    */
 }

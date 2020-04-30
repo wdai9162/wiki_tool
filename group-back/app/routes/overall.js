@@ -14,5 +14,6 @@ router.get('/anonusersdata', controller.anonUserByYear);
 router.get('/botusersdata', controller.botUserByYear); 
 router.get('/adminusersdata', controller.adminUserByYear); 
 router.get('/regusersdata', controller.regUserByYear); 
+router.get('/graphdata', controller.graphData); 
 
 module.exports = router;

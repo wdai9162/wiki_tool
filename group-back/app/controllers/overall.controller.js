@@ -421,9 +421,215 @@ module.exports.regUserByYear = function (req, res) {
 }
 
 
-module.exports.sendPieChartData = function (req, res) {
-    res.status(200).json({
-        message: 'success',
-        data:'This is the Pie Chart data endpoint!'
+
+module.exports.graphData = function (req, res) {
+
+    var graphData = {}; 
+
+    anonQuery = Revinfo.aggregate(queryAnonUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].anonCount;
+        }
+        graphData.anonUser = {total: sum, result};
     })
-}
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: err
+        })
+    });
+
+    botQuery = Revinfo.aggregate(queryBotUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].botCount;
+        }
+        graphData.botUser = {total: sum, result};
+    })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: err
+        })
+    });
+
+    adminQuery = Revinfo.aggregate(queryAdminUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].adminCount;
+        }
+        graphData.adminUser = {total: sum, result};
+    })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: er
+        })
+    });
+
+    regQuery = Revinfo.aggregate(queryRegUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].regCount;
+        }
+        graphData.regUser = {total: sum, result};
+    })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: err
+        })
+    });
+
+    Promise.all([anonQuery, botQuery, adminQuery, regQuery]).then(() => {
+        console.log(graphData);
+        res.status(200).json(graphData);
+      })
+
+ 
+
+    //query for total count of revisions by anonymous users in each year
+    const queryAnonUser = [
+        { 
+            "$match" : { 
+                "anon" : true
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "anonCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    //query for total count of revisions by bot users in each year
+    const queryBotUser =      [
+        { 
+            "$match" : { 
+                "user" : { 
+                    "$in" : botUser
+                }
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "botCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    //query for total count of revisions by admin users in each year
+    const queryAdminUser =      [
+        { 
+            "$match" : { 
+                "user" : { 
+                    "$in" : adminUser
+                }
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "adminCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    //query for total count of revisions by regular users in each year
+    const queryRegUser =      [
+        { 
+            "$match" : { 
+                "$and" : [
+                    { 
+                        "user" : { 
+                            "$nin" : userAdminBot
+                        }
+                    }, 
+                    { 
+                        "anon" : { 
+                            "$exists" : false
+                        }
+                    }
+                ]
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "regCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    }
