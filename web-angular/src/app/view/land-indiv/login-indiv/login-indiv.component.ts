@@ -70,4 +70,6 @@ export class LoginIndivComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
 }

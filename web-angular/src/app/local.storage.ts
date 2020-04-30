@@ -1,4 +1,3 @@
-import {Provider} from '@angular/core';
 export class LocalStorage {
 
   public localStorage: any;

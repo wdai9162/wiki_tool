@@ -54,6 +54,7 @@ export class SignupComponent implements OnInit {
 
   openSignup(): void {
     this.visible = true;
+   
   }
 
   closeSignup(): void{
