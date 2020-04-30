@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {LocalStorage} from '../../local.storage';
+import {Overall} from '../../model/overall/overall.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class OverallService {
   async getOverallReUserService( number: string): Promise<[]> {
     return await this.getData('http://127.0.0.1:3000/api/overall/regusers?number=' + number);
   }
+  getOverallModel(): Overall
+{
+  return new Overall();
+}
 
 };

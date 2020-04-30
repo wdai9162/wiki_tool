@@ -78,6 +78,7 @@ export class Overall {
   }
 
   constructor() {
+
   }
 
   get hi_longest(): [] {

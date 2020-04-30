@@ -1,16 +1,16 @@
 #left {
   width: 50%;
+  float: left;
 
 }
 #right
 {
   width: 50%;
+  float: right;
 }
 
-cdk-virtual-scroll-viewport {
-  height: 80vh;
-}
+/*cdk-virtual-scroll-viewport {*/
+/*  height: 80vh;*/
+/*}*/
 
-li {
-  height: 80px;
-}
+

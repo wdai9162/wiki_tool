@@ -19,8 +19,8 @@ export class HeaderComponent{
 
   @Output() clickLogout = new EventEmitter();
   constructor(private ls: LocalStorage) {
-    if(this.ls.exist("username"))
-    {this.username = this.ls.getObject("username")}
+    if(this.ls.exist('username'))
+    {this.username = this.ls.getObject('username'); }
   }
   isLogin = this.ls.getObject('isLogin');
   username = '';

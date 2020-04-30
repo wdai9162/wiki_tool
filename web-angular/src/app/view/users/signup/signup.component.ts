@@ -24,7 +24,16 @@ export class SignupComponent implements OnInit {
       return;
     }
     console.log(this.signupForm.value);
-    await this.SUservice.createuser(this.signupForm.value);
+    const respond = await this.SUservice.createuser(this.signupForm.value);
+
+    if(await respond.error != null)
+    {
+      alert('register fail');
+    }
+    else
+    {
+      alert(respond.message);
+    }
     this.closeSignup();
     // this.userService.createUser(this.signupForm.value.userEmail, this.signupForm.value.password);
   }
@@ -45,6 +54,7 @@ export class SignupComponent implements OnInit {
 
   openSignup(): void {
     this.visible = true;
+   
   }
 
   closeSignup(): void{
