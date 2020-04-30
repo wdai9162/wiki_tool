@@ -14,7 +14,14 @@ const path = require('path');
 
 
 //import bot user filter file
-var botUser = fs.readFileSync(path.join(__dirname,  '/../user_filter/bots.txt')).toString().split("\n");
+var botUser = fs.readFileSync(path.join(__dirname,  '/../user_filter/bots.txt')).toString().split("\r\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+
+//import admin user filter file 
+var adminUser = fs.readFileSync(path.join(__dirname,  '/../user_filter/administrators.txt')).toString().split("\r\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+
+//join both admin and bot lists
+var userAdminBot = botUser.concat(adminUser).sort();
+
 
 module.exports.byRevNumbers = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
@@ -53,7 +60,7 @@ module.exports.byRevNumbers = function (req, res) {
 module.exports.byRegUsers  = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
-    const queryNumber =parseInt(req.query.number);;
+    const queryNumber =parseInt(req.query.number);
 
     //The top two articles edited by the largest group of registered users (non bots) and their group size.
     //Each wiki article is edited by a number of users, some making multiple revisions.
@@ -128,7 +135,6 @@ module.exports.byRegUsers  = function (req, res) {
 module.exports.byArticleHistory = function (req, res) {
     //extract user selection of the number of how many highest/lowest results to view
     //const queryNumber = req.body.userSelection;
-    console.log(req);
     const queryNumber = parseInt(req.query.number);
     var currentTime = new Date();
     var currentUtcTime = currentTime.toUTCString();
@@ -187,37 +193,233 @@ module.exports.byArticleHistory = function (req, res) {
     }
 }
 
+module.exports.anonUserByYear = function (req, res) {
 
-    //Return sorted count of groups of registered users (non bots) for each article.
-    //BOT NOT FILTERED YET!!!!
-    const aggCountOps2 = [
-        {
-            $group : {
-                _id :  {
-                    title: "$title",
-                    user: "$user"
+    //query for total count of revisions by anonymous users in each year
+    const queryAnonUser = [
+        { 
+            "$match" : { 
+                "anon" : true
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
                 }
             }
-        },
-        {
-            $group : {
-                _id : "$_id.title",
-                count: { $sum: 1 }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "anonCount" : { 
+                    "$sum" : 1.0
+                }
             }
-        },
-        { $sort: { count: -1 } }
-    ]
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : -1.0
+            }
+        }
+    ];
 
-
-
-
-
-module.exports.sendBarChartData = function (req, res) {
-    res.status(200).json({
-        message: 'success',
-        data:'This is the Bar Chart data endpoint!'
+    Revinfo.aggregate(queryAnonUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].anonCount;
+        }
+        res.status(200).json({
+            confirmation: 'success',
+            total: sum,
+            result: result,
+        })
     })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: err
+        })
+    });
 }
+
+module.exports.botUserByYear = function (req, res) {
+
+    //query for total count of revisions by bot users in each year
+    const queryBotUser =      [
+        { 
+            "$match" : { 
+                "user" : { 
+                    "$in" : botUser
+                }
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "botCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    Revinfo.aggregate(queryBotUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].botCount;
+        }
+        res.status(200).json({
+            confirmation: 'success',
+            total: sum,
+            result: result
+        })
+    })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: err
+        })
+    });
+}
+
+module.exports.adminUserByYear = function (req, res) {
+
+    //query for total count of revisions by admin users in each year
+    const queryAdminUser =      [
+        { 
+            "$match" : { 
+                "user" : { 
+                    "$in" : adminUser
+                }
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "adminCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    Revinfo.aggregate(queryAdminUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].adminCount;
+        }
+        res.status(200).json({
+            confirmation: 'success',
+            total: sum,
+            result: result
+        })
+    })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: err
+        })
+    });
+}
+
+module.exports.regUserByYear = function (req, res) {
+
+    //query for total count of revisions by regular users in each year
+    const queryRegUser =      [
+        { 
+            "$match" : { 
+                "$and" : [
+                    { 
+                        "user" : { 
+                            "$nin" : userAdminBot
+                        }
+                    }, 
+                    { 
+                        "anon" : { 
+                            "$exists" : false
+                        }
+                    }
+                ]
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "regCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    Revinfo.aggregate(queryRegUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].regCount;
+        }
+        res.status(200).json({
+            confirmation: 'success',
+            total: sum,
+            result: result
+        })
+    })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: err
+        })
+    });
+}
+
 
 module.exports.sendPieChartData = function (req, res) {
     res.status(200).json({

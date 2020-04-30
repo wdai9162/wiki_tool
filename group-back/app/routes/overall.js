@@ -10,5 +10,9 @@ router.get('', (req, res, next) => {
 router.get('/revnumbers', userCheck, controller.byRevNumbers); 
 router.get('/history', userCheck, controller.byArticleHistory); 
 router.get('/regusers', userCheck, controller.byRegUsers); 
+router.get('/anonusersdata', controller.anonUserByYear); 
+router.get('/botusersdata', controller.botUserByYear); 
+router.get('/adminusersdata', controller.adminUserByYear); 
+router.get('/regusersdata', controller.regUserByYear); 
 
 module.exports = router;
