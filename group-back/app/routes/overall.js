@@ -7,12 +7,13 @@ router.get('', (req, res, next) => {
   res.status(200).end("This is the Overall Analytics route root path!");
 });
 
-router.get('/revnumbers', userCheck, controller.byRevNumbers); 
-router.get('/history', userCheck, controller.byArticleHistory); 
-router.get('/regusers', userCheck, controller.byRegUsers); 
-router.get('/anonusersdata', controller.anonUserByYear); 
-router.get('/botusersdata', controller.botUserByYear); 
-router.get('/adminusersdata', controller.adminUserByYear); 
-router.get('/regusersdata', controller.regUserByYear); 
+router.get('/revnumbers', userCheck, controller.byRevNumbers);
+router.get('/history', userCheck, controller.byArticleHistory);
+router.get('/regusers', userCheck, controller.byRegUsers);
+router.get('/anonusersdata', controller.anonUserByYear);
+router.get('/botusersdata', controller.botUserByYear);
+router.get('/adminusersdata', controller.adminUserByYear);
+router.get('/regusersdata', controller.regUserByYear);
+router.get('/combine', controller.sendPieChartData)
 
 module.exports = router;

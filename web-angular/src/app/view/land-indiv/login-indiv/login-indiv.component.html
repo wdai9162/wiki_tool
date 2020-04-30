@@ -42,16 +42,16 @@
 
 
     </div>
-    <div class="chart">
-      <canvas baseChart
-              [data]="pieChartData"
-              [labels]="pieChartLabels"
-              [plugins]="pieChartPlugins"
-              chartType="pie"
-              [options]="pieChartOptions"
-              legend="true">
-      </canvas>
-    </div>
+<!--    <div class="chart">-->
+<!--      <canvas baseChart-->
+<!--              [data]="pieChartData"-->
+<!--              [labels]="pieChartLabels"-->
+<!--              [plugins]="pieChartPlugins"-->
+<!--              chartType="pie"-->
+<!--              [options]="pieChartOptions"-->
+<!--              legend="true">-->
+<!--      </canvas>-->
+<!--    </div>-->
 
 
 
@@ -60,28 +60,59 @@
 
   <div id = "right">
 
-    <div style="display: block">
-<!--    -->
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
+    <nz-tabset nzSize="large"  nzTabBarGutter="8" >
+      <nz-tab nzTitle="yearly revision number distribution">
+        <div style="display: block">
+          <!--    -->
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
 
-              legend="true"
-              chartType="bar">
-      </canvas>
-    </div>
-    <div style="display: block">
-      <!--    -->
-      <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
+                  legend="true"
+                  chartType="bar">
+          </canvas>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="single user yearly revision distribution">
+        <div style="display: block">
+          <!--    -->
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
 
-              legend="true"
-              chartType="bar">
-      </canvas>
-    </div>
+                  legend="true"
+                  chartType="bar">
+          </canvas>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle="user type distribution">
+        <div class="chart">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [labels]="pieChartLabels"
+                  [plugins]="pieChartPlugins"
+                  chartType="pie"
+                  [options]="pieChartOptions"
+                  legend="true">
+          </canvas>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+
+<!--    <div style="display: block">-->
+<!--&lt;!&ndash;    &ndash;&gt;-->
+<!--      <canvas baseChart-->
+<!--              [datasets]="barChartData"-->
+<!--              [labels]="barChartLabels"-->
+<!--              [options]="barChartOptions"-->
+
+<!--              legend="true"-->
+<!--              chartType="bar">-->
+<!--      </canvas>-->
+<!--    </div>-->
+
   </div>
 
 
