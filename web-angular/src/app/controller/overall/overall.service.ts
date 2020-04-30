@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {LocalStorage} from '../../local.storage';
 import {Overall} from '../../model/overall/overall.model';
+import {rgba} from 'ng-chartjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,4 +37,20 @@ export class OverallService {
   return new Overall();
 }
 
-};
+// @ts-ignore
+  async getOverallGraphData(): Promise<[]>
+{
+  return await this.getData('http://127.0.0.1:3000/api/overall/graphdata');
+}
+
+  async getOverallbarData(): Promise<{}>
+  {
+
+    return null;
+  }
+
+  getColor(): string
+  {
+    return rgba([Math.random() * 251, Math.random() * 250, Math.random() * 250], 0.3);
+  }
+}

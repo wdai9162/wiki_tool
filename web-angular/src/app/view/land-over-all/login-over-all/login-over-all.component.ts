@@ -15,6 +15,7 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 export class LoginOverAllComponent implements OnInit {
   OverallModel;
 
+  render = false;
 
   public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales', 'hi', 'who'];
   public pieChartOptions: ChartOptions = {
@@ -138,9 +139,30 @@ async getHistory( number: string): Promise<void>
       {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
     ];
     await this.SetRandData('2');
+    const graphdata = await this.OLService.getOverallGraphData();
 
+
+    // tslint:disable-next-line:forin
+    const pieLabel =  [];
+    const data = [];
+    const color = [];
+    for (const i in graphdata)
+    {
+      pieLabel.push(i);
+      data.push(graphdata[i]['total']);
+      color.push(this.OLService.getColor());
+    }
+    this.OverallModel.pieChartLabels = pieLabel;
+    this.OverallModel.pieChartData = data;
+    this.OverallModel.pieChartColors=[{backgroundColor: color}];
+    console.log(this.OverallModel.pieChartData);
+    this.render = true;
 
   }
+
+
+
+
 
 
 }

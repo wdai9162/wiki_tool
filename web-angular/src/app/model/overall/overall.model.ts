@@ -1,6 +1,14 @@
 import {Label} from 'ng2-charts';
 
 export class Overall {
+  get pieChartColors(): [{ backgroundColor: string[] }] {
+    return this._pieChartColors;
+  }
+
+  set pieChartColors(value: [{ backgroundColor: string[] }]) {
+    this._pieChartColors = value;
+  }
+
   get chartype(): string {
     return this._chartype;
   }
@@ -50,9 +58,15 @@ export class Overall {
   private _user_least: [];
 
   // tslint:disable-next-line:variable-name
-  private _pieChartLabels: Label[];
+  private _pieChartLabels: Label[] = ['Loading'];
   // tslint:disable-next-line:variable-name
-  private _pieChartData: number[];
+  private _pieChartData: number[] = [0];
+  // tslint:disable-next-line:variable-name
+  private _pieChartColors: [{ backgroundColor: string[] }] = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.3)']
+    }
+  ];
 
   // tslint:disable-next-line:variable-name
   private _numbers: string [] = ['2', '3', '5'];

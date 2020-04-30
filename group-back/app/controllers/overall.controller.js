@@ -16,7 +16,7 @@ const path = require('path');
 //import bot user filter file
 var botUser = fs.readFileSync(path.join(__dirname,  '/../user_filter/bots.txt')).toString().split("\r\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
 
-//import admin user filter file 
+//import admin user filter file
 var adminUser = fs.readFileSync(path.join(__dirname,  '/../user_filter/administrators.txt')).toString().split("\r\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
 
 //join both admin and bot lists
@@ -197,30 +197,30 @@ module.exports.anonUserByYear = function (req, res) {
 
     //query for total count of revisions by anonymous users in each year
     const queryAnonUser = [
-        { 
-            "$match" : { 
+        {
+            "$match" : {
                 "anon" : true
             }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
+        },
+        {
+            "$addFields" : {
+                "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        }, 
-        { 
-            "$group" : { 
-                "_id" : { 
+        },
+        {
+            "$group" : {
+                "_id" : {
                     "$year" : "$timestamp"
-                }, 
-                "anonCount" : { 
+                },
+                "anonCount" : {
                     "$sum" : 1.0
                 }
             }
-        }, 
-        { 
-            "$sort" : { 
+        },
+        {
+            "$sort" : {
                 "_id" : -1.0
             }
         }
@@ -250,32 +250,32 @@ module.exports.botUserByYear = function (req, res) {
 
     //query for total count of revisions by bot users in each year
     const queryBotUser =      [
-        { 
-            "$match" : { 
-                "user" : { 
+        {
+            "$match" : {
+                "user" : {
                     "$in" : botUser
                 }
             }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
+        },
+        {
+            "$addFields" : {
+                "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        }, 
-        { 
-            "$group" : { 
-                "_id" : { 
+        },
+        {
+            "$group" : {
+                "_id" : {
                     "$year" : "$timestamp"
-                }, 
-                "botCount" : { 
+                },
+                "botCount" : {
                     "$sum" : 1.0
                 }
             }
-        }, 
-        { 
-            "$sort" : { 
+        },
+        {
+            "$sort" : {
                 "_id" : -1.0
             }
         }
@@ -305,32 +305,32 @@ module.exports.adminUserByYear = function (req, res) {
 
     //query for total count of revisions by admin users in each year
     const queryAdminUser =      [
-        { 
-            "$match" : { 
-                "user" : { 
+        {
+            "$match" : {
+                "user" : {
                     "$in" : adminUser
                 }
             }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
+        },
+        {
+            "$addFields" : {
+                "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        }, 
-        { 
-            "$group" : { 
-                "_id" : { 
+        },
+        {
+            "$group" : {
+                "_id" : {
                     "$year" : "$timestamp"
-                }, 
-                "adminCount" : { 
+                },
+                "adminCount" : {
                     "$sum" : 1.0
                 }
             }
-        }, 
-        { 
-            "$sort" : { 
+        },
+        {
+            "$sort" : {
                 "_id" : -1.0
             }
         }
@@ -360,41 +360,41 @@ module.exports.regUserByYear = function (req, res) {
 
     //query for total count of revisions by regular users in each year
     const queryRegUser =      [
-        { 
-            "$match" : { 
+        {
+            "$match" : {
                 "$and" : [
-                    { 
-                        "user" : { 
+                    {
+                        "user" : {
                             "$nin" : userAdminBot
                         }
-                    }, 
-                    { 
-                        "anon" : { 
+                    },
+                    {
+                        "anon" : {
                             "$exists" : false
                         }
                     }
                 ]
             }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
+        },
+        {
+            "$addFields" : {
+                "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        }, 
-        { 
-            "$group" : { 
-                "_id" : { 
+        },
+        {
+            "$group" : {
+                "_id" : {
                     "$year" : "$timestamp"
-                }, 
-                "regCount" : { 
+                },
+                "regCount" : {
                     "$sum" : 1.0
                 }
             }
-        }, 
-        { 
-            "$sort" : { 
+        },
+        {
+            "$sort" : {
                 "_id" : -1.0
             }
         }
@@ -424,7 +424,146 @@ module.exports.regUserByYear = function (req, res) {
 
 module.exports.graphData = function (req, res) {
 
-    var graphData = {}; 
+    var graphData = {};
+    //query for total count of revisions by anonymous users in each year
+    const queryAnonUser = [
+        {
+            "$match" : {
+                "anon" : true
+            }
+        },
+        {
+            "$addFields" : {
+                "timestamp" : {
+                    "$toDate" : "$timestamp"
+                }
+            }
+        },
+        {
+            "$group" : {
+                "_id" : {
+                    "$year" : "$timestamp"
+                },
+                "anonCount" : {
+                    "$sum" : 1.0
+                }
+            }
+        },
+        {
+            "$sort" : {
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    //query for total count of revisions by bot users in each year
+    const queryBotUser =      [
+        {
+            "$match" : {
+                "user" : {
+                    "$in" : botUser
+                }
+            }
+        },
+        {
+            "$addFields" : {
+                "timestamp" : {
+                    "$toDate" : "$timestamp"
+                }
+            }
+        },
+        {
+            "$group" : {
+                "_id" : {
+                    "$year" : "$timestamp"
+                },
+                "botCount" : {
+                    "$sum" : 1.0
+                }
+            }
+        },
+        {
+            "$sort" : {
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    //query for total count of revisions by admin users in each year
+    const queryAdminUser =      [
+        {
+            "$match" : {
+                "user" : {
+                    "$in" : adminUser
+                }
+            }
+        },
+        {
+            "$addFields" : {
+                "timestamp" : {
+                    "$toDate" : "$timestamp"
+                }
+            }
+        },
+        {
+            "$group" : {
+                "_id" : {
+                    "$year" : "$timestamp"
+                },
+                "adminCount" : {
+                    "$sum" : 1.0
+                }
+            }
+        },
+        {
+            "$sort" : {
+                "_id" : -1.0
+            }
+        }
+    ];
+
+    //query for total count of revisions by regular users in each year
+    const queryRegUser =      [
+        {
+            "$match" : {
+                "$and" : [
+                    {
+                        "user" : {
+                            "$nin" : userAdminBot
+                        }
+                    },
+                    {
+                        "anon" : {
+                            "$exists" : false
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "$addFields" : {
+                "timestamp" : {
+                    "$toDate" : "$timestamp"
+                }
+            }
+        },
+        {
+            "$group" : {
+                "_id" : {
+                    "$year" : "$timestamp"
+                },
+                "regCount" : {
+                    "$sum" : 1.0
+                }
+            }
+        },
+        {
+            "$sort" : {
+                "_id" : -1.0
+            }
+        }
+    ];
+
 
     anonQuery = Revinfo.aggregate(queryAnonUser)
     .then(result => {
@@ -491,145 +630,7 @@ module.exports.graphData = function (req, res) {
         res.status(200).json(graphData);
       })
 
- 
 
-    //query for total count of revisions by anonymous users in each year
-    const queryAnonUser = [
-        { 
-            "$match" : { 
-                "anon" : true
-            }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
-                    "$toDate" : "$timestamp"
-                }
-            }
-        }, 
-        { 
-            "$group" : { 
-                "_id" : { 
-                    "$year" : "$timestamp"
-                }, 
-                "anonCount" : { 
-                    "$sum" : 1.0
-                }
-            }
-        }, 
-        { 
-            "$sort" : { 
-                "_id" : -1.0
-            }
-        }
-    ];
 
-    //query for total count of revisions by bot users in each year
-    const queryBotUser =      [
-        { 
-            "$match" : { 
-                "user" : { 
-                    "$in" : botUser
-                }
-            }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
-                    "$toDate" : "$timestamp"
-                }
-            }
-        }, 
-        { 
-            "$group" : { 
-                "_id" : { 
-                    "$year" : "$timestamp"
-                }, 
-                "botCount" : { 
-                    "$sum" : 1.0
-                }
-            }
-        }, 
-        { 
-            "$sort" : { 
-                "_id" : -1.0
-            }
-        }
-    ];
-
-    //query for total count of revisions by admin users in each year
-    const queryAdminUser =      [
-        { 
-            "$match" : { 
-                "user" : { 
-                    "$in" : adminUser
-                }
-            }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
-                    "$toDate" : "$timestamp"
-                }
-            }
-        }, 
-        { 
-            "$group" : { 
-                "_id" : { 
-                    "$year" : "$timestamp"
-                }, 
-                "adminCount" : { 
-                    "$sum" : 1.0
-                }
-            }
-        }, 
-        { 
-            "$sort" : { 
-                "_id" : -1.0
-            }
-        }
-    ];
-
-    //query for total count of revisions by regular users in each year
-    const queryRegUser =      [
-        { 
-            "$match" : { 
-                "$and" : [
-                    { 
-                        "user" : { 
-                            "$nin" : userAdminBot
-                        }
-                    }, 
-                    { 
-                        "anon" : { 
-                            "$exists" : false
-                        }
-                    }
-                ]
-            }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
-                    "$toDate" : "$timestamp"
-                }
-            }
-        }, 
-        { 
-            "$group" : { 
-                "_id" : { 
-                    "$year" : "$timestamp"
-                }, 
-                "regCount" : { 
-                    "$sum" : 1.0
-                }
-            }
-        }, 
-        { 
-            "$sort" : { 
-                "_id" : -1.0
-            }
-        }
-    ];
 
     }

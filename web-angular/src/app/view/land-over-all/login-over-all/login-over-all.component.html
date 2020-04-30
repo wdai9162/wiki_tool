@@ -52,15 +52,16 @@
   </div>
 
 
-  <div class = "graph">
+  <div class = "graph" >
     <div>
       <div>
         <div class="chart">
           <canvas baseChart
-                  [data]="pieChartData"
-                  [labels]="pieChartLabels"
+                  [data]=this.OverallModel.pieChartData
+                  [labels]=this.OverallModel.pieChartLabels
                   [plugins]="pieChartPlugins"
                    chartType="pie"
+                  [colors]=this.OverallModel.pieChartColors
                   [options]="pieChartOptions"
                   legend="true">
           </canvas>
