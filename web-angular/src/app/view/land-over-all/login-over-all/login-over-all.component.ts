@@ -4,7 +4,6 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 import {OverallService} from '../../../controller/overall/overall.service';
-import {Overall} from '../../../model/overall/overall.model';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 
@@ -64,7 +63,7 @@ export class LoginOverAllComponent implements OnInit {
 
   public barChartData: ChartDataSets[] =  [];
    constructor(public OLService: OverallService) {
-     this.OverallModel = new Overall();
+     this.OverallModel = this.OLService.getOverallModel();
 
    }
    async updateData(): Promise<void>{
@@ -124,11 +123,11 @@ async getHistory( number: string): Promise<void>
 
   selectLine()
   {
-    this.OverallModel.chartype = "line";
+    this.OverallModel.chartype = 'line';
   }
   selectBar()
   {
-    this.OverallModel.chartype = "bar";
+    this.OverallModel.chartype = 'bar';
   }
 
   async ngOnInit(): Promise<void> {

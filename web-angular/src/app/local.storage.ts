@@ -1,3 +1,4 @@
+
 export class LocalStorage {
 
   public localStorage: any;
