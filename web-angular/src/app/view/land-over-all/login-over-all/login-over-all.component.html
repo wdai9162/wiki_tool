@@ -7,7 +7,7 @@
     <nz-list nzHeader="highest number of revisions"  style="text-align: center;" >
     <ul nz-list nzBordered nzSize="small">
       <li nz-list-item *ngFor="let item of OverallModel.re_highest" nzNoFlex style="text-align: left">
-        {{item['_id']}}<span style="float: right">{{item['count']}}</span>
+        {{item['_id']}}<span style="float: right"><strong>{{item['count']}}</strong></span>
       </li>
     </ul>
     </nz-list>
@@ -15,21 +15,21 @@
     <nz-list nzHeader="lowest number of revisions"  style="text-align: center" nzFooter="">
     <ul nz-list nzBordered nzSize="small">
       <li nz-list-item *ngFor="let item of OverallModel.re_lowest" nzNoFlex style="text-align: left">
-        {{item['_id']}}<span style="float: right">{{item['count']}}</span>
+        {{item['_id']}}<span style="float: right"><strong>{{item['count']}}</strong></span>
       </li>
     </ul>
     </nz-list>
     <nz-list nzHeader="largest group of registered users"  style="text-align: center" nzFooter="">
     <ul nz-list nzBordered nzSize="small">
       <li nz-list-item *ngFor="let item of OverallModel.user_largest" nzNoFlex style="text-align: left">
-        {{item['_id']['title']}}<span style="float: right">{{item['users']}}</span>
+        {{item['_id']['title']}}<span style="float: right"><strong>{{item['users']}}</strong></span>
       </li>
     </ul>
     </nz-list>
     <nz-list nzHeader="smallest group of registered users"  style="text-align: center" nzFooter="">
       <ul nz-list nzBordered nzSize="small">
         <li nz-list-item *ngFor="let item of OverallModel.user_least" nzNoFlex style="text-align: left">
-          {{item['_id']['title']}}<span style="float: right">{{item['users']}}</span>
+          {{item['_id']['title']}}<span style="float: right"><strong>{{item['users']}}</strong></span>
         </li>
       </ul>
     </nz-list>
@@ -38,14 +38,14 @@
     <nz-list nzHeader="longest history"  style="text-align: center" nzFooter="">
       <ul nz-list nzBordered nzSize="small">
         <li nz-list-item *ngFor="let item of OverallModel.hi_longest" nzNoFlex style="text-align: left">
-          {{item['title']}}<span style="float: right">{{item['age_in_days']}}</span>
+          {{item['title']}}<span style="float: right"><strong>{{item['age_in_days']}}</strong></span>
         </li>
       </ul>
     </nz-list>
     <nz-list nzHeader="shortest history"  style="text-align: center" nzFooter="">
       <ul nz-list nzBordered nzSize="small">
         <li nz-list-item *ngFor="let item of OverallModel.hi_shortest" nzNoFlex style="text-align: left">
-          {{item['title']}}<span style="float: right">{{item['age_in_days']}}</span>
+          {{item['title']}}<span style="float: right"><strong>{{item['age_in_days']}}</strong></span>
         </li>
       </ul>
     </nz-list>
