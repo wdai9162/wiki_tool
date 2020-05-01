@@ -55,6 +55,7 @@ export class LoginOverAllComponent implements OnInit {
       datalabels: {
         anchor: 'end',
         align: 'end',
+        display: false
       }
     }
   };
@@ -133,10 +134,9 @@ async getHistory( number: string): Promise<void>
 
   async ngOnInit(): Promise<void> {
     this.OverallModel.chartype = 'bar';
-    this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+    this.barChartLabels = ['loading'];
     this.barChartData = [
-      {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-      {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+      {data: [0], label: 'loading'}
     ];
     await this.SetRandData('2');
     const graphdata = await this.OLService.getOverallGraphData();
@@ -154,11 +154,56 @@ async getHistory( number: string): Promise<void>
     }
     this.OverallModel.pieChartLabels = pieLabel;
     this.OverallModel.pieChartData = data;
-    this.OverallModel.pieChartColors=[{backgroundColor: color}];
-    console.log(this.OverallModel.pieChartData);
+    this.OverallModel.pieChartColors = [{backgroundColor: color}];
     this.render = true;
+    const year = [];
+    const dataAdmin = [];
+    const dataBot = [];
+    const dataAnon = [];
+    const dataReg = [];
+    // tslint:disable-next-line:forin
+
+    for (const i in graphdata['adminUser']['result'])
+    {
+
+           const currentyear = graphdata['adminUser']['result'][i]['_id'];
+           console.log(currentyear)
+           year.push(currentyear);
+           dataAdmin.push(graphdata['adminUser']['result'][i]['adminCount']);
+           if (graphdata['botUser']['result'][i])
+           {
+             dataBot.push(graphdata['botUser']['result'][i]['botCount']);
+           }
+           else {
+             dataBot.push(0);
+           }
+           if (graphdata['anonUser']['result'][i])
+          {
+            dataAnon.push(graphdata['anonUser']['result'][i]['anonCount']);
+          }
+          else {
+            dataAnon.push(0);
+          }
+           if (graphdata['regUser']['result'][i])
+          {
+            dataReg.push(graphdata['regUser']['result'][i]['regCount']);
+          }
+          else {
+            dataReg.push(0);
+          }
+
+    }
+
+    this.barChartLabels = year.reverse();
+    this.barChartData = [
+      {data: dataAdmin.reverse(), label: "admin"},
+      {data: dataBot.reverse(), label: "Bot"},
+      {data: dataReg.reverse(), label: "Reg"},
+      {data: dataAnon.reverse(), label: "Anon"}
+   ]
 
   }
+
 
 
 
