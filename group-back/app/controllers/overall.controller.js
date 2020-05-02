@@ -14,12 +14,12 @@ const fs = require ('fs');
 const path = require('path');
 
 const os = require('os');
-console.log(os.platform().toString());
+console.log(os.type().toString());
 //import bot user filter file
 var botUser;
 var adminUser;
 var userAdminBot
-if(os.platform().toString().toUpperCase().indexOf("WIN")!=-1) {
+if(os.type().toString().toUpperCase().indexOf("windows")!=-1) {
     botUser = fs.readFileSync(path.join(__dirname, '/../user_filter/bots.txt')).toString().split("\r\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
 
 //import admin user filter file
