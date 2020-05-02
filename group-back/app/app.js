@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var overallRouter = require('./routes/overall');
 var userRouter = require('./routes/user');
+var individualRouter = require('./routes/individual');
 
 const mongoose = require ('mongoose');
 
@@ -60,11 +61,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/api/user', userRouter);
 app.use('/api/overall', overallRouter);
-
-app.use('/api/individual', (req,res) => {
-  res.end("this is the INDIVIDUAL analytics endpoint")
-  });
-
+app.use('/api/individual', individualRouter);
 app.use('/api/author', (req,res) => {
   res.end("this is the AUTHOR analytics endpoint")
   });

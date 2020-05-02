@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const uniqueValidator = require ("mongoose-unique-validator")
 
 const revinfoSchema = mongoose.Schema({
-    revid: { type: Number, default: 0 },
+    revid: { type: Number, unique:true },
     parentid: {type: Number, default: 0 },
     minor: { type: Boolean },
     user: { type: String, trim: true, default: ' ' },
@@ -15,4 +16,5 @@ const revinfoSchema = mongoose.Schema({
 
 }); 
 
+revinfoSchema.plugin(uniqueValidator);
 module.exports = mongoose.model("RevInfo", revinfoSchema, 'revinfos') 
