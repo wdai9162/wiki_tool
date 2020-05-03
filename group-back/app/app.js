@@ -5,23 +5,28 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-
 var indexRouter = require('./routes/index');
 var overallRouter = require('./routes/overall');
 var userRouter = require('./routes/user');
 var individualRouter = require('./routes/individual');
 
 const mongoose = require ('mongoose');
-
-var session = require('express-session');
+const timechecker = require ('./middleware/timestamp-checker');
+const Revinfo = require ('./model/revinfo'); 
 
 var app = express();
+
+//establish connection with database 
 const mongoDB = "mongodb+srv://admin:Welcome1@cluster0-yc3oa.mongodb.net/node-angular?retryWrites=true&w=majority";
 mongoose.connect(mongoDB).then(() => {
   console.log('Connected to mongoDB Atlas Database!');
 }).catch((err) => {
   console.log(err)
 })
+
+//perform initial check on collection timestamp 
+timechecker(Revinfo);
+
 
 app.use((req,res,next) => {
   //console.log(req);
@@ -45,17 +50,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-/*
-// the session will expire in 60 seconds (60,000 milliseconds)
-app.use(session({
-  secret: 'g24r9yfb3J',
-  cookie: {maxAge: 1800000},
-  resave: true,
-  saveUninitialized: true
-}));
-
-*/
 
 //define paths for each function
 app.use('/', indexRouter);

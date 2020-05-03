@@ -82,57 +82,40 @@ module.exports.byRegUsers  = function (req, res) {
     //The top two articles edited by the largest group of registered users (non bots) and their group size.
     //Each wiki article is edited by a number of users, some making multiple revisions.
     //The number of unique users is a good indicator of an article’s popularity.
-    const queryByRegUsers = [
-        {
-            "$group" : {
-                "_id" : {
-                    "title" : "$title",
-                    "user" : "$user"
-                },
-                "title" : {
-                    "$first" : "$title"
-                },
-                "user" : {
-                    "$first" : "$user"
+    const queryByNonBotUsers =[
+        { 
+            "$match" : { 
+                "user" : { 
+                    "$nin" : botUser
                 }
             }
-        },
-        {
-            "$group" : {
-                "_id" : {
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
                     "title" : "$title"
-                },
-                "users" : {
-                    "$push" : {
-                        "user" : "$user"
-                    }
+                }, 
+                "uniqueUser" : { 
+                    "$addToSet" : "$user"
                 }
             }
-        },
-        {
-            "$project" : {
-                "users" : {
-                    "$size" : {
-                        "$filter" : {
-                            "input" : "$users",
-                            "as" : "users",
-                            "cond" : {
-                                "$not" : {
-                                    "$in" : [
-                                        "$$users.user",
-                                        botUser
-                                    ]
-                                }
-                            }
-                        }
-                    }
+        }, 
+        { 
+            "$project" : { 
+                "title" : 1.0, 
+                "users" : { 
+                    "$size" : "$uniqueUser"
                 }
             }
-        },
-        { "$sort": { "users": -1 } }
-    ]
+        }, 
+        { 
+            "$sort" : { 
+                "users" : -1.0
+            }
+        }
+    ];
 
-    Revinfo.aggregate(queryByRegUsers)
+    Revinfo.aggregate(queryByNonBotUsers)
     .then(result => {
         res.status(200).json({
             confirmation: 'success',
@@ -154,7 +137,7 @@ module.exports.byArticleHistory = function (req, res) {
     //const queryNumber = req.body.userSelection;
     const queryNumber = parseInt(req.query.number);
     var currentTime = new Date();
-    var currentUtcTime = currentTime.toUTCString();
+
 
     //Return articles and its first revision data/creation date, in decending order
     const queryByHistory = [
@@ -196,7 +179,7 @@ module.exports.byArticleHistory = function (req, res) {
     function resultConsolidationShort(data,queryNumber) {
         var result = [];
         for (i=0;i<queryNumber;i++){
-            result.push({title: data[i]._id, age_in_days: Number(calculateAge(data[i].firstRev, currentUtcTime))})
+            result.push({title: data[i]._id, age_in_days: Number(calculateAge(data[i].firstRev, currentTime))})
         }
         return result;
     }
@@ -204,7 +187,7 @@ module.exports.byArticleHistory = function (req, res) {
     function resultConsolidationLong(data,queryNumber) {
         var result = [];
         for (i=data.length-1;i>data.length-queryNumber-1;i--){
-            result.push({title: data[i]._id, age_in_days: Number(calculateAge(data[i].firstRev, currentUtcTime))})
+            result.push({title: data[i]._id, age_in_days: Number(calculateAge(data[i].firstRev, currentTime))})
         }
         return result;
     }

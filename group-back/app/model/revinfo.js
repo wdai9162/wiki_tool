@@ -2,18 +2,17 @@ const mongoose = require("mongoose");
 const uniqueValidator = require ("mongoose-unique-validator")
 
 const revinfoSchema = mongoose.Schema({
-    revid: { type: Number, unique:true },
-    parentid: {type: Number, default: 0 },
+    revid: { type: Number, unique:true, required: true },
+    parentid: {type: Number, default: 0, required: true, },
     minor: { type: Boolean },
-    user: { type: String, trim: true, default: ' ' },
+    user: { type: String, trim: true,required: true, default: ' '},
     anon: { type: Boolean },
-    userid: { type: Number, default: 0 }, 
-    timestamp: { type: String, trim: true, default: ' ' },
-    size: { type: Number, default: ' ' }, 
-    sha1: { type: String, trim: true, default: ' ' }, 
-    parsedcomment: { type: String, trim: true, default: ' ' },
-    title: { type: String, trim: true, default: ' ' },
-
+    userid: { type: Number, required: true }, 
+    timestamp: { type: Date, trim: true, required: true},
+    size: { type: Number, required: true }, 
+    sha1: { type: String, trim: true, required: true }, 
+    parsedcomment: { type: String, trim: true },
+    title: { type: String, trim: true, required: true },
 }); 
 
 revinfoSchema.plugin(uniqueValidator);

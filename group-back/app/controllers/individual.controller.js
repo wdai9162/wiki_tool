@@ -3,16 +3,48 @@
  *
  */
 
- 
 const Revinfo = require ('../model/revinfo');  //all articles
 const fetch = require("node-fetch");
+
+module.exports.articleList = function (req, res) {
+    const getListandCount = [
+        { 
+            "$group" : { 
+                "_id" : "$title", 
+                "revCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : 1.0
+            }
+        }
+    ]; 
+
+    Revinfo.aggregate(getListandCount)
+    .then(result => {
+        res.status(200).json({
+            confirmation: 'success',
+            data: result,
+        })
+    })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: err
+        })
+    })
+}
 
 module.exports.checkUptoDate = function (req, res) {
 
     //*****BUG when the latest revision is more than 24hours, still shows expire and needs to be handled */
 
-    var article = req.query.title || "India";
+    var article = req.query.title || "Australia";
     var currentTime = new Date();
+    var lastRevDate; 
     
     const maxDateAndCountQuery = [
         { 
@@ -34,18 +66,20 @@ module.exports.checkUptoDate = function (req, res) {
     ]
     lastRev = Revinfo.aggregate(maxDateAndCountQuery)
     .then(result=>{
-        //console.log(result);
-        timeElap=calculateTime(currentTime, result[0].lastRev);
+
+        timeElap=calculateTime(currentTime, result[0].lastRev);    //calculate how long it has been since the latest revision record 
+        lastRevDate=result[0].lastRev;         //record for new Wiki API request to determine up to which date to download 
+        console.log(lastRevDate)
+        //check if the records are considered as expired, >24hrs 
         if(timeElap>=60*60*24){
-            res.status(200).json({
-                confirmation: 'expired',
-                date: result
-            })
+
+            fetchandUpdate(article,lastRevDate);
+
         }
         else {
             res.status(200).json({
                 confirmation: 'Up to date',
-                date: result
+                data: result
             })
         }
     })
@@ -63,49 +97,57 @@ module.exports.checkUptoDate = function (req, res) {
         var ageInSec = diff/1000;
         return ageInSec.toFixed(1);
     }
-}
 
-module.exports.getArticleUpdate = function (req, res) {
-
-    var articleTitle = req.query.title || "India"
-
-    var url = "https://en.wikipedia.org/w/api.php";
-
-    var params = {
+    function fetchandUpdate(articleName, articleLastRevDate) {
+        
+        var url = "https://en.wikipedia.org/w/api.php";
+        var params = {
         action: "query",
         prop: "revisions",
-        titles: articleTitle,
+        titles: articleName,
         rvprop: "ids|flags|user|userid|timestamp|size|sha1|parsedcomment", 
         rvslots: "main",
         formatversion: "2",
         format: "json",
-        rvend: '2020-03-20T02:55:44Z',
+        rvdir: "newer", 
+        rvstart: articleLastRevDate,
+        //rvend: articleLastRevDate,
         rvlimit: 'max'
-    };
+        };
 
-    url = url + "?origin=*";
-    Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+        url = url + "?origin=*";
+        Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
 
-    fetch(url)
-    .then(function(response){return response.json();})
-    .then(function(response) {
-        console.log(response.query.pages[0].revisions);
-        Revinfo.insertMany(response.query.pages[0].revisions).then(result => {
-            console.log(result)
-            res.json({
-                confirmation:'Successfully downloaded latest data for Article:' + articleTitle,
-                newRevDownloaded: response.query.pages[0].revisions.length,
-                message: result
+        fetch(url)
+        .then(function(response){return response.json();})
+        .then(function(response) {
+            response.query.pages[0].revisions.forEach(rev => {     //insert article title for each revision record 
+                rev.title = articleName; 
+            })
+            response.query.pages[0].revisions.shift()              //remove first revision which is duplicated with the last exisitng revision 
+
+            if (response.query.pages[0].revisions.length === 0) {
+                res.json({
+                    confirmation:'Attempted to download new data for Article:' + articleName + ', but there is no newer data to download.',
+                    newDownload: 0,
+                    message: result
+                })
+            }
+            
+            Revinfo.insertMany(response.query.pages[0].revisions)
+            .then(result => {
+                res.json({
+                    confirmation:'Successfully downloaded latest data for Article:' + articleName,
+                    newRevSavedToDB: response.query.pages[0].revisions.length,
+                    message: result
+                })
+            })
+            .catch(err => {
+                res.json({
+                    confirmation:'failed',
+                    message: err
+                })
             })
         })
-        .catch(err => {
-            res.json({
-                confirmation:'failed',
-                message: err
-            })
-        })
-    })
-    .catch(function(error){console.log(error);});
-   
+    }
 }
-
