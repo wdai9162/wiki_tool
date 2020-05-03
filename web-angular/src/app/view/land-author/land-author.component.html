@@ -1,14 +1,5 @@
 <div *ngIf="!isLogin" style="width: 100%;">
-  <canvas
-    baseChart
-    [chartType]="'line'"
-    [datasets]="chartData"
-    [labels]="chartLabels"
-    [options]="chartOptions"
 
-    [legend]="true"
-    (chartClick)="onChartClick($event)">
-  </canvas>
 </div>
 <div *ngIf="isLogin">
   <app-login-author></app-login-author>
