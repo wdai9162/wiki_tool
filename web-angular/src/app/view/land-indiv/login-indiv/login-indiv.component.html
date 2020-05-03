@@ -4,18 +4,18 @@
     <div>
       <span style="font-size: larger">Title:</span>
 
-      <select  [(ngModel)]="Model.defaultTitle"  (ngModelChange)="Model.defaultTitle=$event;setInfo()" style="width: 50%">
-        <option *ngFor="let option of Model.articleList" [value] = 'option["_id"]'>{{option["_id"]+"#revision:"+option['revCount']}}</option>
+      <select  [(ngModel)]="Model.defaultTitle"  (ngModelChange)="Model.defaultTitle= $event;setInfo()" style="width: 50%">
+        <option *ngFor="let option of Model.articleList" [value] = 'option["_id"]'>{{option["_id"]}}<span style="color:red;float: right;text-align: right">#revision:{{option['revCount']}}</span></option>
       </select>
       <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChange($event)"></nz-range-picker>
-      <button (click)="selectData()">select</button>
+      <button (click)="this.selectData()">select</button>
             <nz-list  nzHeader="Your Select Title" style="text-align: center;margin-top: 10px" nzFooter="">
               <ul nz-list nzBordered nzSize="small">
                 <li nz-list-item nzNoFlex style="text-align: left">
                   <span style="text-align: left"><strong>Title</strong></span> <span style="float: right"><strong> Total number of revisions</strong></span>
                 </li>
                 <li nz-list-item nzNoFlex style="text-align: left">
-                  <span style="text-align: left">Australia</span> <span style="float: right">100</span>
+                  <span style="text-align: left">{{Model.reTitleS}}</span> <span style="float: right">{{Model.reNumberS}}</span>
                 </li>
               </ul>
             </nz-list>
@@ -23,16 +23,16 @@
 
       <nz-list nzHeader="top 5 regular users"  style="text-align: center" nzFooter="">
         <ul nz-list nzBordered nzSize="small">
-          <li nz-list-item *ngFor="let item of Model.articleList" nzNoFlex style="text-align: left">
-            {{item}}<span style="float: right">{{item}}</span>
+          <li nz-list-item *ngFor="let item of Model.TopFiveUser" nzNoFlex style="text-align: left">
+            {{item['_id']}}<span style="float: right">{{item['revCount']}}</span>
           </li>
         </ul>
       </nz-list>
 
       <nz-list nzHeader="top 3 news"  style="text-align: center" nzFooter="">
         <ul nz-list nzBordered nzSize="small">
-          <li nz-list-item *ngFor="let item of Model.articleList" nzNoFlex style="text-align: left">
-            {{item}}<span style="float: right">{{item}}</span>
+          <li nz-list-item *ngFor="let item of Model.TopNews" nzNoFlex style="text-align: left">
+            <a [href]="item['URL']">{{item['title']}}</a>
           </li>
         </ul>
       </nz-list>

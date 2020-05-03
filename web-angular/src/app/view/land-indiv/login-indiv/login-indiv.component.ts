@@ -15,6 +15,7 @@ export class LoginIndivComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   // individual = [{_id: 123, title:223},{_id: 223, title:223},{_id:323, title:323}];
   Model;
+  articleSerive;
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -61,7 +62,7 @@ export class LoginIndivComponent implements OnInit {
   public barChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
 
-  public barChartData: ChartDataSets[] =[];
+  public barChartData: ChartDataSets[] = [];
 
   dateRange = [];
 
@@ -77,6 +78,7 @@ export class LoginIndivComponent implements OnInit {
   selectData()
   {
     console.log(this.Model.info);
+    this.DataUpgrade(this.Model.info);
   }
 
   log(data: string): void
@@ -95,19 +97,33 @@ export class LoginIndivComponent implements OnInit {
       {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
     ];
 
-    const articleSerive = await this.IndiService.getArticleData();
-    const data = [];
-    // const datacount = [];
-    // console.log(await articleSerive);
-    // for (const i in articleSerive['data']) {
-    //   data.push( articleSerive['data'][i]['_id']+"#"+articleSerive['data'][i]['_id']);
-    // }
-    // console.log(data);
+    this.DataUpgrade('Australia');
+  }
 
-    this.Model.articleList =articleSerive['data'];
+  async DataUpgrade(title): Promise<void> {
+    await this.IndiService.checkoupdate(title);
+    this.articleSerive = await this.IndiService.getArticleData(title);
 
-    this.Model.info =articleSerive['data']['0']['_id'];
-    console.log(this.Model.defaultTitle)
+    this.Model.articleList = this.articleSerive.data;
+
+    for (const i in this.articleSerive.data)
+    {
+      // tslint:disable-next-line:triple-equals
+      if ( this.articleSerive.data[i]._id == title)
+      {
+        this.Model.info = this.articleSerive.data[i]._id;
+        this.Model.renumber = this.articleSerive.data[i].revCount;
+        this.Model.reTitleS = this.articleSerive.data[i]._id;
+        this.Model.reNumberS = this.articleSerive.data[i].revCount
+
+      }
+
+    }
+    const TopFiveUser = await this.IndiService.getReuserByrevnumber(title);
+    this.Model.TopFiveUser = TopFiveUser.data;
+    const TopNews = await this.IndiService.getTopReddit(title);
+    this.Model.TopNews = TopNews.data;
+
   }
 
 

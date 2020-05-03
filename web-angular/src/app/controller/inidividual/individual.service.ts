@@ -15,11 +15,30 @@ export class IndividualService {
     return await request.json();
   }
 
-  async getArticleData()
+  async getArticleData(title)
   {
 
-      return await this.getData('http://127.0.0.1:3000/api/individual/getlist');
+      return await this.getData('http://127.0.0.1:3000/api/individual/getlist?title=' +title);
   }
+
+  async checkoupdate(title)
+  {
+
+    return await this.getData('http://127.0.0.1:3000/api/individual/checkdate?title=' + title);
+  }
+
+  async getTopReddit(title)
+  {
+
+    return await this.getData('http://127.0.0.1:3000/api/individual/getredditnews?title=' + title);
+  }
+
+  async getReuserByrevnumber(title)
+  {
+
+    return await this.getData('http://127.0.0.1:3000/api/individual/reguserbyrevnumber?title=' + title);
+  }
+
 
   getModel(): Inidividual
   {
