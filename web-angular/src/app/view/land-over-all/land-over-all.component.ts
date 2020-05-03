@@ -39,6 +39,10 @@ export class LandOverAllComponent implements OnInit {
   ngOnInit() {
   }
 
+  login()
+  {
+    alert("please login to operate");
+  }
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
