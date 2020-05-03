@@ -74,6 +74,11 @@ export class LoginIndivComponent implements OnInit {
     console.log('onChange: ', result);
   }
 
+  selectData()
+  {
+    console.log(this.Model.info);
+  }
+
   log(data: string): void
   {
     console.log(data);
@@ -92,13 +97,17 @@ export class LoginIndivComponent implements OnInit {
 
     const articleSerive = await this.IndiService.getArticleData();
     const data = [];
-    console.log(await articleSerive);
-    for (const i in articleSerive['data']) {
-      data.push( articleSerive['data'][i]['_id'])
-    }
-    console.log(data);
-    this.Model.articleList = data;
-    this.Model.defaultTitle = data[0];
+    // const datacount = [];
+    // console.log(await articleSerive);
+    // for (const i in articleSerive['data']) {
+    //   data.push( articleSerive['data'][i]['_id']+"#"+articleSerive['data'][i]['_id']);
+    // }
+    // console.log(data);
+
+    this.Model.articleList =articleSerive['data'];
+
+    this.Model.info =articleSerive['data']['0']['_id'];
+    console.log(this.Model.defaultTitle)
   }
 
 

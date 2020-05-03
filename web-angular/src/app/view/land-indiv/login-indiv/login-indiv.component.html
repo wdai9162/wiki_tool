@@ -5,10 +5,10 @@
       <span style="font-size: larger">Title:</span>
 
       <select  [(ngModel)]="Model.defaultTitle"  (ngModelChange)="Model.defaultTitle=$event;setInfo()" style="width: 50%">
-        <option *ngFor="let option of Model.articleList" [value] = 'option'>{{option}}</option>
+        <option *ngFor="let option of Model.articleList" [value] = 'option["_id"]'>{{option["_id"]+"#revision:"+option['revCount']}}</option>
       </select>
       <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChange($event)"></nz-range-picker>
-      <button>select</button>
+      <button (click)="selectData()">select</button>
             <nz-list  nzHeader="Your Select Title" style="text-align: center;margin-top: 10px" nzFooter="">
               <ul nz-list nzBordered nzSize="small">
                 <li nz-list-item nzNoFlex style="text-align: left">
