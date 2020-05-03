@@ -14,7 +14,7 @@ const fs = require ('fs');
 const path = require('path');
 
 const os = require('os');
-console.log(os.type().toString());
+
 //import bot user filter file
 var botUser;
 var adminUser;
@@ -572,12 +572,6 @@ module.exports.graphData = function (req, res) {
             sum += result[i].anonCount;
         }
         graphData.anonUser = {total: sum, result};
-    })
-    .catch(err => {
-        res.json({
-            confirmation:'failed',
-            message: err
-        })
     });
 
     botQuery = Revinfo.aggregate(queryBotUser)
@@ -587,12 +581,6 @@ module.exports.graphData = function (req, res) {
             sum += result[i].botCount;
         }
         graphData.botUser = {total: sum, result};
-    })
-    .catch(err => {
-        res.json({
-            confirmation:'failed',
-            message: err
-        })
     });
 
     adminQuery = Revinfo.aggregate(queryAdminUser)
@@ -602,12 +590,6 @@ module.exports.graphData = function (req, res) {
             sum += result[i].adminCount;
         }
         graphData.adminUser = {total: sum, result};
-    })
-    .catch(err => {
-        res.json({
-            confirmation:'failed',
-            message: er
-        })
     });
 
     regQuery = Revinfo.aggregate(queryRegUser)
@@ -617,21 +599,17 @@ module.exports.graphData = function (req, res) {
             sum += result[i].regCount;
         }
         graphData.regUser = {total: sum, result};
-    })
-    .catch(err => {
-        res.json({
-            confirmation:'failed',
-            message: err
-        })
     });
 
-    Promise.all([anonQuery, botQuery, adminQuery, regQuery]).then(() => {
+    Promise.all([anonQuery, botQuery, adminQuery, regQuery])
+    .then(() => {
         console.log(graphData);
         res.status(200).json(graphData);
       })
-
-
-
-
-
+    .catch((err) => {
+        res.json({
+            confirmation: "failed",
+            err: err
+        })
+    })
     }

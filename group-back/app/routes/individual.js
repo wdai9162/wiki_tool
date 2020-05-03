@@ -9,5 +9,8 @@ router.get('', (req, res, next) => {
 
 router.get('/getlist', controller.articleList); 
 router.get('/checkdate', controller.checkUptoDate); 
+router.get('/reguserbyrevnumber', controller.regUserByRevNumber); 
+router.get('/getredditnews', controller.getNewsReddit); 
+
 
 module.exports = router;
