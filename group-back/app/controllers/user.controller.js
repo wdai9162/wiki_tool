@@ -110,7 +110,7 @@ module.exports.signup = function (req, res) {
 
     });
 };
-//
+//Query the database for the existence of this user
 module.exports.checkIfUserExists = function(req, res){
     const userEmail = req.body.userEmail;
     User.findOne({ "email" : userEmail })
@@ -128,7 +128,8 @@ module.exports.checkIfUserExists = function(req, res){
                 question: result.question
             })
         });
-}
+};
+//Query whether the user answer to the security problem is correct
 module.exports.checkIfAnswerCorrect = function(req, res){
     const userEmail = req.body.userEmail;
     const answer = req.body.answer;
@@ -146,7 +147,8 @@ module.exports.checkIfAnswerCorrect = function(req, res){
                 return false;
             }
         })
-}
+};
+//Update the database after encrypting the new password
 module.exports.resetPassword = function (req, res) {
     const userEmail = req.body.userEmail;
     let newPassword = req.body.password;
@@ -177,4 +179,4 @@ module.exports.resetPassword = function (req, res) {
                 }
             })
         })
-}
+};
