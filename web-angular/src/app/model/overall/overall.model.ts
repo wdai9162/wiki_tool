@@ -73,7 +73,7 @@ export class Overall {
   // tslint:disable-next-line:variable-name
   private _number = '2';
   // tslint:disable-next-line:variable-name
-  private _info = '';
+  private _info = '2';
 
   get pieChartLabels(): Label[] {
     return this._pieChartLabels;

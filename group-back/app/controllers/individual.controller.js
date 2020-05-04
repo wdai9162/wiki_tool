@@ -5,6 +5,34 @@
 
 const Revinfo = require ('../model/revinfo');  //all articles
 const fetch = require("node-fetch");
+const fs = require ('fs');
+const os = require('os');
+const path = require('path');
+
+//import bot user filter file
+var botUser;
+var adminUser;
+var userAdminBot
+if(os.type().toString().toUpperCase().indexOf("WINDOWS")!=-1) {
+    botUser = fs.readFileSync(path.join(__dirname, '/../user_filter/bots.txt')).toString().split("\r\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+
+//import admin user filter file
+    adminUser = fs.readFileSync(path.join(__dirname, '/../user_filter/administrators.txt')).toString().split("\r\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+
+//join both admin and bot lists
+    userAdminBot = botUser.concat(adminUser).sort();
+}
+else
+{
+    botUser = fs.readFileSync(path.join(__dirname, '/../user_filter/bots.txt')).toString().split("\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+
+//import admin user filter file
+    adminUser = fs.readFileSync(path.join(__dirname, '/../user_filter/administrators.txt')).toString().split("\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+
+//join both admin and bot lists
+    userAdminBot = botUser.concat(adminUser).sort();
+}
+
 
 module.exports.articleList = function (req, res) {
     const getListandCount = [
@@ -41,7 +69,6 @@ module.exports.articleList = function (req, res) {
 module.exports.checkUptoDate = function (req, res) {
 
     //*****BUG when the latest revision is more than 24hours, still shows expire and needs to be handled */
-
     var article = req.query.title || "Australia";
     var currentTime = new Date();
     var lastRevDate; 
@@ -149,5 +176,99 @@ module.exports.checkUptoDate = function (req, res) {
                 })
             })
         })
+    }
+}
+
+module.exports.regUserByRevNumber = function (req, res) {
+    
+    const regUserByRevNumber = [
+        { 
+            "$match" : { 
+                "$and" : [
+                    { 
+                        "title" : "Australia"
+                    }, 
+                    { 
+                        "user" : { 
+                            "$nin" : userAdminBot
+                        }
+                    }, 
+                    { 
+                        "anon" : { 
+                            "$exists" : false
+                        }
+                    }
+                ]
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : "$user", 
+                "revCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "revCount" : -1.0
+            }
+        }
+    ]; 
+
+    Revinfo.aggregate(regUserByRevNumber).limit(5)
+    .then(result => {
+        res.status(200).json({
+            confirmation: 'success',
+            data: result,
+        })
+    })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message: err
+        })
+    })
+}
+
+module.exports.getNewsReddit = function (req, res) {
+
+    title = req.query.title || "Australia"; 
+
+    var url = "https://www.reddit.com/r/news/search.json" //"https://en.wikipedia.org/w/api.php";
+    var params = {
+    q: title,
+    sort: "top",
+    limit: 3, 
+    restrict_sr: 1    //restrict our search to the current subreddit.
+    };
+
+    url = url + "?";
+    Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+    console.log(url)
+
+    fetch(url)
+    .then(function(response){return response.json();})
+    .then(function(response) {
+
+        var newsTitleUrl = response.data.children.map(extractTitleandURL)
+        res.json({
+            confirmation: "success",
+            data: newsTitleUrl
+        })
+    
+    })
+    .catch(err => {
+        res.json({
+            confirmation:'failed',
+            message:  err
+        })
+    })
+
+    function extractTitleandURL(news) {
+        return {
+            title: news.data.title,
+            URL: news.data.url
+        }
     }
 }
