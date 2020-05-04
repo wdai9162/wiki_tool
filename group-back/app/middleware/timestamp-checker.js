@@ -1,4 +1,4 @@
-module.exports = (dbcollection) => {
+ module.exports = (dbcollection) => {
 
     dbcollection.find({timestamp: {$not: {$type: 9}}})
         .then(docs=>{

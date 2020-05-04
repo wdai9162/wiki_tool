@@ -36,20 +36,20 @@ else
 
 module.exports.articleList = function (req, res) {
     const getListandCount = [
-        { 
-            "$group" : { 
-                "_id" : "$title", 
-                "revCount" : { 
+        {
+            "$group" : {
+                "_id" : "$title",
+                "revCount" : {
                     "$sum" : 1.0
                 }
             }
-        }, 
-        { 
-            "$sort" : { 
+        },
+        {
+            "$sort" : {
                 "_id" : 1.0
             }
         }
-    ]; 
+    ];
 
     Revinfo.aggregate(getListandCount)
     .then(result => {
@@ -71,22 +71,22 @@ module.exports.checkUptoDate = function (req, res) {
     //*****BUG when the latest revision is more than 24hours, still shows expire and needs to be handled */
     var article = req.query.title || "Australia";
     var currentTime = new Date();
-    var lastRevDate; 
-    
+    var lastRevDate;
+
     const maxDateAndCountQuery = [
-        { 
-            "$group" : { 
-                "_id" : "$title", 
-                "lastRev" : { 
+        {
+            "$group" : {
+                "_id" : "$title",
+                "lastRev" : {
                     "$max" : "$timestamp"
-                }, 
-                "count" : { 
+                },
+                "count" : {
                     "$sum" : 1.0
                 }
             }
-        }, 
-        { 
-            "$match" : { 
+        },
+        {
+            "$match" : {
                 "_id" : article
             }
         }
@@ -94,10 +94,10 @@ module.exports.checkUptoDate = function (req, res) {
     lastRev = Revinfo.aggregate(maxDateAndCountQuery)
     .then(result=>{
 
-        timeElap=calculateTime(currentTime, result[0].lastRev);    //calculate how long it has been since the latest revision record 
-        lastRevDate=result[0].lastRev;         //record for new Wiki API request to determine up to which date to download 
+        timeElap=calculateTime(currentTime, result[0].lastRev);    //calculate how long it has been since the latest revision record
+        lastRevDate=result[0].lastRev;         //record for new Wiki API request to determine up to which date to download
         console.log(lastRevDate)
-        //check if the records are considered as expired, >24hrs 
+        //check if the records are considered as expired, >24hrs
         if(timeElap>=60*60*24){
 
             fetchandUpdate(article,lastRevDate);
@@ -116,7 +116,7 @@ module.exports.checkUptoDate = function (req, res) {
             message: err
         })
     })
-    
+
     function calculateTime(lastRevTimestamp,current) {
         var now = Date.parse(current);
         var lastRev = Date.parse(lastRevTimestamp);
@@ -126,17 +126,17 @@ module.exports.checkUptoDate = function (req, res) {
     }
 
     function fetchandUpdate(articleName, articleLastRevDate) {
-        
+
         var url = "https://en.wikipedia.org/w/api.php";
         var params = {
         action: "query",
         prop: "revisions",
         titles: articleName,
-        rvprop: "ids|flags|user|userid|timestamp|size|sha1|parsedcomment", 
+        rvprop: "ids|flags|user|userid|timestamp|size|sha1|parsedcomment",
         rvslots: "main",
         formatversion: "2",
         format: "json",
-        rvdir: "newer", 
+        rvdir: "newer",
         rvstart: articleLastRevDate,
         //rvend: articleLastRevDate,
         rvlimit: 'max'
@@ -148,10 +148,10 @@ module.exports.checkUptoDate = function (req, res) {
         fetch(url)
         .then(function(response){return response.json();})
         .then(function(response) {
-            response.query.pages[0].revisions.forEach(rev => {     //insert article title for each revision record 
-                rev.title = articleName; 
+            response.query.pages[0].revisions.forEach(rev => {     //insert article title for each revision record
+                rev.title = articleName;
             })
-            response.query.pages[0].revisions.shift()              //remove first revision which is duplicated with the last exisitng revision 
+            response.query.pages[0].revisions.shift()              //remove first revision which is duplicated with the last exisitng revision
 
             if (response.query.pages[0].revisions.length === 0) {
                 res.json({
@@ -160,7 +160,7 @@ module.exports.checkUptoDate = function (req, res) {
                     message: result
                 })
             }
-            
+
             Revinfo.insertMany(response.query.pages[0].revisions)
             .then(result => {
                 res.json({
@@ -180,41 +180,41 @@ module.exports.checkUptoDate = function (req, res) {
 }
 
 module.exports.regUserByRevNumber = function (req, res) {
-    
+
     const regUserByRevNumber = [
-        { 
-            "$match" : { 
+        {
+            "$match" : {
                 "$and" : [
-                    { 
-                        "title" : "Australia"
-                    }, 
-                    { 
-                        "user" : { 
+                    {
+                        "title" : req.query.title
+                    },
+                    {
+                        "user" : {
                             "$nin" : userAdminBot
                         }
-                    }, 
-                    { 
-                        "anon" : { 
+                    },
+                    {
+                        "anon" : {
                             "$exists" : false
                         }
                     }
                 ]
             }
-        }, 
-        { 
-            "$group" : { 
-                "_id" : "$user", 
-                "revCount" : { 
+        },
+        {
+            "$group" : {
+                "_id" : "$user",
+                "revCount" : {
                     "$sum" : 1.0
                 }
             }
-        }, 
-        { 
-            "$sort" : { 
+        },
+        {
+            "$sort" : {
                 "revCount" : -1.0
             }
         }
-    ]; 
+    ];
 
     Revinfo.aggregate(regUserByRevNumber).limit(5)
     .then(result => {
@@ -233,13 +233,13 @@ module.exports.regUserByRevNumber = function (req, res) {
 
 module.exports.getNewsReddit = function (req, res) {
 
-    title = req.query.title || "Australia"; 
+    title = req.query.title || "Australia";
 
     var url = "https://www.reddit.com/r/news/search.json" //"https://en.wikipedia.org/w/api.php";
     var params = {
     q: title,
     sort: "top",
-    limit: 3, 
+    limit: 3,
     restrict_sr: 1    //restrict our search to the current subreddit.
     };
 
@@ -256,7 +256,7 @@ module.exports.getNewsReddit = function (req, res) {
             confirmation: "success",
             data: newsTitleUrl
         })
-    
+
     })
     .catch(err => {
         res.json({
