@@ -110,3 +110,36 @@ module.exports.signup = function (req, res) {
 
     });
 };
+module.exports.checkIfUserExists = function(req, res){
+    const userEmail = req.body.userEmail;
+    User.findOne({ "email" : userEmail })
+        .then(result => {
+            if (result === null) {
+                return res.status(401).json({
+                    confirmation: "Failed",
+                    err: "We cannot find an account with that email address"
+                })
+            }
+            console.log("result: " + result);
+            res.status(201).json({
+                message: "User Exits!",
+                result: result
+            })
+            return result.question;
+        });
+}
+module.exports.checkIfAnswerCorrect = function(req, res){
+    const userEmail = req.body.userEmail;
+    const answer = req.body.answer;
+    User.findOne({"email" : userEmail})
+        .then(result => {
+            if (answer == result.answer){
+                res.status(201).json({
+                    message: "Answer is correct!",
+                })
+                return true;
+            }else{
+                return false;
+            }
+        })
+}

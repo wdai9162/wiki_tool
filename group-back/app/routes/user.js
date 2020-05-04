@@ -10,5 +10,6 @@ router.post('/login', controller.login);
 router.post('/signup', controller.signup);
 router.get('/loginstatus', controller.LoginStatus);
 //router.get('/logout', controller.);
-
+router.post('/checkIfUserExists', controller.checkIfUserExists)
+router.post('/checkIfAnswerCorrect', controller.checkIfAnswerCorrect)
 module.exports = router;
