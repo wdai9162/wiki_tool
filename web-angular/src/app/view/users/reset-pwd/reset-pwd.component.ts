@@ -39,31 +39,7 @@ export class ResetPwdComponent implements OnInit {
 
   onReset(): void {
     this.closeReset();
-    if (this.loginForm.invalid) {
-      return;
-    }
 
-    console.log(this.loginForm.value);
-
-
-    // tslint:disable-next-line:forin
-    for (const i in this.loginForm.controls) {
-      this.loginForm.controls[i].markAsDirty();
-      this.loginForm.controls[i].updateValueAndValidity();
-    }
-    // this.ls.setObject('isLogin', true);
-    // this.closeReset();
-
-    fetch('http://127.0.0.1:3000/', {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    })
-      // tslint:disable-next-line:only-arrow-functions
-      .then(response => response.text() )
-      // tslint:disable-next-line:only-arrow-functions
-      .then(function(mydata) {
-        console.log(mydata);
-
-      });
   }
 
   ngOnInit(): void {
