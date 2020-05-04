@@ -15,13 +15,13 @@
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your E-mail address!">
           <nz-input-group nzPrefixIcon="user">
-            <input  autofocus type="email" nz-input formControlName="userEmail" placeholder="Useremail">
+            <input (keyup)="keyupHandlerEmail($event)"  autofocus type="email" nz-input formControlName="userEmail" placeholder="Useremail">
           </nz-input-group>
         </nz-form-control>
 
         <nz-form-item>
           <nz-form-control>
-            <button nz-button class="login-form-button" [nzType]="'primary'" (click)="openQuestion()" >Confirm</button>
+            <button nz-button class="login-form-button" [nzType]="'primary'"  type ="button" (click)="openQuestion()" >Confirm</button>
           </nz-form-control>
         </nz-form-item>
       </nz-form-item>
@@ -31,14 +31,14 @@
       <div *ngSwitchCase="1">
         <nz-form-item>
         <nz-form-control nzErrorTip="Please Answer your Question">
-          <span> what's your favourite food?</span>
+          <span> {{question}}</span>
 
-            <input  autofocus nz-input formControlName="Answer" placeholder="Answer">
+            <input  (keyup)="keyupHandlerAnswer($event)" autofocus nz-input formControlName="Answer" placeholder="Answer">
 
         </nz-form-control>
           <nz-form-item>
             <nz-form-control>
-              <button nz-button class="login-form-button" [nzType]="'primary'" (click)="openNewPwd()" >Next</button>
+              <button nz-button class="login-form-button" [nzType]="'primary'"  type ="button" (click)="openNewPwd()" >Next</button>
             </nz-form-control>
           </nz-form-item>
       </nz-form-item>
@@ -47,13 +47,13 @@
       <nz-form-item>
         <nz-form-control nzErrorTip="Please input your New Password!">
 
-            <input nz-input formControlName="NewPassword" placeholder="NewPassword" autofocus>
+            <input (keyup)="keyupHandlerReset($event)" nz-input formControlName="NewPassword"  placeholder="NewPassword" autofocus>
 
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-control>
-          <button nz-button class="login-form-button" [nzType]="'primary'" type="submit" >Reset</button>
+          <button nz-button class="login-form-button" [nzType]="'primary'" type="button" (click)="Reset()">Reset</button>
         </nz-form-control>
       </nz-form-item>
       </div>

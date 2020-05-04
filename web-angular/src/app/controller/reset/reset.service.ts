@@ -20,5 +20,10 @@ export class ResetService {
   {
     return await this.postData('http://127.0.0.1:3000/api/user/checkIfAnswerCorrect', answerData);
   }
+
+  async postReset(NewPasswordData)
+  {
+    return await this.postData('http://127.0.0.1:3000/api/user/resetPassword', NewPasswordData);
+  }
   constructor() { }
 }
