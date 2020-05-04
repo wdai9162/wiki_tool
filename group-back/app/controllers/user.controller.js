@@ -123,7 +123,7 @@ module.exports.checkIfUserExists = function(req, res){
             }
             console.log("result: " + result);
             res.status(201).json({
-                confirmation: "Exits",
+                confirmation: "Exists",
                 email: result.email,
                 question: result.question
             })
@@ -136,14 +136,45 @@ module.exports.checkIfAnswerCorrect = function(req, res){
         .then(result => {
             if (answer == result.answer){
                 res.status(201).json({
-                    message: "Correct!",
+                    confirmation: "Correct!",
                 })
                 return true;
             }else{
                 res.status(401).json({
-                    message: "Wrong answer!",
+                    confirmation: "Wrong answer!",
                 })
                 return false;
             }
+        })
+}
+module.exports.resetPassword = function (req, res) {
+    const userEmail = req.body.userEmail;
+    let newPassword = req.body.password;
+
+    //Generate iterations of salt
+    const saltRounds = 10;
+    //Randomly generate salt
+    const salt = bcrypt.genSaltSync(saltRounds);
+    //get hash
+    var hash = bcrypt.hashSync(newPassword, salt);
+
+    newPassword = hash;//hash new password
+
+
+    console.log("hashed Password:"+newPassword);
+    User.findOne({"email" : userEmail})
+        .then(result => {
+            console.log("old password:"+result.password);
+            User.findByIdAndUpdate({_id: result._id}, {password: newPassword}, function(err, result) {
+                if (err) {
+                    res.status(401).json({
+                        confirmation: "Failed!"
+                    })
+                } else {
+                    res.status(201).json({
+                        confirmation: "Success!"
+                    })
+                }
+            })
         })
 }
