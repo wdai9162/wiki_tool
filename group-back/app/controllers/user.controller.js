@@ -110,6 +110,7 @@ module.exports.signup = function (req, res) {
 
     });
 };
+//
 module.exports.checkIfUserExists = function(req, res){
     const userEmail = req.body.userEmail;
     User.findOne({ "email" : userEmail })
@@ -122,10 +123,10 @@ module.exports.checkIfUserExists = function(req, res){
             }
             console.log("result: " + result);
             res.status(201).json({
-                message: "User Exits!",
-                result: result
+                confirmation: "Exits",
+                email: result.email,
+                question: result.question
             })
-            return result.question;
         });
 }
 module.exports.checkIfAnswerCorrect = function(req, res){
@@ -135,10 +136,13 @@ module.exports.checkIfAnswerCorrect = function(req, res){
         .then(result => {
             if (answer == result.answer){
                 res.status(201).json({
-                    message: "Answer is correct!",
+                    message: "Correct!",
                 })
                 return true;
             }else{
+                res.status(401).json({
+                    message: "Wrong answer!",
+                })
                 return false;
             }
         })
