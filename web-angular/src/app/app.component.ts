@@ -11,6 +11,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
 
 export class AppComponent {
   constructor(private MylocalStorage: LocalStorage) {
+    const height = window.innerHeight;
+    MylocalStorage.setObject('windowHeight', height);
 
     // tslint:disable-next-line:max-line-length
     if (this.MylocalStorage.exist('isLogin') === false) {
