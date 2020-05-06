@@ -8,7 +8,7 @@ const revinfoSchema = mongoose.Schema({
     user: { type: String, trim: true,required: true, default: ' '},
     anon: { type: Boolean },
     userid: { type: Number, required: true }, 
-    timestamp: { type: Date, trim: true, required: true},
+    timestamp: { type: String, trim: true, required: true},
     size: { type: Number, required: true }, 
     sha1: { type: String, trim: true, required: true }, 
     parsedcomment: { type: String, trim: true },

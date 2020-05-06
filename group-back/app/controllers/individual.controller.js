@@ -204,6 +204,8 @@ module.exports.checkUptoDate = function (req, res) {
 
 module.exports.regUserByRevNumber = function (req, res) {
 
+    title = req.query.title;
+    
     const regUserByRevNumber = [
         {
             "$match" : {
@@ -311,4 +313,333 @@ module.exports.getNewsReddit = function (req, res) {
             URL: news.data.url
         }
     }
+}
+
+module.exports.graphData = function (req, res) {
+    
+    var graphData = {};
+    var article = req.query.title || "Australia";
+    var startYear = req.query.stryr || "2002-01-01T00:00:00Z"; 
+    var endYear = req.query.endyr || "2022-01-01T00:00:00Z"; 
+    
+    //query for total count of revisions by anonymous users in each year
+    const queryAnonUser = [
+        { 
+            "$match" : { 
+                "$and" : [
+                    { 
+                        "title" : article
+                    }, 
+                    { 
+                        "anon" : true
+                    }, 
+                    { 
+                        "timestamp" : { 
+                            "$gt" : startYear
+                        }
+                    }, 
+                    { 
+                        "timestamp" : { 
+                            "$lt" : endYear
+                        }
+                    }
+                ]
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "anonCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : 1.0
+            }
+        }
+    ];
+
+    //query for total count of revisions by bot users in each year
+    const queryBotUser =      [
+        { 
+            "$match" : { 
+                "$and" : [
+                    { 
+                        "title" : article
+                    }, 
+                    { 
+                        "user" : { 
+                            "$in" : botUser
+                        }
+                    }, 
+                    { 
+                        "timestamp" : { 
+                            "$gt" : startYear
+                        }
+                    }, 
+                    { 
+                        "timestamp" : { 
+                            "$lt" : endYear
+                        }
+                    }
+                ]
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "botCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : 1.0
+            }
+        }
+    ];
+
+    //query for total count of revisions by admin users in each year
+    const queryAdminUser =      [
+        { 
+            "$match" : { 
+                "$and" : [
+                    { 
+                        "title" : article
+                    }, 
+                    { 
+                        "user" : { 
+                            "$in" : adminUser
+                        }
+                    }, 
+                    { 
+                        "timestamp" : { 
+                            "$gt" : startYear
+                        }
+                    }, 
+                    { 
+                        "timestamp" : { 
+                            "$lt" : endYear
+                        }
+                    }
+                ]
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "adminCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : 1.0
+            }
+        }
+    ];
+
+   //query for total count of revisions by regular users in each year
+   const queryRegUser =      [
+    {
+        "$match" : {
+            "$and" : [
+                { 
+                    "title" : article
+                }, 
+                { 
+                    "user" : { 
+                        "$nin" : userAdminBot
+                    }
+                }, 
+                { 
+                    "timestamp" : { 
+                        "$gt" : startYear
+                    }
+                }, 
+                { 
+                    "timestamp" : { 
+                        "$lt" : endYear
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "$addFields" : {
+            "timestamp" : {
+                "$toDate" : "$timestamp"
+            }
+        }
+    },
+    {
+        "$group" : {
+            "_id" : {
+                "$year" : "$timestamp"
+            },
+            "regCount" : {
+                "$sum" : 1.0
+            }
+        }
+    },
+    {
+        "$sort" : {
+            "_id" : -1.0
+        }
+    }
+];    
+
+    
+    anonQuery = Revinfo.aggregate(queryAnonUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].anonCount;
+        }
+        graphData.anonUser = {total: sum, result};
+    });
+
+    botQuery = Revinfo.aggregate(queryBotUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].botCount;
+        }
+        graphData.botUser = {total: sum, result};
+    });
+
+    adminQuery = Revinfo.aggregate(queryAdminUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].adminCount;
+        }
+        graphData.adminUser = {total: sum, result};
+    });
+
+    regQuery = Revinfo.aggregate(queryRegUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].regCount;
+        }
+        graphData.regUser = {total: sum, result};
+    });
+
+    Promise.all([anonQuery, botQuery, adminQuery, regQuery])
+    .then(() => {
+        res.status(200).json(graphData);
+      })
+    .catch((err) => {
+        res.json({
+            confirmation: "failed",
+            err: err
+        })
+    })
+
+}
+
+module.exports.topUserGraph = function (req, res) {
+
+    var article = req.query.title || "Australia";
+    var startYear = req.query.stryr || "2002-01-01T00:00:00Z"; 
+    var endYear = req.query.endyr || "2022-01-01T00:00:00Z"; 
+    var topUser = req.query.topuser || "PDH"; 
+    
+    //query for total count of revisions by anonymous users in each year
+    const queryTopUser = [
+        { 
+            "$match" : { 
+                "$and" : [
+                    { 
+                        "title" : article
+                    }, 
+                    { 
+                        "user" : topUser
+                    }, 
+                    { 
+                        "timestamp" : { 
+                            "$gt" : startYear
+                        }
+                    }, 
+                    { 
+                        "timestamp" : { 
+                            "$lt" : endYear
+                        }
+                    }
+                ]
+            }
+        }, 
+        { 
+            "$addFields" : { 
+                "timestamp" : { 
+                    "$toDate" : "$timestamp"
+                }
+            }
+        }, 
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "$year" : "$timestamp"
+                }, 
+                "topUserCount" : { 
+                    "$sum" : 1.0
+                }
+            }
+        }, 
+        { 
+            "$sort" : { 
+                "_id" : 1.0
+            }
+        }
+    ];
+    
+    Revinfo.aggregate(queryTopUser)
+    .then(result => {
+        var sum=0;
+        for(var i in result) {
+            sum += result[i].topUserCount;
+        }
+        res.status(200).json({
+            total: sum, 
+            result
+        })
+    })
+    .catch((err) => {
+        res.json({
+            confirmation: "failed",
+            err: err
+        })
+    })
 }
