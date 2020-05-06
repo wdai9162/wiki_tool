@@ -12,11 +12,15 @@ import { NzListModule } from 'ng-zorro-antd/list';
 export class AppComponent {
   constructor(private MylocalStorage: LocalStorage) {
     const height = window.innerHeight;
+    const width = window.innerWidth;
     MylocalStorage.setObject('windowHeight', height);
+    MylocalStorage.setObject('windowWidth', width);
+
 
     // tslint:disable-next-line:max-line-length
     if (this.MylocalStorage.exist('isLogin') === false) {
       this.MylocalStorage.setObject('isLogin', false);
+      this.MylocalStorage.remove(('username'));
     }
     else {
       // tslint:disable-next-line:max-line-length

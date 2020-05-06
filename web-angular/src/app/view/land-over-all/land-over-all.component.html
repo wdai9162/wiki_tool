@@ -1,5 +1,5 @@
 <div *ngIf="!isLogin">
-<img src="../../../assets/overall.png" (click)="login()">
+<img src="../../../assets/overall.png" [ngStyle]="imagestyle" (click)="login()">
 </div>
 <div *ngIf="isLogin">
   <app-login-over-all ></app-login-over-all>

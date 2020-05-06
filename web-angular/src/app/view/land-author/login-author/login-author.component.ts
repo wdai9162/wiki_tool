@@ -11,7 +11,7 @@ export class LoginAuthorComponent implements OnInit {
   articlelistHeight;
   selectArticle;
   constructor(private ls: LocalStorage) {
-    this.articlelistHeight = {height: this.ls.getObject('windowHeight') * 0.8+"px"};
+    this.articlelistHeight = {height: this.ls.getObject('windowHeight') * 0.8+'px'};
     console.log(this.articlelistHeight);
   }
 
