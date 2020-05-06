@@ -1,4 +1,5 @@
 export class Inidividual {
+
   get TopFiveUser(): { data: [{ _id: "loading"; revCount: "loading" }] } {
     return this._TopFiveUser;
   }
@@ -66,5 +67,25 @@ export class Inidividual {
   private _defaultTitle  = 'Australia';
   private reTitleS;
   private reNumberS;
+  // tslint:disable-next-line:variable-name
+  private _startyear;
+  // tslint:disable-next-line:variable-name
+  private _endyear;
+
+  get startyear() {
+    return this._startyear;
+  }
+
+  set startyear(value) {
+    this._startyear = value;
+  }
+
+  get endyear() {
+    return this._endyear;
+  }
+
+  set endyear(value) {
+    this._endyear = value;
+  }
 }
 

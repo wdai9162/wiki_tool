@@ -15,10 +15,10 @@ export class IndividualService {
     return await request.json();
   }
 
-  async getArticleData(title)
+  async getArticleData()
   {
 
-      return await this.getData('http://127.0.0.1:3000/api/individual/getlist?title=' +title);
+      return await this.getData('http://127.0.0.1:3000/api/individual/getlist');
   }
 
   async checkoupdate(title)

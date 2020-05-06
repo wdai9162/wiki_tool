@@ -4,11 +4,13 @@
     <div>
       <span style="font-size: larger">Title:</span>
 
-      <select  [(ngModel)]="Model.defaultTitle"  (ngModelChange)="Model.defaultTitle= $event;setInfo()" style="width: 50%">
+      <div nz-row>
+      <select  [(ngModel)]="Model.defaultTitle"  (ngModelChange)="Model.defaultTitle= $event;setInfo()" style="width: 30%">
         <option *ngFor="let option of Model.articleList" [value] = 'option["_id"]'>{{option["_id"]}}<span style="color:red;float: right;text-align: right">#revision:{{option['revCount']}}</span></option>
       </select>
-      <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChange($event)"></nz-range-picker>
+      <nz-year-picker [(ngModel)]="Model.startYear" (ngModelChange)="onStartChange($event)" nzPlaceHolder="Select start year"></nz-year-picker><nz-year-picker [(ngModel)]="Model.endYear" (ngModelChange)="onEndChange($event)" nzPlaceHolder="Select end year"></nz-year-picker>
       <button (click)="this.selectData()">select</button>
+      </div>
             <nz-list  nzHeader="Your Select Title" style="text-align: center;margin-top: 10px" nzFooter="">
               <ul nz-list nzBordered nzSize="small">
                 <li nz-list-item nzNoFlex style="text-align: left">
