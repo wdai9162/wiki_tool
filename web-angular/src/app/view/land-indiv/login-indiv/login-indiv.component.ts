@@ -64,21 +64,29 @@ export class LoginIndivComponent implements OnInit {
 
   public barChartData: ChartDataSets[] = [];
 
-  dateRange = [];
+
 
   constructor(private IndiService: IndividualService) {
     this.Model = IndiService.getModel();
     // console.log(this.Model.articleList);
   }
 
-  onChange(result: Date): void {
-    console.log('onChange: ', result);
+  onStartChange(result: Date): void {
+
+    this.Model.startyear = result.getFullYear();
+  }
+
+  onEndChange(result: Date): void {
+
+    this.Model.endyear = result.getFullYear();
   }
 
   selectData()
   {
-    console.log(this.Model.info);
     this.DataUpgrade(this.Model.info);
+    console.log(this.Model.startyear);
+
+    console.log(this.Model.endyear);
   }
 
   log(data: string): void
@@ -97,12 +105,17 @@ export class LoginIndivComponent implements OnInit {
       {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
     ];
 
-    this.DataUpgrade('Australia');
+    // this.DataUpgrade('Australia');
+    this.articleSerive = await this.IndiService.getArticleData();
+
+    this.Model.articleList = this.articleSerive.data;
   }
 
   async DataUpgrade(title): Promise<void> {
-    await this.IndiService.checkoupdate(title);
-    this.articleSerive = await this.IndiService.getArticleData(title);
+    const respond = await this.IndiService.checkoupdate(title);
+    console.log(respond);
+    alert(respond.confirmation);
+    this.articleSerive = await this.IndiService.getArticleData();
 
     this.Model.articleList = this.articleSerive.data;
 
@@ -114,7 +127,7 @@ export class LoginIndivComponent implements OnInit {
         this.Model.info = this.articleSerive.data[i]._id;
         this.Model.renumber = this.articleSerive.data[i].revCount;
         this.Model.reTitleS = this.articleSerive.data[i]._id;
-        this.Model.reNumberS = this.articleSerive.data[i].revCount
+        this.Model.reNumberS = this.articleSerive.data[i].revCount;
 
       }
 
