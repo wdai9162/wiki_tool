@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var overallRouter = require('./routes/overall');
 var userRouter = require('./routes/user');
 var individualRouter = require('./routes/individual');
+var authorRouter = require('./routes/author')
 
 const mongoose = require ('mongoose');
 const timechecker = require ('./middleware/timestamp-checker');
@@ -56,9 +57,7 @@ app.use('/', indexRouter);
 app.use('/api/user', userRouter);
 app.use('/api/overall', overallRouter);
 app.use('/api/individual', individualRouter);
-app.use('/api/author', (req,res) => {
-  res.end("this is the AUTHOR analytics endpoint")
-  });
+app.use('/api/author', authorRouter);
 
 
 // catch 404 and forward to error handler
