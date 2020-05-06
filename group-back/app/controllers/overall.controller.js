@@ -603,7 +603,7 @@ module.exports.graphData = function (req, res) {
 
     Promise.all([anonQuery, botQuery, adminQuery, regQuery])
     .then(() => {
-        console.log(graphData);
+        //console.log(graphData);
         res.status(200).json(graphData);
       })
     .catch((err) => {

@@ -69,8 +69,8 @@ module.exports.articleList = function (req, res) {
 module.exports.checkUptoDate = function (req, res) {
 
     //*****BUG when the latest revision is more than 24hours, still shows expire and needs to be handled */
-    var article = req.query.title || "Australia";
-    var currentTime = new Date();
+    var article = req.query.title; 
+    var currentTime = new Date(); 
     var lastRevDate;
 
     const maxDateAndCountQuery = [
@@ -93,13 +93,14 @@ module.exports.checkUptoDate = function (req, res) {
     ]
     lastRev = Revinfo.aggregate(maxDateAndCountQuery)
     .then(result=>{
-
+        
         timeElap=calculateTime(currentTime, result[0].lastRev);    //calculate how long it has been since the latest revision record
         lastRevDate=result[0].lastRev;         //record for new Wiki API request to determine up to which date to download
-        console.log(lastRevDate)
+       
         //check if the records are considered as expired, >24hrs
         if(timeElap>=60*60*24){
 
+            console.log("Expired, lastRevDate type:" + typeof lastRevDate)
             fetchandUpdate(article,lastRevDate);
 
         }
@@ -111,8 +112,9 @@ module.exports.checkUptoDate = function (req, res) {
         }
     })
     .catch(err => {
-        res.json({
-            confirmation:'failed',
+        console.error("error here")
+        res.status(500).json({
+            confirmation:'failed to determine if article is expired',
             message: err
         })
     })
@@ -127,6 +129,23 @@ module.exports.checkUptoDate = function (req, res) {
 
     function fetchandUpdate(articleName, articleLastRevDate) {
 
+        //Due to inconsistent type of timestamp stored in DB, string from original and date from new download,
+        //there will be a bug here to operate with expected Date object. ************
+        try {
+            if (typeof articleLastRevDate === "object") {
+                console.log(typeof articleLastRevDate);
+                lstRevDateInUTC = articleLastRevDate.toUTCString();  
+            }
+         
+            else if (typeof articleLastRevDate === "string"){
+                console.log(typeof articleLastRevDate);
+                lstRevDateInUTC = articleLastRevDate; 
+            }
+        } catch(error) {
+            console.error(error);
+        }
+        console.log(lstRevDateInUTC);
+
         var url = "https://en.wikipedia.org/w/api.php";
         var params = {
         action: "query",
@@ -137,44 +156,48 @@ module.exports.checkUptoDate = function (req, res) {
         formatversion: "2",
         format: "json",
         rvdir: "newer",
-        rvstart: articleLastRevDate,
-        //rvend: articleLastRevDate,
+        rvstart: lstRevDateInUTC,
         rvlimit: 'max'
         };
 
         url = url + "?origin=*";
         Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
-
         fetch(url)
-        .then(function(response){return response.json();})
-        .then(function(response) {
+        .then( response => { return response.json() })
+        .then( response => { 
             response.query.pages[0].revisions.forEach(rev => {     //insert article title for each revision record
                 rev.title = articleName;
             })
+            
             response.query.pages[0].revisions.shift()              //remove first revision which is duplicated with the last exisitng revision
 
-            if (response.query.pages[0].revisions.length === 0) {
-                res.json({
-                    confirmation:'Attempted to download new data for Article:' + articleName + ', but there is no newer data to download.',
+            var newCount = response.query.pages[0].revisions.length; 
+
+            if (response.query.pages[0].revisions.length === 0) { 
+                res.status(200).json({
+                    confirmation:'Attempted to download new data for Article: ' + articleName + ', but there is no newer data than the recorded last revesion.',
                     newDownload: 0,
-                    message: result
+                    message: response.query.pages[0].revisions
                 })
             }
 
-            Revinfo.insertMany(response.query.pages[0].revisions)
-            .then(result => {
-                res.json({
-                    confirmation:'Successfully downloaded latest data for Article:' + articleName,
-                    newRevSavedToDB: response.query.pages[0].revisions.length,
-                    message: result
+            else {
+                Revinfo.insertMany(response.query.pages[0].revisions)
+                .then(response => {
+                    console.log("Successfully saved " + newCount + " new revisions")
+                    res.status(200).json({
+                        confirmation:'Successfully downloaded latest data for Article:' + articleName,
+                        newRevSavedToDB: newCount,
+                        message: response
+                    })
                 })
-            })
-            .catch(err => {
-                res.json({
-                    confirmation:'failed',
-                    message: err
+                .catch(err => {
+                    res.json({
+                        confirmation:'failed',
+                        message: err
+                    })
                 })
-            })
+            }
         })
     }
 }
@@ -233,7 +256,7 @@ module.exports.regUserByRevNumber = function (req, res) {
 
 module.exports.getNewsReddit = function (req, res) {
 
-    title = req.query.title || "Australia";
+    title = req.query.title;
 
     var url = "https://www.reddit.com/r/news/search.json" //"https://en.wikipedia.org/w/api.php";
     var params = {
@@ -243,20 +266,37 @@ module.exports.getNewsReddit = function (req, res) {
     restrict_sr: 1    //restrict our search to the current subreddit.
     };
 
-    url = url + "?";
-    Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
-    console.log(url)
+    var url1 = url + "?";
+    Object.keys(params).forEach(function(key){url1 += "&" + key + "=" + params[key];});
 
     fetch(url)
-    .then(function(response){return response.json();})
-    .then(function(response) {
+    .then(response => {return response.json();})
+    .then(response => {
+        
+        //attemp for a second try if previou serach does not return any result, this time disable restrict search mode  
+        if (response.data.children.length === 0){
+            var url2 = url + "?"; 
+            delete params.restrict_sr;
+            Object.keys(params).forEach(function(key){url2 += "&" + key + "=" + params[key];});
+            console.log(url2);
+            fetch(url2)
+            .then(response => {return response.json();})
+            .then(response => { 
+                var newsTitleUrl = response.data.children.map(extractTitleandURL)
+                res.json({
+                    confirmation: "success",
+                    data: newsTitleUrl
+                })
+            })
+        }
 
-        var newsTitleUrl = response.data.children.map(extractTitleandURL)
-        res.json({
-            confirmation: "success",
-            data: newsTitleUrl
-        })
-
+        else {
+            var newsTitleUrl = response.data.children.map(extractTitleandURL)
+            res.json({
+                confirmation: "success",
+                data: newsTitleUrl
+            })
+        }
     })
     .catch(err => {
         res.json({
