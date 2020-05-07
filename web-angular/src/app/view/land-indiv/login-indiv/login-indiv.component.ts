@@ -54,16 +54,12 @@ export class LoginIndivComponent implements OnInit {
       datalabels: {
         anchor: 'end',
         align: 'end',
+        display: false
       }
     }
   };
-  public barChartLabels: Label[] = [];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
+
   public pieChartPlugins = [pluginDataLabels];
-
-  public barChartData: ChartDataSets[] = [];
-
 
 
   constructor(private IndiService: IndividualService) {
@@ -81,6 +77,66 @@ export class LoginIndivComponent implements OnInit {
     this.Model.endyear = result.getFullYear();
   }
 
+  async changeFirstBart(title, start, end) {
+    const result = await this.IndiService.getGraph(title, start, end);
+    //user hash to get rid of the data which is 0
+    const ArticleLabel = [];
+    const adminHash = new Array();
+    const anonHash = new Array();
+    const botHash = new Array();
+    const regHash = new Array();
+    for (let i = start; i < end; i++)
+    {
+      ArticleLabel.push(i);
+      adminHash[i] = 0;
+      anonHash[i]= 0;
+      botHash[i]= 0;
+      regHash[i] = 0;
+    }
+    for (const i in result.adminUser.result)
+    {
+      const currentyear = result.adminUser.result[i]._id;
+      adminHash[currentyear] = result.adminUser.result[i].adminCount;
+    }
+    for (const i in result.botUser.result)
+    {
+      const currentyear = result.botUser.result[i]._id;
+      botHash[currentyear] = result.adminUser.result[i].botCount;
+    }
+    for (const i in result.anonUser.result)
+    {
+      const currentyear = result.anonUser.result[i]._id;
+      anonHash[currentyear] = result.anonUser.result[i].anonCount;
+    }
+    for (const i in result.regUser.result)
+    {
+      const currentyear = result.regUser.result[i]._id;
+      regHash[currentyear] = result.regUser.result[i].regCount;
+    }
+
+
+
+    const AdminUser = [];
+    const RegUser = [];
+    const AnonUser = [];
+    const BotUser = [];
+    for (let i = start; i < end; i++)
+    {
+      AdminUser.push(adminHash[i]);
+      AnonUser.push(anonHash[i]);
+      RegUser.push(regHash[i]);
+      BotUser.push(botHash[i]);
+    }
+    //
+    this.Model.articalGraphLabel=ArticleLabel;
+    this.Model.articalGraphData=[
+      {data:AdminUser,label:"Admin"},
+      {data:AnonUser,label:"Anon"},
+      {data:BotUser,label:"Bot"},
+      {data:RegUser,label:"Reg"}
+    ];
+  }
+
   async changeSecondBar(result: string) {
     console.log(result);
     const label = [];
@@ -89,7 +145,7 @@ export class LoginIndivComponent implements OnInit {
     const respond = await this.IndiService.getTopUserGraph(this.Model.info, this.Model.UserSelect, this.Model.startyear, this.Model.endyear);
     for ( const i in respond.result)
     {
-      label.push(respond.result[i]._id)
+      label.push(respond.result[i]._id);
       graphdata.push(respond.result[i].topUserCount);
     }
     this.Model.userGraphData =  [{data: graphdata, label: this.Model.UserSelect}];
@@ -113,11 +169,11 @@ export class LoginIndivComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-    this.barChartData = [
-      {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-      {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-    ];
+    // this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+    // this.barChartData = [
+    //   {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    //   {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    // ];
 
     // this.DataUpgrade('Australia');
     this.articleSerive = await this.IndiService.getArticleData();
@@ -150,6 +206,9 @@ export class LoginIndivComponent implements OnInit {
     this.Model.TopFiveUser = TopFiveUser.data;
     const TopNews = await this.IndiService.getTopReddit(title);
     this.Model.TopNews = TopNews.data;
+
+    // for get the fisrt graph data and update the graph
+    this.changeFirstBart(this.Model.info, this.Model.startyear, this.Model.endyear);
 
   }
 
