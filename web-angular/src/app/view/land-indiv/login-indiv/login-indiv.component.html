@@ -26,7 +26,9 @@
       <nz-list nzHeader="top 5 regular users"  style="text-align: center" nzFooter="">
         <ul nz-list nzBordered nzSize="small">
           <li nz-list-item *ngFor="let item of Model.TopFiveUser" nzNoFlex style="text-align: left">
-            {{item['_id']}}<span style="float: right">{{item['revCount']}}</span>
+            <nz-radio-group [(ngModel)]="Model.UserSelect" (ngModelChange)="changeSecondBar($event)">
+              <label nz-radio [nzValue]="item['_id']"></label>  {{item['_id']}}
+            </nz-radio-group><span style="float: right">{{item['revCount']}}</span>
           </li>
         </ul>
       </nz-list>
@@ -44,19 +46,6 @@
 
 
     </div>
-<!--    <div class="chart">-->
-<!--      <canvas baseChart-->
-<!--              [data]="pieChartData"-->
-<!--              [labels]="pieChartLabels"-->
-<!--              [plugins]="pieChartPlugins"-->
-<!--              chartType="pie"-->
-<!--              [options]="pieChartOptions"-->
-<!--              legend="true">-->
-<!--      </canvas>-->
-<!--    </div>-->
-
-
-
 
   </div>
 
@@ -67,8 +56,8 @@
         <div style="display: block">
           <!--    -->
           <canvas baseChart
-                  [datasets]="barChartData"
-                  [labels]="barChartLabels"
+                  [datasets]="Model.articalGraphData"
+                  [labels]="Model.articalGraphLabel"
                   [options]="barChartOptions"
 
                   legend="true"
@@ -80,8 +69,8 @@
         <div style="display: block">
           <!--    -->
           <canvas baseChart
-                  [datasets]="barChartData"
-                  [labels]="barChartLabels"
+                  [datasets]="Model.userGraphData"
+                  [labels]="Model.userGraphLabel"
                   [options]="barChartOptions"
 
                   legend="true"

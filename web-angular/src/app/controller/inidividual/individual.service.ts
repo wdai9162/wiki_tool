@@ -39,6 +39,20 @@ export class IndividualService {
     return await this.getData('http://127.0.0.1:3000/api/individual/reguserbyrevnumber?title=' + title);
   }
 
+  async getTopUserGraph(title, user, startyear, endyear)
+  {
+
+    // tslint:disable-next-line:max-line-length
+    return await this.getData('http://127.0.0.1:3000/api/individual/topusergraphdata?title=' + title + '&stryr=' + startyear + '&endyr=' + endyear + '&topuser=' + user);
+  }
+
+  async getGraph(title, startyear, endyear)
+  {
+
+    // tslint:disable-next-line:max-line-length
+    return await this.getData('http://127.0.0.1:3000/api/individual/graphData?title=' + title + '&stryr=' + startyear + '&endyr=' + endyear);
+  }
+
 
   getModel(): Inidividual
   {

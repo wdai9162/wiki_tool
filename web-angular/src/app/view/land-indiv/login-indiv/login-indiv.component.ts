@@ -81,6 +81,20 @@ export class LoginIndivComponent implements OnInit {
     this.Model.endyear = result.getFullYear();
   }
 
+  async changeSecondBar(result: string) {
+    console.log(result);
+    const label = [];
+    const graphdata = [];
+    // tslint:disable-next-line:max-line-length
+    const respond = await this.IndiService.getTopUserGraph(this.Model.info, this.Model.UserSelect, this.Model.startyear, this.Model.endyear);
+    for ( const i in respond.result)
+    {
+      label.push(respond.result[i]._id)
+      graphdata.push(respond.result[i].topUserCount);
+    }
+    this.Model.userGraphData =  [{data: graphdata, label: this.Model.UserSelect}];
+    this.Model.userGraphLabel = label;
+  }
   selectData()
   {
     this.DataUpgrade(this.Model.info);
@@ -114,7 +128,7 @@ export class LoginIndivComponent implements OnInit {
   async DataUpgrade(title): Promise<void> {
     const respond = await this.IndiService.checkoupdate(title);
     console.log(respond);
-    alert(respond.confirmation + ', and the new number of revision is :' + respond.newRevSavedToDB);
+    alert(respond.confirmation + ', and the new number of revision is :' + respond.newDownload);
     this.articleSerive = await this.IndiService.getArticleData();
 
     this.Model.articleList = this.articleSerive.data;

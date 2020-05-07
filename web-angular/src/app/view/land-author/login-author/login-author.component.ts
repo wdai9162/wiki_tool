@@ -48,6 +48,7 @@ export class LoginAuthorComponent implements OnInit {
 
 
 
+
   async getcheckuser(value) {
     const data = await this.Authorser.postAuthorList({keyword: value});
 
