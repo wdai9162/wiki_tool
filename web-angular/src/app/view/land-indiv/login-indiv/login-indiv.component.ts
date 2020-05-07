@@ -114,7 +114,7 @@ export class LoginIndivComponent implements OnInit {
   async DataUpgrade(title): Promise<void> {
     const respond = await this.IndiService.checkoupdate(title);
     console.log(respond);
-    alert(respond.confirmation);
+    alert(respond.confirmation + ', and the new number of revision is :' + respond.newRevSavedToDB);
     this.articleSerive = await this.IndiService.getArticleData();
 
     this.Model.articleList = this.articleSerive.data;

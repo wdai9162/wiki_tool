@@ -1,8 +1,8 @@
 <p></p>
   <nz-layout style="background-color: white">
     <nz-content>
-      <input placeholder="Input the author's name" nz-input [(ngModel)]="inputValue" (ngModelChange)="onChange($event)" [nzAutocomplete]="auto" />
-      <nz-autocomplete [nzDataSource]="filteredOptions" #auto></nz-autocomplete>
+      <input placeholder="Input the author's name" nz-input [(ngModel)]="InputValue" (ngModelChange)="onChange($event)" [nzAutocomplete]="auto" />
+      <nz-autocomplete [nzDataSource]="filteredOptions" #auto ></nz-autocomplete>
     </nz-content>
     <nz-sider><button style="width: 100%;height: 100%;"  nz-button nzType="primary"  (click)="search()">Search</button></nz-sider>
   </nz-layout>
@@ -14,7 +14,7 @@
 
   <nz-list>
 
-    <nz-list-item style="width: 100%;" *cdkVirtualFor="let item of options">
+    <nz-list-item style="width: 100%;" *cdkVirtualFor="let item of []">
       <nz-radio-group [(ngModel)]="selectArticle">
         <label nz-radio [nzValue]="item"></label> {{item}}
       </nz-radio-group>
@@ -26,7 +26,7 @@
   <div nz-col nzSpan="10">  <nz-header style="background-color: white;text-align: center"><strong>Timestamps of all revisions for select article</strong></nz-header>
     <cdk-virtual-scroll-viewport [ngStyle]="articlelistHeight" itemSize="2" class="demo-infinite-container">
       <nz-list>
-        <nz-list-item style="width: 100%" *cdkVirtualFor="let item of options">
+        <nz-list-item style="width: 100%" *cdkVirtualFor="let item of []">
           {{item}}
         </nz-list-item>
       </nz-list>
