@@ -154,9 +154,6 @@ export class LoginIndivComponent implements OnInit {
   selectData()
   {
     this.DataUpgrade(this.Model.info);
-    console.log(this.Model.startyear);
-
-    console.log(this.Model.endyear);
   }
 
   log(data: string): void
@@ -169,13 +166,6 @@ export class LoginIndivComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    // this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-    // this.barChartData = [
-    //   {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    //   {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-    // ];
-
-    // this.DataUpgrade('Australia');
     this.articleSerive = await this.IndiService.getArticleData();
 
     this.Model.articleList = this.articleSerive.data;
@@ -184,7 +174,20 @@ export class LoginIndivComponent implements OnInit {
   async DataUpgrade(title): Promise<void> {
     const respond = await this.IndiService.checkoupdate(title);
     console.log(respond);
-    alert(respond.confirmation + ', and the new number of revision is :' + respond.newDownload);
+    let number;
+    if(respond.newDownload)
+    {
+      number =respond.newDownload;
+      alert(respond.confirmation + ', and the new number of download is :' + number);
+    }
+    else if(respond.newRevSavedToDB)
+    {
+      number=respond.newRevSavedToDB;
+      alert(respond.confirmation + ', and the new number revision of saving to database is :' + number);
+    }
+    else {
+      alert(respond.confirmation);
+    }
     this.articleSerive = await this.IndiService.getArticleData();
 
     this.Model.articleList = this.articleSerive.data;
@@ -211,6 +214,8 @@ export class LoginIndivComponent implements OnInit {
     this.changeFirstBart(this.Model.info, this.Model.startyear, this.Model.endyear);
 
   }
+
+
 
 
 
