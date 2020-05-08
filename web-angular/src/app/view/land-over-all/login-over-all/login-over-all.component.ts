@@ -17,7 +17,6 @@ export class LoginOverAllComponent implements OnInit {
 
   render = false;
 
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales', 'hi', 'who'];
   public pieChartOptions: ChartOptions = {
     responsive: true,
     legend: {

@@ -6,6 +6,7 @@ import {IndividualService} from '../../../controller/inidividual/individual.serv
 import {totalmem} from 'os';
 
 
+
 @Component({
   selector: 'app-login-indiv',
   templateUrl: './login-indiv.component.html',
@@ -26,26 +27,19 @@ export class LoginIndivComponent implements OnInit {
     plugins: {
       datalabels: {
         formatter: (value, ctx) => {
+          let sum = 0;
           const label = ctx.chart.data.labels[ctx.dataIndex];
-          return label;
+          const dataArr = ctx.chart.data.datasets[0].data;
+          // @ts-ignore
+          dataArr.map(data => {
+            sum += data;
+          });
+          const percentage = (value * 100 / sum).toFixed(2) + '%';
+          return label + ':' + percentage;
         },
       },
     }
   };
-
-  listOfPosition: string[] = ['bottomLeft', 'bottomCenter', 'bottomRight', 'topLeft', 'topCenter', 'topRight'];
-
-
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData: number[] = [300, 500, 100];
-  public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
-
-  public pieChartColors = [
-    {
-      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
-    },
-  ];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -65,7 +59,7 @@ export class LoginIndivComponent implements OnInit {
 
   constructor(private IndiService: IndividualService) {
     this.Model = IndiService.getModel();
-    // console.log(this.Model.articleList);
+
   }
 
   onStartChange(result: Date): void {
@@ -234,7 +228,7 @@ export class LoginIndivComponent implements OnInit {
     const TopNews = await this.IndiService.getTopReddit(title);
     this.Model.TopNews = TopNews.data;
 
-    // for get the fisrt graph data and update the graph
+    // for get the bar graph data and update the graph
     this.changeArticleBar(this.Model.info, this.Model.startyear, this.Model.endyear);
 
   }

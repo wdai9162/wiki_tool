@@ -1,6 +1,6 @@
 <script src="land-indiv.component.ts"></script>
 <div *ngIf="!isLogin">
-
+  <img src="../../../assets/Individual.png" [ngStyle]="imagestyle" (click)="login()">
 </div>
 <div *ngIf="isLogin">
   <app-login-indiv></app-login-indiv>
