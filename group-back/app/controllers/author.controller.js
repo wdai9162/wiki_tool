@@ -14,8 +14,6 @@ const jwt = require("jsonwebtoken");
 module.exports.returnAuthorNames = function (req, res) {
 
     const keyword = req.body.keyword;
-    const reg = new RegExp(keyword, 'i');
-    let revinfo;
 
     Revinfo.find( { 'user': { $regex: keyword, $options: 'i' }}, {user:1, _id:0})
         .then(result => {
@@ -31,3 +29,59 @@ module.exports.returnAuthorNames = function (req, res) {
             })
         })
 };
+module.exports.returnAllAuthorNames = function (req, res) {
+
+    Revinfo.find({},{user:1, _id:0})
+        .then(result => {
+            if (result===null) {
+                return res.status(401).json({
+                    confirmation: "Failed",
+                    err: "We cannot find an author with that keyword"
+                })
+            }
+            return res.status(200).json({
+                confirmation: "success",
+                result: result
+            })
+        })
+};
+
+module.exports.returnAuthorArticle = function (req, res) {
+    const authorName = req.body.name;
+
+    Revinfo.distinct('title',{'user':authorName})
+        .then(result => {
+            if (result===null) {
+                return res.status(401).json({
+                    confirmation: "Failed",
+                    err: "We cannot find an article with that author name"
+                })
+            }
+            return res.status(200).json({
+                confirmation: "success",
+                result: result
+            })
+        })
+
+
+}
+
+module.exports.returnAuthorArticleNum = function (req, res) {
+    const authorName = req.body.name;
+
+    Revinfo.distinct('title',{'user':authorName})
+        .then(result => {
+            if (result===null) {
+                return res.status(401).json({
+                    confirmation: "Failed",
+                    err: "We cannot find an article with that author name"
+                })
+            }
+            return res.status(200).json({
+                confirmation: "success",
+                result: result.length
+            })
+        })
+
+
+}
