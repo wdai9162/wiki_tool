@@ -1,4 +1,29 @@
+import {Label} from 'ng2-charts';
+
 export class Inidividual {
+  get pieChartLabels(): Label[] {
+    return this._pieChartLabels;
+  }
+
+  set pieChartLabels(value: Label[]) {
+    this._pieChartLabels = value;
+  }
+
+  get pieChartData(): number[] {
+    return this._pieChartData;
+  }
+
+  set pieChartData(value: number[]) {
+    this._pieChartData = value;
+  }
+
+  get pieChartColors(): [{ backgroundColor: string[] }] {
+    return this._pieChartColors;
+  }
+
+  set pieChartColors(value: [{ backgroundColor: string[] }]) {
+    this._pieChartColors = value;
+  }
   get articalGraphLabel(): string[] {
     return this._articalGraphLabel;
   }
@@ -148,6 +173,17 @@ export class Inidividual {
   private _articalGraphData = [
     {data: [0], label: 'null'},
   ];
+
+  private _pieChartLabels: Label[] = ['Loading'];
+
+  private _pieChartData: number[] = [0];
+
+  private _pieChartColors: [{ backgroundColor: string[] }] = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.3)']
+    }
+  ];
+
 
 }
 

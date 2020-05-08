@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Inidividual } from '../../model/inidividual/inidividual.model';
 import {LocalStorage} from '../../local.storage';
+import {rgba} from 'ng-chartjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -57,5 +58,9 @@ export class IndividualService {
   getModel(): Inidividual
   {
     return new Inidividual();
+  }
+  getColor(): string
+  {
+    return rgba([Math.random() * 251, Math.random() * 250, Math.random() * 250], 0.3);
   }
 }

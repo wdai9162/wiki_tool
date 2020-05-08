@@ -26,7 +26,7 @@
       <nz-list nzHeader="top 5 regular users"  style="text-align: center" nzFooter="">
         <ul nz-list nzBordered nzSize="small">
           <li nz-list-item *ngFor="let item of Model.TopFiveUser" nzNoFlex style="text-align: left">
-            <nz-radio-group [(ngModel)]="Model.UserSelect" (ngModelChange)="changeSecondBar($event)">
+            <nz-radio-group [(ngModel)]="Model.UserSelect" (ngModelChange)="changeUserGraph($event)">
               <label nz-radio [nzValue]="item['_id']"></label>  {{item['_id']}}
             </nz-radio-group><span style="float: right">{{item['revCount']}}</span>
           </li>
@@ -65,6 +65,19 @@
           </canvas>
         </div>
       </nz-tab>
+      <nz-tab nzTitle="user type distribution">
+        <div class="chart">
+          <canvas baseChart
+                  [data]="Model.pieChartData"
+                  [labels]="Model.pieChartLabels"
+                  [colors]="Model.pieChartColors"
+                  [plugins]="pieChartPlugins"
+                  chartType="pie"
+                  [options]="pieChartOptions"
+                  legend="true">
+          </canvas>
+        </div>
+      </nz-tab>
       <nz-tab nzTitle="single user yearly revision distribution">
         <div style="display: block">
           <!--    -->
@@ -78,31 +91,8 @@
           </canvas>
         </div>
       </nz-tab>
-      <nz-tab nzTitle="user type distribution">
-        <div class="chart">
-          <canvas baseChart
-                  [data]="pieChartData"
-                  [labels]="pieChartLabels"
-                  [plugins]="pieChartPlugins"
-                  chartType="pie"
-                  [options]="pieChartOptions"
-                  legend="true">
-          </canvas>
-        </div>
-      </nz-tab>
+
     </nz-tabset>
-
-<!--    <div style="display: block">-->
-<!--&lt;!&ndash;    &ndash;&gt;-->
-<!--      <canvas baseChart-->
-<!--              [datasets]="barChartData"-->
-<!--              [labels]="barChartLabels"-->
-<!--              [options]="barChartOptions"-->
-
-<!--              legend="true"-->
-<!--              chartType="bar">-->
-<!--      </canvas>-->
-<!--    </div>-->
 
   </div>
 

@@ -3,6 +3,7 @@ import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import {IndividualService} from '../../../controller/inidividual/individual.service';
+import {totalmem} from 'os';
 
 
 @Component({
@@ -77,9 +78,26 @@ export class LoginIndivComponent implements OnInit {
     this.Model.endyear = result.getFullYear();
   }
 
-  async changeFirstBart(title, start, end) {
+  async changeArticleBar(title, start, end) {
     const result = await this.IndiService.getGraph(title, start, end);
-    //user hash to get rid of the data which is 0
+    const pieChartData = [];
+    const pieChartLabel = [];
+    const pieChartColor = [];
+    // tslint:disable-next-line:forin
+    for (const i in result)
+    {
+      pieChartData.push(result[i].total);
+      pieChartLabel.push(i);
+      pieChartColor.push(this.IndiService.getColor());
+    }
+    this.Model.pieChartData = pieChartData;
+    this.Model.pieChartLabels = pieChartLabel;
+    this.Model.pieChartColors =[{backgroundColor:pieChartColor}];
+
+
+
+
+    // user hash to get rid of the data which is 0
     const ArticleLabel = [];
     const adminHash = new Array();
     const anonHash = new Array();
@@ -89,8 +107,8 @@ export class LoginIndivComponent implements OnInit {
     {
       ArticleLabel.push(i);
       adminHash[i] = 0;
-      anonHash[i]= 0;
-      botHash[i]= 0;
+      anonHash[i] = 0;
+      botHash[i] = 0;
       regHash[i] = 0;
     }
     for (const i in result.adminUser.result)
@@ -128,16 +146,16 @@ export class LoginIndivComponent implements OnInit {
       BotUser.push(botHash[i]);
     }
     //
-    this.Model.articalGraphLabel=ArticleLabel;
-    this.Model.articalGraphData=[
-      {data:AdminUser,label:"Admin"},
-      {data:AnonUser,label:"Anon"},
-      {data:BotUser,label:"Bot"},
-      {data:RegUser,label:"Reg"}
+    this.Model.articalGraphLabel = ArticleLabel;
+    this.Model.articalGraphData = [
+      {data: AdminUser, label: 'Admin'},
+      {data: AnonUser, label: 'Anon'},
+      {data: BotUser, label: 'Bot'},
+      {data: RegUser, label: 'Reg'}
     ];
   }
 
-  async changeSecondBar(result: string) {
+  async changeUserGraph(result: string) {
     console.log(result);
     const label = [];
     const graphdata = [];
@@ -153,7 +171,13 @@ export class LoginIndivComponent implements OnInit {
   }
   selectData()
   {
-    this.DataUpgrade(this.Model.info);
+    if(this.Model.startyear && this.Model.endyear) {
+      this.DataUpgrade(this.Model.info);
+    }
+    else
+    {
+      alert("please select the start year and end year");
+    }
   }
 
   log(data: string): void
@@ -175,14 +199,14 @@ export class LoginIndivComponent implements OnInit {
     const respond = await this.IndiService.checkoupdate(title);
     console.log(respond);
     let number;
-    if(respond.newDownload)
+    if (respond.newDownload)
     {
-      number =respond.newDownload;
+      number = respond.newDownload;
       alert(respond.confirmation + ', and the new number of download is :' + number);
     }
-    else if(respond.newRevSavedToDB)
+    else if (respond.newRevSavedToDB)
     {
-      number=respond.newRevSavedToDB;
+      number = respond.newRevSavedToDB;
       alert(respond.confirmation + ', and the new number revision of saving to database is :' + number);
     }
     else {
@@ -211,7 +235,7 @@ export class LoginIndivComponent implements OnInit {
     this.Model.TopNews = TopNews.data;
 
     // for get the fisrt graph data and update the graph
-    this.changeFirstBart(this.Model.info, this.Model.startyear, this.Model.endyear);
+    this.changeArticleBar(this.Model.info, this.Model.startyear, this.Model.endyear);
 
   }
 
