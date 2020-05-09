@@ -69,7 +69,7 @@ export class LoginIndivComponent implements OnInit {
 
   onEndChange(result: Date): void {
 
-    this.Model.endyear = result.getFullYear();
+    this.Model.endyear = result.getFullYear()+1;
   }
 
   async changeArticleBar(title, start, end) {
@@ -193,15 +193,16 @@ export class LoginIndivComponent implements OnInit {
     const respond = await this.IndiService.checkoupdate(title);
     console.log(respond);
     let number;
+    /*
     if (respond.newDownload)
     {
       number = respond.newDownload;
-      alert(respond.confirmation + ', and the new number of download is :' + number);
+      alert(respond.confirmation + '\n Number of new revisions downloaded:' + number);
     }
-    else if (respond.newRevSavedToDB)
+    */
+    if (respond.newRevSavedToDB)
     {
-      number = respond.newRevSavedToDB;
-      alert(respond.confirmation + ', and the new number revision of saving to database is :' + number);
+      alert(respond.confirmation);
     }
     else {
       alert(respond.confirmation);

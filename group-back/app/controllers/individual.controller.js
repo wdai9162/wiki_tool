@@ -33,6 +33,11 @@ else
     userAdminBot = botUser.concat(adminUser).sort();
 }
 
+/*************
+ * 
+ * Liverpool F.C chekc and update bug
+ * 
+ * *********/
 
 module.exports.articleList = function (req, res) {
     const getListandCount = [
@@ -66,9 +71,8 @@ module.exports.articleList = function (req, res) {
     })
 }
 
-module.exports.checkUptoDate = function (req, res) {
+module.exports.checkDateAndUpdate = function (req, res) {
 
-    //*****BUG when the latest revision is more than 24hours, still shows expire and needs to be handled */
     var article = req.query.title; 
     var currentTime = new Date(); 
     var lastRevDate;
@@ -91,16 +95,15 @@ module.exports.checkUptoDate = function (req, res) {
             }
         }
     ]
-    lastRev = Revinfo.aggregate(maxDateAndCountQuery)
+    Revinfo.aggregate(maxDateAndCountQuery)
     .then(result=>{
-        
         timeElap=calculateTime(currentTime, result[0].lastRev);    //calculate how long it has been since the latest revision record
         lastRevDate=result[0].lastRev;         //record for new Wiki API request to determine up to which date to download
        
         //check if the records are considered as expired, >24hrs
         if(timeElap>=60*60*24){
 
-            console.log("Expired, lastRevDate type:" + typeof lastRevDate)
+            console.log("Expired, lastRevDate:" + lastRevDate)
             fetchandUpdate(article,lastRevDate);
 
         }
@@ -133,18 +136,17 @@ module.exports.checkUptoDate = function (req, res) {
         //there will be a bug here to operate with expected Date object. ************
         try {
             if (typeof articleLastRevDate === "object") {
-                console.log(typeof articleLastRevDate);
+                //console.log(typeof articleLastRevDate);
                 lstRevDateInUTC = articleLastRevDate.toUTCString();  
             }
          
             else if (typeof articleLastRevDate === "string"){
-                console.log(typeof articleLastRevDate);
+                //console.log(typeof articleLastRevDate);
                 lstRevDateInUTC = articleLastRevDate; 
             }
         } catch(error) {
             console.error(error);
         }
-        console.log(lstRevDateInUTC);
 
         var url = "https://en.wikipedia.org/w/api.php";
         var params = {
@@ -175,7 +177,7 @@ module.exports.checkUptoDate = function (req, res) {
 
             if (response.query.pages[0].revisions.length === 0) { 
                 res.status(200).json({
-                    confirmation:'Attempted to download new data for Article: ' + articleName + ', but there is no newer data than the recorded last revesion.',
+                    confirmation:'Expired, last recorded Revision Date: \n'+lastRevDate + '\nAttempted to download new data for Article: \n"' + articleName + '"\nBut there is no newer data than the recorded last revesion.',
                     newDownload: 0,
                     message: response.query.pages[0].revisions
                 })
@@ -186,7 +188,7 @@ module.exports.checkUptoDate = function (req, res) {
                 .then(response => {
                     console.log("Successfully saved " + newCount + " new revisions")
                     res.status(200).json({
-                        confirmation:'Successfully downloaded latest data for Article:' + articleName,
+                        confirmation:'Expired, last recorded Revision Date: \n'+lastRevDate + '\nSuccessfully downloaded latest data for Article: \n"' + articleName + '"\nNumber of new revisions saved database is: \n' + newCount,
                         newRevSavedToDB: newCount,
                         message: response
                     })
@@ -280,7 +282,6 @@ module.exports.getNewsReddit = function (req, res) {
             var url2 = url + "?"; 
             delete params.restrict_sr;
             Object.keys(params).forEach(function(key){url2 += "&" + key + "=" + params[key];});
-            console.log(url2);
             fetch(url2)
             .then(response => {return response.json();})
             .then(response => { 
@@ -319,8 +320,8 @@ module.exports.graphData = function (req, res) {
     
     var graphData = {};
     var article = req.query.title || "Australia";
-    var startYear = req.query.stryr || "2002-01-01T00:00:00Z"; 
-    var endYear = req.query.endyr || "2022-01-01T00:00:00Z"; 
+    var startYear = req.query.stryr; 
+    var endYear = (Number(req.query.endyr)+1).toString();
     
     //query for total count of revisions by anonymous users in each year
     const queryAnonUser = [
@@ -571,6 +572,8 @@ module.exports.graphData = function (req, res) {
 }
 
 module.exports.topUserGraph = function (req, res) {
+
+    //need to 
 
     var article = req.query.title || "Australia";
     var startYear = req.query.stryr || "2002-01-01T00:00:00Z"; 

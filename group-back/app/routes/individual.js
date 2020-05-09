@@ -8,7 +8,7 @@ router.get('', (req, res, next) => {
 });
 
 router.get('/getlist', controller.articleList); 
-router.get('/checkdate', controller.checkUptoDate); 
+router.get('/checkdateandupdate', controller.checkDateAndUpdate); 
 router.get('/reguserbyrevnumber', controller.regUserByRevNumber); 
 router.get('/getredditnews', controller.getNewsReddit); 
 router.get('/graphdata', controller.graphData); 

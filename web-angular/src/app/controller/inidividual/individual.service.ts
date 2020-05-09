@@ -25,7 +25,7 @@ export class IndividualService {
   async checkoupdate(title)
   {
 
-    return await this.getData('http://127.0.0.1:3000/api/individual/checkdate?title=' + title);
+    return await this.getData('http://127.0.0.1:3000/api/individual/checkdateandupdate?title=' + title);
   }
 
   async getTopReddit(title)
