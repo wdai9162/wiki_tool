@@ -12,9 +12,12 @@ import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
   styleUrls: ['./login-author.component.css']
 })
 export class LoginAuthorComponent implements OnInit {
+
+  Model;
   constructor(private Authorser: AuthorService, private ls: LocalStorage) {
     this.articlelistHeight = {height: this.ls.getObject('windowHeight') * 0.8 + 'px'};
     console.log(this.articlelistHeight);
+    this.Model = this.Authorser.getModel();
 
     // 防抖
     this.InputQueryChanged.pipe(
@@ -60,9 +63,10 @@ export class LoginAuthorComponent implements OnInit {
     this.filteredOptions = this.options.filter(option => option.toLowerCase().indexOf(value.toLowerCase()) !== -1);
   }
 
-  search()
-  {
-    alert(this.InputValue);
+  async search() {
+    const respond = await this.Authorser.postArticleList({name: this.InputValue});
+    console.log(respond);
+    this.Model.articleList = respond.result;
 
 
   }
@@ -70,9 +74,21 @@ export class LoginAuthorComponent implements OnInit {
   async ngOnInit(): Promise<void> {
 
   }
-
-  getTimestamp()
+  clear()
   {
-    alert(this.selectArticle);
+    this.Model.timeStampList = [];
+    this.Model.articleList = [];
+    this.selectArticle=null;
+  }
+
+  async getTimestamp() {
+    this.Model.timeStampList = ['loading'];
+    const respond = await this.Authorser.postTimeStampList({title: this.selectArticle})
+    const resultlist = [];
+    for(const i in respond.result)
+    {
+      resultlist.push(respond.result[i].timestamp);
+    }
+    this.Model.timeStampList = resultlist;
   }
 }

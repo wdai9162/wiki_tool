@@ -69,7 +69,7 @@ export class LoginIndivComponent implements OnInit {
 
   onEndChange(result: Date): void {
 
-    this.Model.endyear = result.getFullYear()+1;
+    this.Model.endyear = result.getFullYear() + 1;
   }
 
   async changeArticleBar(title, start, end) {
@@ -86,7 +86,7 @@ export class LoginIndivComponent implements OnInit {
     }
     this.Model.pieChartData = pieChartData;
     this.Model.pieChartLabels = pieChartLabel;
-    this.Model.pieChartColors =[{backgroundColor:pieChartColor}];
+    this.Model.pieChartColors =[{backgroundColor: pieChartColor}];
 
 
 
@@ -192,7 +192,7 @@ export class LoginIndivComponent implements OnInit {
   async DataUpgrade(title): Promise<void> {
     const respond = await this.IndiService.checkoupdate(title);
     console.log(respond);
-    let number;
+
     /*
     if (respond.newDownload)
     {
