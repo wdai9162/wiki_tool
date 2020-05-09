@@ -103,19 +103,18 @@ module.exports.checkDateAndUpdate = function (req, res) {
         //check if the records are considered as expired, >24hrs
         if(timeElap>=60*60*24){
 
-            console.log("Expired, lastRevDate:" + lastRevDate)
+            console.log("Expired, last recorded Revision Date: \n" + lastRevDate)
             fetchandUpdate(article,lastRevDate);
 
         }
         else {
             res.status(200).json({
-                confirmation: 'Up to date',
+                confirmation: 'Up to date, last recorded Revision Date: \n' + lastRevDate +"\nNo pulling request made.",
                 data: result
             })
         }
     })
     .catch(err => {
-        console.error("error here")
         res.status(500).json({
             confirmation:'failed to determine if article is expired',
             message: err
@@ -177,7 +176,7 @@ module.exports.checkDateAndUpdate = function (req, res) {
 
             if (response.query.pages[0].revisions.length === 0) { 
                 res.status(200).json({
-                    confirmation:'Expired, last recorded Revision Date: \n'+lastRevDate + '\nAttempted to download new data for Article: \n"' + articleName + '"\nBut there is no newer data than the recorded last revesion.',
+                    confirmation:'Expired, last recorded Revision Date: \n'+lastRevDate + '\nAttempted to pull new data for Article: \n"' + articleName + '"\nBut there is no newer data than the recorded last revesion.',
                     newDownload: 0,
                     message: response.query.pages[0].revisions
                 })
@@ -195,7 +194,7 @@ module.exports.checkDateAndUpdate = function (req, res) {
                 })
                 .catch(err => {
                     res.json({
-                        confirmation:'failed',
+                        confirmation:'Failed to save new data to database' + '\nerr:' + err,
                         message: err
                     })
                 })
@@ -206,14 +205,16 @@ module.exports.checkDateAndUpdate = function (req, res) {
 
 module.exports.regUserByRevNumber = function (req, res) {
 
-    title = req.query.title;
+    var title = req.query.title;
+    var startYear = req.query.stryr; 
+    var endYear = (Number(req.query.endyr)+1).toString();
     
     const regUserByRevNumber = [
         {
             "$match" : {
                 "$and" : [
                     {
-                        "title" : req.query.title
+                        "title" : title
                     },
                     {
                         "user" : {
@@ -223,6 +224,16 @@ module.exports.regUserByRevNumber = function (req, res) {
                     {
                         "anon" : {
                             "$exists" : false
+                        }
+                    },
+                    { 
+                        "timestamp" : { 
+                            "$gt" : startYear
+                        }
+                    }, 
+                    { 
+                        "timestamp" : { 
+                            "$lt" : endYear
                         }
                     }
                 ]
@@ -319,7 +330,7 @@ module.exports.getNewsReddit = function (req, res) {
 module.exports.graphData = function (req, res) {
     
     var graphData = {};
-    var article = req.query.title || "Australia";
+    var article = req.query.title;
     var startYear = req.query.stryr; 
     var endYear = (Number(req.query.endyr)+1).toString();
     

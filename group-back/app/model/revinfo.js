@@ -10,9 +10,11 @@ const revinfoSchema = mongoose.Schema({
     userid: { type: Number, required: true }, 
     timestamp: { type: String, trim: true, required: true},
     size: { type: Number, required: true }, 
-    sha1: { type: String, trim: true, required: true }, 
+    sha1: { type: String, trim: true }, 
     parsedcomment: { type: String, trim: true },
     title: { type: String, trim: true, required: true },
+    sha1hidden: { type: Boolean },
+    commenthidden: { type: Boolean },
 }); 
 
 revinfoSchema.plugin(uniqueValidator);
