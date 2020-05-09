@@ -154,7 +154,7 @@ export class LoginIndivComponent implements OnInit {
     const label = [];
     const graphdata = [];
     // tslint:disable-next-line:max-line-length
-    const username = this.Model.UserSelect.replace('&', '%26')
+    const username = this.Model.UserSelect.replace('&', '%26');
     console.log(username);
 
     const respond = await this.IndiService.getTopUserGraph(this.Model.info, username, this.Model.startyear, this.Model.endyear);

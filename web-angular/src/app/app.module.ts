@@ -25,7 +25,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { SignupComponent } from './view/users/signup/signup.component';
 import { LocalStorage} from './local.storage';
 import { ResetPwdComponent } from './view/users/reset-pwd/reset-pwd.component';
-import { LoginIntroductionComponent } from './view/introduction/login-introduction/login-introduction.component';
 import { LoginOverAllComponent } from './view/land-over-all/login-over-all/login-over-all.component';
 import { LoginAuthorComponent } from './view/land-author/login-author/login-author.component';
 import { LoginIndivComponent } from './view/land-indiv/login-indiv/login-indiv.component';
@@ -45,7 +44,6 @@ registerLocaleData(en);
     LandAuthorComponent,
     HeaderComponent,
     ResetPwdComponent,
-    LoginIntroductionComponent,
     LoginOverAllComponent,
     LoginAuthorComponent,
     LoginIndivComponent,
