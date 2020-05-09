@@ -34,17 +34,17 @@ export class IndividualService {
     return await this.getData('http://127.0.0.1:3000/api/individual/getredditnews?title=' + title);
   }
 
-  async getReuserByrevnumber(title)
+  async getReuserByrevnumber(title, startyear, endyear)
   {
-
-    return await this.getData('http://127.0.0.1:3000/api/individual/reguserbyrevnumber?title=' + title);
+    // tslint:disable-next-line:max-line-length
+    return await this.getData('http://127.0.0.1:3000/api/individual/reguserbyrevnumber?title=' + title + '&stryr=' + startyear + '&endyr=' + endyear);
   }
 
   async getTopUserGraph(title, user, startyear, endyear)
   {
 
     // tslint:disable-next-line:max-line-length
-    return await this.getData('http://127.0.0.1:3000/api/individual/topusergraphdata?title=' + title + '&stryr=' + startyear + '&endyr=' + endyear + '&topuser=' + user);
+    return await this.getData('http://127.0.0.1:3000/api/individual/topusergraphdata?title=' + title + '&stryr=' + startyear + '&endyr=' + endyear + '&topuser=' + user );
   }
 
   async getGraph(title, startyear, endyear)

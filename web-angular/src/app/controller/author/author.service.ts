@@ -45,7 +45,7 @@ export class AuthorService {
 
   async postTimeStampList(data)
   {
-    return await this.postData('http://127.0.0.1:3000/api/author/returnArticleTimestamps',data);
+    return await this.postData('http://127.0.0.1:3000/api/author/returnArticleTimestamps', data);
   }
 
   getModel()

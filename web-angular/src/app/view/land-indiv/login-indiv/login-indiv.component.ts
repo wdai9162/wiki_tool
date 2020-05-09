@@ -150,11 +150,14 @@ export class LoginIndivComponent implements OnInit {
   }
 
   async changeUserGraph(result: string) {
-    console.log(result);
+
     const label = [];
     const graphdata = [];
     // tslint:disable-next-line:max-line-length
-    const respond = await this.IndiService.getTopUserGraph(this.Model.info, this.Model.UserSelect, this.Model.startyear, this.Model.endyear);
+    const username = this.Model.UserSelect.replace('&', '%26')
+    console.log(username);
+
+    const respond = await this.IndiService.getTopUserGraph(this.Model.info, username, this.Model.startyear, this.Model.endyear);
     for ( const i in respond.result)
     {
       label.push(respond.result[i]._id);
@@ -166,7 +169,13 @@ export class LoginIndivComponent implements OnInit {
   selectData()
   {
     if(this.Model.startyear && this.Model.endyear) {
-      this.DataUpgrade(this.Model.info);
+      if(this.Model.startyear <=this.Model.endyear) {
+          this.DataUpgrade(this.Model.info);
+      }
+      else
+      {
+        alert("please select correct year");
+      }
     }
     else
     {
@@ -224,7 +233,7 @@ export class LoginIndivComponent implements OnInit {
       }
 
     }
-    const TopFiveUser = await this.IndiService.getReuserByrevnumber(title);
+    const TopFiveUser = await this.IndiService.getReuserByrevnumber(title, this.Model.startyear, this.Model.endyear);
     this.Model.TopFiveUser = TopFiveUser.data;
     const TopNews = await this.IndiService.getTopReddit(title);
     this.Model.TopNews = TopNews.data;
