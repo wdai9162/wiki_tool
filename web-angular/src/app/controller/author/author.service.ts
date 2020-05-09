@@ -40,7 +40,7 @@ export class AuthorService {
 
   async postArticleList(name)
   {
-    return await this.postData('http://127.0.0.1:3000/api/author/returnAuthorArticleAndNum', name);
+    return await this.postData('http://127.0.0.1:3000/api/author/returnAuthorArticleAndNumNew', name);
   }
 
   async postTimeStampList(data)

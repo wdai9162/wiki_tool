@@ -66,7 +66,7 @@ export class LoginAuthorComponent implements OnInit {
   async search() {
     const respond = await this.Authorser.postArticleList({name: this.InputValue});
     console.log(respond);
-    this.Model.articleList = respond.result;
+    this.Model.articleList = respond.data;
 
 
   }

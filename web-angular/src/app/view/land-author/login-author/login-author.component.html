@@ -13,16 +13,33 @@
     <cdk-virtual-scroll-viewport [ngStyle]="articlelistHeight" itemSize="2" class="demo-infinite-container">
 
   <nz-list>
+    <nz-list-item  >
 
-    <nz-list-item style="width: 100%;" *cdkVirtualFor="let item of Model.articleList">
+      <div nz-col nzSpan="20" >
+       <span>Title</span>
+      </div>
+      <div nz-col nzSpan="4">
+      <span>Number</span>
+      </div>
+
+    </nz-list-item>
+
+    <nz-list-item  *cdkVirtualFor="let item of Model.articleList">
+
+      <div nz-col nzSpan="20" >
       <nz-radio-group [(ngModel)]="selectArticle">
-        <label nz-radio [nzValue]="item"></label> {{item}}
+        <label nz-radio [nzValue]="item['_id']"></label> {{item['_id']}}
       </nz-radio-group>
+      </div>
+      <div nz-col nzSpan="4">
+      <span style="float: right">{{item['sum']}}</span>
+      </div>
+
     </nz-list-item>
 
   </nz-list>
   </cdk-virtual-scroll-viewport></div>
-  <div nz-col nzSpan="4" style="text-align: center;height:100%"><button nz-button nzType="primary"  style="width: 100%;margin-top: 200px" (click)="getTimestamp()">select</button ><button  style="width: 100%;margin-top: 10px" nz-button nzType="default" (click)="clear()">clear</button></div>
+  <div nz-col nzSpan="4" style="text-align: center;height:100%"><button nz-button nzType="primary"  style="width: 80%;margin-top: 200px" (click)="getTimestamp()">select</button ><button  style="width: 80%;margin-top: 10px" nz-button nzType="default" (click)="clear()">clear</button></div>
   <div nz-col nzSpan="10">  <nz-header style="background-color: white;text-align: center"><strong>Timestamps of all revisions for select article</strong></nz-header>
     <cdk-virtual-scroll-viewport [ngStyle]="articlelistHeight" itemSize="2" class="demo-infinite-container">
       <nz-list>
