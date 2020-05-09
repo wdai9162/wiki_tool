@@ -40,12 +40,12 @@ export class AuthorService {
 
   async postArticleList(name)
   {
-    return await this.postData('http://127.0.0.1:3000/api/author/returnAuthorArticle', name);
+    return await this.postData('http://127.0.0.1:3000/api/author/returnAuthorArticleAndNum', name);
   }
 
-  async postTimeStampList(title)
+  async postTimeStampList(data)
   {
-    return await this.postData('http://127.0.0.1:3000/api/author/returnArticleTimestamps', title);
+    return await this.postData('http://127.0.0.1:3000/api/author/returnArticleTimestamps',data);
   }
 
   getModel()

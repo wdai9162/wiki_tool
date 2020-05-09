@@ -78,12 +78,12 @@ export class LoginAuthorComponent implements OnInit {
   {
     this.Model.timeStampList = [];
     this.Model.articleList = [];
-    this.selectArticle=null;
+    this.selectArticle = null;
   }
 
   async getTimestamp() {
     this.Model.timeStampList = ['loading'];
-    const respond = await this.Authorser.postTimeStampList({title: this.selectArticle})
+    const respond = await this.Authorser.postTimeStampList({title: this.selectArticle, name: this.InputValue})
     const resultlist = [];
     for(const i in respond.result)
     {
