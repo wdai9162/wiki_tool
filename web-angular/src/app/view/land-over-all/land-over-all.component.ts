@@ -12,21 +12,6 @@ import { Overall } from '../../model/overall/overall.model';
 })
 export class LandOverAllComponent implements OnInit {
 
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{}] },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      }
-    }
-  };
-
-
-
-
 
   constructor(private ls: LocalStorage) { }
   isLogin = this.ls.getObject('isLogin');

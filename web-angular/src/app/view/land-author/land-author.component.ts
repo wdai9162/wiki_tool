@@ -12,27 +12,15 @@ import {LocalStorage} from '../../local.storage';
 })
 
 export class LandAuthorComponent implements OnInit {
-  constructor(
-    private ls: LocalStorage
-  ) {}
-  // chartOptions = {
-  //   responsive: true
-  // };
-  // chartData = [
-  //   { data: [330, 600, 260, 700], label: 'Account A' },
-  //   { data: [120, 455, 100, 340], label: 'Account B' },
-  //   { data: [45, 67, 800, 500], label: 'Account C' }
-  // ];
-  // chartLabels = ['January', 'February', 'Mars', 'April'];
-
-  // tslint:disable-next-line:triple-equals
+  constructor(private ls: LocalStorage) { }
   isLogin = this.ls.getObject('isLogin');
-
-
-  onChartClick(event) {
-    console.log(event);
+  imagestyle = {width: '100%', height: this.ls.getObject('windowHeight') + 'px'};
+  ngOnInit() {
   }
-  ngOnInit(): void {
+
+  login()
+  {
+    alert("please login to operate");
   }
 
 }
