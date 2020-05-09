@@ -6,9 +6,9 @@ router.get('', (req, res, next) => {
     res.status(200).end("This is the author management route root path!");
 });
 
-router.get('/returnAuthorNames', controller.returnAuthorNames);
-router.get('/returnAllAuthorNames', controller.returnAllAuthorNames);
-router.get('/returnAuthorArticle', controller.returnAuthorArticle);
-router.get('/returnAuthorArticleNum', controller.returnAuthorArticleNum);
-router.get('/returnArticleTimestamps', controller.returnArticleTimestamps);
+router.post('/returnAuthorNames', controller.returnAuthorNames);
+router.post('/returnAllAuthorNames', controller.returnAllAuthorNames);
+router.post('/returnAuthorArticle', controller.returnAuthorArticle);
+router.post('/returnAuthorArticleNum', controller.returnAuthorArticleNum);
+router.post('/returnArticleTimestamps', controller.returnArticleTimestamps);
 module.exports = router;
