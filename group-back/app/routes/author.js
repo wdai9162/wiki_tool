@@ -8,7 +8,6 @@ router.get('', (req, res, next) => {
 
 router.post('/returnAuthorNames', controller.returnAuthorNames);
 router.post('/returnAllAuthorNames', controller.returnAllAuthorNames);
-router.post('/returnAuthorArticle', controller.returnAuthorArticle);
-router.post('/returnAuthorArticleNum', controller.returnAuthorArticleNum);
+router.post('/returnAuthorArticleAndNum', controller.returnAuthorArticleAndNum);
 router.post('/returnArticleTimestamps', controller.returnArticleTimestamps);
 module.exports = router;
