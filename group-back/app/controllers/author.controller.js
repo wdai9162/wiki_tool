@@ -57,11 +57,32 @@ module.exports.returnAuthorArticleAndNum = function (req, res) {
                     err: "We cannot find an article with that author name"
                 })
             }
-            return res.status(200).json({
-                confirmation: "success",
-                result: result,
-                number: result.length
-            })
+            var titleAndNumArray = [];
+
+            //result.forEach(title => {
+            for(let i = 0; i < result.length; i++){
+                let title = result[i];
+                Revinfo.find({'title':title, 'user':authorName}).then(finalResult =>{
+                    if (finalResult===null) {
+                        return res.status(401).json({
+                            confirmation: "Failed",
+                            err: "We cannot find an author with that keyword"
+                        })
+                    }
+                    let titleAndNum = {
+                        title: title,
+                        ChangeTimes: finalResult.length
+                    };
+
+                    titleAndNumArray.push(titleAndNum);
+                    if (i === result.length - 1){
+                        return res.status(200).json({
+                            confirmation: "success",
+                            result: titleAndNumArray
+                        });
+                    }
+                })
+            }
         })
 
 
