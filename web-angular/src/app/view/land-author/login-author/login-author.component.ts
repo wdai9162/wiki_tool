@@ -65,6 +65,9 @@ export class LoginAuthorComponent implements OnInit {
 
   async search() {
     const respond = await this.Authorser.postArticleList({name: this.InputValue});
+    this.Model.timeStampList = [];
+    this.Model.articleList = [];
+    this.selectArticle = null;
     console.log(respond);
     this.Model.articleList = respond.data;
 

@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log(this.loginForm.value);
+
 
 
     // tslint:disable-next-line:forin

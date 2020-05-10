@@ -185,7 +185,7 @@ export class LoginIndivComponent implements OnInit {
 
   log(data: string): void
   {
-    console.log(data);
+
 
   }
   setInfo(){
