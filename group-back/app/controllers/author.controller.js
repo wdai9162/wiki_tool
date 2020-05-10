@@ -15,19 +15,49 @@ module.exports.returnAuthorNames = function (req, res) {
 
     const keyword = req.body.keyword;
 
-    Revinfo.find( { 'user': { $regex: keyword, $options: 'i' }}, {user:1, _id:0})
-        .then(result => {
-            if (result===null) {
-                return res.status(401).json({
-                    confirmation: "Failed",
-                    err: "We cannot find an author with that keyword"
-                })
+    const sql =[
+        {
+            '$group': {
+                '_id': '$user'
             }
-            return res.status(200).json({
-                confirmation: "success",
-                result: result
+        }, {
+            '$match': {
+                '_id': {
+                    '$regex': keyword,
+                    '$options': 'i'
+                }
+            }
+        }
+    ] ;
+    Revinfo.aggregate(sql)
+        .then(result => {
+            res.status(200).json({
+                confirmation: 'success',
+                data: result,
             })
         })
+        .catch(err => {
+            res.json({
+                confirmation:'failed',
+                message: err
+            })
+        })
+
+
+
+    // Revinfo.find( { 'user': { $regex: keyword, $options: 'i' }}, {user:1, _id:0})
+    //     .then(result => {
+    //         if (result===null) {
+    //             return res.status(401).json({
+    //                 confirmation: "Failed",
+    //                 err: "We cannot find an author with that keyword"
+    //             })
+    //         }
+    //         return res.status(200).json({
+    //             confirmation: "success",
+    //             result: result
+    //         })
+    //     })
 };
 module.exports.returnAllAuthorNames = function (req, res) {
 

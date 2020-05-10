@@ -166,7 +166,6 @@ async getHistory( number: string): Promise<void>
     {
 
            const currentyear = graphdata['adminUser']['result'][i]['_id'];
-           console.log(currentyear)
            year.push(currentyear);
            dataAdmin.push(graphdata['adminUser']['result'][i]['adminCount']);
            if (graphdata['botUser']['result'][i])
