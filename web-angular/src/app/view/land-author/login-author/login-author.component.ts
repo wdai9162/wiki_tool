@@ -21,7 +21,7 @@ export class LoginAuthorComponent implements OnInit {
 
     // 防抖
     this.InputQueryChanged.pipe(
-      debounceTime(500),
+      debounceTime(300),
       distinctUntilChanged())
       .subscribe(model => {
         this.InputValue = model;
@@ -57,8 +57,8 @@ export class LoginAuthorComponent implements OnInit {
 
     this.options = [];
     // tslint:disable-next-line:forin
-    for (const i in data.result) {
-      this.options.push(data.result[i].user);
+    for (const i in data.data) {
+      this.options.push(data.data[i]._id);
     }
     this.filteredOptions = this.options.filter(option => option.toLowerCase().indexOf(value.toLowerCase()) !== -1);
   }

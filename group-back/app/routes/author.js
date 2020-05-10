@@ -10,4 +10,5 @@ router.post('/returnAuthorNames', controller.returnAuthorNames);
 router.post('/returnAllAuthorNames', controller.returnAllAuthorNames);
 router.post('/returnAuthorArticleAndNum', controller.returnAuthorArticleAndNum);
 router.post('/returnArticleTimestamps', controller.returnArticleTimestamps);
+router.post('/returnAuthorArticleAndNumNew', controller.returnTitleAndNumber);
 module.exports = router;
