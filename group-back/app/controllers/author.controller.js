@@ -17,18 +17,21 @@ module.exports.returnAuthorNames = function (req, res) {
 
     const sql =[
         {
+            '$match': {
+                'user': {
+                    '$regex': keyword,
+                    '$options': 'i'
+                },
+                'anon': {
+                    '$exists': false
+                }
+            }
+        }, {
             '$group': {
                 '_id': '$user'
             }
-        }, {
-            '$match': {
-                '_id': {
-                    '$regex': keyword,
-                    '$options': 'i'
-                }
-            }
         }
-    ] ;
+    ];
     Revinfo.aggregate(sql)
         .then(result => {
             res.status(200).json({
