@@ -1,69 +1,96 @@
-﻿Data
+1 = completed 
+* = to be fixed 
 
-•	demonstrate that your application can communicate with third party web site through published web services.
-•	You may also need to download latest data from the original data source and append that to the data set.
+Data 1 
+
+•	demonstrate that your application can communicate with third party web site through published web services. 1
+•	You may also need to download latest data from the original data source and append that to the data set. 1
 
 - Main/Landing Page
 
-  •	display key information about the application:   
-      Wikipdia Analytics 
-      (text, images, description, sample analytics graphsn)
+  •	display key information about the application:   1 
+      Wikipdia Analytics  1
+      (text, images, description, sample analytics graphsn) 1 
 
-  •	provide three options: Sign-up, Login and Reset Password 
+  •	provide three options: Sign-up, Login and Reset Password 1
     o	Sign-up 
-      	first name 
-      	last name
-      	email address (as username)
-      	password (hashing must be implemented)
-      	reset password question/answer
-      	account to be maintained in DB 
-      	data validation required!!
+      	first name 1
+      	last name 1
+      	email address (as username) 1
+      	password (hashing must be implemented) 1
+      	reset password question/answer 1
+      	account to be maintained in DB  1
+      	data validation required!! ****************************************** email address + unique email and??
     o	Login
-      	Login by email and password 
-      	To enable analytic functionality 
-      	Session must be managed
+      	Login by email and password 1
+      	To enable analytic functionality 1
+      	Session must be managed ********************************************* need to test 
     o	Reset Password 
-      	By answer password questions
-    o	Logout 
+      	By answer password questions 1 
+    o	Logout 1 
 
   - Analytic Function Page
 
    •	Article Analytics 
-    o	The top two articles with the highest number of revisions and their number of revisions.
-    o	The top two articles with the lowest number of revisions and their number of revisions.
-    o	The top two articles edited by the largest group of registered users (non bots) and their group size. Each wiki article is edited by a number of users, some making multiple revisions. The number of unique users is a good indicator of an article’s popularity.
-    o	The top two articles edited by the smallest group of registered users and their group size.
-    o	The top two articles with the longest history (measured by age) and and their age (in days). For each article, the revision with the smallest timestamp is the first revision, indicating the article’s creation time. An article’s age is the duration between now and the article's creation time.
-    o	The top two articles with the shortest history (measured by age) and their age (in days).
-    o	The user should be provided with a way to change the number of top articles shown, e.g. for highest and lowest number of revisions. The selected number should be applied to all categories above. 
+    o	The top two articles with the highest number of revisions and their number of revisions. 1
+    o	The top two articles with the lowest number of revisions and their number of revisions. 1
+    o	The top two articles edited by the largest group of registered users (non bots) and their  1
+    o	The top two articles edited by the smallest group of registered users and their group size. 1
+    o	The top two articles with the longest history (measured by age) and and their age (in days). 1
+    o	The top two articles with the shortest history (measured by age) and their age (in days). 1
+    o	The user should be provided with a way to change the number of top articles shown, 1 
 
-    (User determination – anonymous, admin, bot and regular user )
+    (User determination – anonymous, admin, bot and regular user ) 1 
   •	Visual analytics 
-    o	Bar chart of revision number by year 
-    o	Pie chart of revision number by user type 
+    o	Bar chart of revision number by year  ********************************* description/summary missing 
+    o	Pie chart of revision number by user type  1
+    o	Line chart  1
+    
 
-  •	Individual Article Analytics 
-  a simple drop-down list 
-  show total number of revisions
-  check if the history of that article in the database is up to date. (less than one day old as up to date)
-  need to query MediaWiki API to pull all possible new revisions made after last update.
-  need to confirm success of downloading and numbers of revs. 
-  
-  
-
-  •	Author Analytics 
-
-
-
-
+  - Individual Article Analytics 
+    o	a simple drop-down list 1 
+    o	show total number of revisions 1 
+    o	check if the history of that article in the database is up to date. (less than one day old as up to date) 1 
+    
+    ****************************
+    known bug:   1. "Australia" or maybe other can attemp to download and save duplicated date,gets error during moogose save
+                 2. "Evolution" 2010 - 2020 does not graph for somereason 
+    ****************************
+    o	need to query MediaWiki API to pull all possible new revisions made after last update. 1
+    o	need to confirm success of downloading and numbers of revs. 1
+    o	message indicating if a data pulling request is made 1
+    o	how many new revisions have been downloaded. 1
+    o	the article has no new revision to be downloaded. You must notify users for either scenario. 1
+    
+    summary information: 1
+    The title 1 
+    The total number of revisions 1
+    The top 5 regular users ranked by total revision numbers 1
+    The top 3 news about the selected individual article obtained using Reddit API 1 
+ 
+ •	Visual analytics 
+    o	A bar chart of revision number distributed by year and by user type for this article. 1 
+    o	Pie chart of revision number by user type  1
+    o	A bar chart of revision number distributed by year made by one of the top 5 regular users 1 
+    
+     o year filter year filter year filter year filter 1 
+     o a mechanism for end users to switch among charts. 1 
+    
+  •	Author Analytics  
+    o enable the end user to display all articles that are changed by a specific author 1
+    o end user to an author name in a free text format 1 
+    o allow end users to enter the first few letters and use autocomplete feature to quickly locate the author name of interest. 1
+    o display the articles’ names along with number of revisions 1 
+    o the end user should also be able to see timestamps of all revisions made 1 
+        
 Design and Implementation Requirements
-1.	Operate on a single/two page 
-2.	Client – server comms need to be asynchronous 
-3.	Main landing page can be in a separate page 
-4.	All other functionalities in one single page ( SPA principles) 
-5.	MVC
-6.	JS only 
-7.	Node JS + MongoDB
+1.	Operate on a single/two page  1
+2.	Client – server comms need to be asynchronous  1
+3.	Main landing page can be in a separate page 1
+4.	All other functionalities in one single page ( SPA principles)  1 
+5.	MVC 1
+6.	JS only  1 
+7.	Node JS + MongoDB 1 
 8.	You can use other popular JavaScript libraries not covered in this course.
 9.	communications among tiers and database design and implementation
 10.	design and implementation should not be specific for the provided dataset
