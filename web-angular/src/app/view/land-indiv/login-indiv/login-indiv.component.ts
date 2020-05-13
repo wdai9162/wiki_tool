@@ -113,7 +113,7 @@ export class LoginIndivComponent implements OnInit {
     for (const i in result.botUser.result)
     {
       const currentyear = result.botUser.result[i]._id;
-      botHash[currentyear] = result.adminUser.result[i].botCount;
+      botHash[currentyear] = result.botUser.result[i].botCount;
     }
     for (const i in result.anonUser.result)
     {
