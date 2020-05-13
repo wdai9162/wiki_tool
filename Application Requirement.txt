@@ -1,4 +1,4 @@
-1 = completed 
+﻿1 = completed 
 * = to be fixed 
 
 Data 1 
@@ -20,11 +20,11 @@ Data 1
       	password (hashing must be implemented) 1
       	reset password question/answer 1
       	account to be maintained in DB  1
-      	data validation required!! ****************************************** email address + unique email and??
+      	data validation required!! ****************************************** 1
     o	Login
       	Login by email and password 1
       	To enable analytic functionality 1
-      	Session must be managed ********************************************* need to test 
+      	Session must be managed ********************************************* need to test
     o	Reset Password 
       	By answer password questions 1 
     o	Logout 1 
@@ -42,7 +42,7 @@ Data 1
 
     (User determination – anonymous, admin, bot and regular user ) 1 
   •	Visual analytics 
-    o	Bar chart of revision number by year  ********************************* description/summary missing 
+    o	Bar chart of revision number by year  1
     o	Pie chart of revision number by user type  1
     o	Line chart  1
     
