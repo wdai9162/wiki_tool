@@ -16,6 +16,7 @@ export class LoginOverAllComponent implements OnInit {
   OverallModel;
 
   render = false;
+  Description= "";
 
   public pieChartOptions: ChartOptions = {
     responsive: true,
@@ -145,21 +146,49 @@ async getHistory( number: string): Promise<void>
     const pieLabel =  [];
     const data = [];
     const color = [];
+    let totalNumber = 0;
     for (const i in graphdata)
     {
       pieLabel.push(i);
       data.push(graphdata[i]['total']);
+      totalNumber = totalNumber + graphdata[i]['total'];
       color.push(this.OLService.getColor());
     }
     this.OverallModel.pieChartLabels = pieLabel;
     this.OverallModel.pieChartData = data;
     this.OverallModel.pieChartColors = [{backgroundColor: color}];
     this.render = true;
+    // get the template of description
+    const percentDict = {
+      regular: (graphdata['regUser']['total']/totalNumber*100).toFixed(2),
+      administrator:(graphdata['adminUser']['total']/totalNumber*100).toFixed(2),
+      bot:(graphdata['botUser']['total']/totalNumber*100).toFixed(2),
+      annoymous: (graphdata['anonUser']['total']/totalNumber*100).toFixed(2)
+    };
+    console.log(percentDict)
+    // sort by value
+    // tslint:disable-next-line:only-arrow-functions
+    const sortDict = Object.keys(percentDict).sort(function(a, b){return percentDict[a] - percentDict[b];});
+
+    const keyDicPre= [];
+    const valueDicPre = []
+    for(const key in sortDict)
+    {
+      keyDicPre.push(sortDict[key]);
+      valueDicPre.push(percentDict[sortDict[key]]);
+
+    }
+    //get the key and value dict
+    console.log(keyDicPre);
+    console.log(valueDicPre);
+
+
     const year = [];
     const dataAdmin = [];
     const dataBot = [];
     const dataAnon = [];
     const dataReg = [];
+    this.Description = "The graph shows the revision number distribution by user type, in which "+totalNumber+" number of users are taken into consideration for this analysis. From the pie chart, it is clear that the revisions were made mostly by "+keyDicPre[3]+" users that cover for "+valueDicPre[3] + " percent, followed by "+keyDicPre[2]+" users with "+valueDicPre[2]+" percent,which is larger than  revisions made by " + keyDicPre[1] + " users stands at "+valueDicPre[1]+" percent, and "+keyDicPre[0]+" users ("+valueDicPre[0]+" percent)."
     // tslint:disable-next-line:forin
 
     for (const i in graphdata['adminUser']['result'])
