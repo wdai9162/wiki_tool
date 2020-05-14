@@ -20,7 +20,7 @@ Data 1
       	password (hashing must be implemented) 1
       	reset password question/answer 1
       	account to be maintained in DB  1
-      	data validation required!! ****************************************** 1
+      	data validation required!! ************************************** 1
     o	Login
       	Login by email and password 1
       	To enable analytic functionality 1
