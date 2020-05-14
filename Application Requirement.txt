@@ -24,7 +24,7 @@ Data 1
     o	Login
       	Login by email and password 1
       	To enable analytic functionality 1
-      	Session must be managed ********************************************* need to test
+      	Session must be managed ************************************1
     o	Reset Password 
       	By answer password questions 1 
     o	Logout 1 
