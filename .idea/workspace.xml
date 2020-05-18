@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="491b5cf3-f58d-4b7d-b1bd-e3747a2ec408" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web_Dev_6-Technical Report.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Web_Dev_6-Technical Report.docx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +22,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1aNyaQH07gBrTl2RrJAHREDvksM" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -92,7 +96,28 @@
       <option name="project" value="LOCAL" />
       <updated>1588994831470</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added Feature design.">
+      <created>1589512104793</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589512104794</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Completed function module introduction.">
+      <created>1589640187499</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1589640187499</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Improved some vocabulary.">
+      <created>1589688463164</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589688463164</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +140,9 @@
     <MESSAGE value="Added an interface for querying author names in the author module" />
     <MESSAGE value="Three new interfaces are added, which respectively return all author names, return relevant articles and the number of articles according to author names." />
     <MESSAGE value="New interface that returns the timestamp of all revisions based on the article name." />
-    <option name="LAST_COMMIT_MESSAGE" value="New interface that returns the timestamp of all revisions based on the article name." />
+    <MESSAGE value="Added Feature design." />
+    <MESSAGE value="Completed function module introduction." />
+    <MESSAGE value="Improved some vocabulary." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved some vocabulary." />
   </component>
 </project>
