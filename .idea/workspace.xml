@@ -37,6 +37,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/web-angular/node_modules/typescript/lib" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -117,7 +118,21 @@
       <option name="project" value="LOCAL" />
       <updated>1589688463164</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Completed Database design.">
+      <created>1589824733607</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1589824733607</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added reference.">
+      <created>1589850723245</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1589850723251</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,6 +158,8 @@
     <MESSAGE value="Added Feature design." />
     <MESSAGE value="Completed function module introduction." />
     <MESSAGE value="Improved some vocabulary." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved some vocabulary." />
+    <MESSAGE value="Completed Database design." />
+    <MESSAGE value="Added reference." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added reference." />
   </component>
 </project>
