@@ -14,22 +14,22 @@ var botUser;
 var adminUser;
 var userAdminBot
 if(os.type().toString().toUpperCase().indexOf("WINDOWS")!=-1) {
-    botUser = fs.readFileSync(path.join(__dirname, '/../user_filter/bots.txt')).toString().split("\r\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
-
-//import admin user filter file
-    adminUser = fs.readFileSync(path.join(__dirname, '/../user_filter/administrators.txt')).toString().split("\r\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
-
-//join both admin and bot lists
+    botUser = fs.readFileSync(path.join(__dirname, '/../user_filter/bots.txt')).toString().split("\r\n");
+    //the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+    //import admin user filter file
+    adminUser = fs.readFileSync(path.join(__dirname, '/../user_filter/administrators.txt')).toString().split("\r\n");
+    // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+    //join both admin and bot lists
     userAdminBot = botUser.concat(adminUser).sort();
 }
 else
 {
-    botUser = fs.readFileSync(path.join(__dirname, '/../user_filter/bots.txt')).toString().split("\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
-
-//import admin user filter file
-    adminUser = fs.readFileSync(path.join(__dirname, '/../user_filter/administrators.txt')).toString().split("\n");   // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
-
-//join both admin and bot lists
+    botUser = fs.readFileSync(path.join(__dirname, '/../user_filter/bots.txt')).toString().split("\n");
+    // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+    //import admin user filter file
+    adminUser = fs.readFileSync(path.join(__dirname, '/../user_filter/administrators.txt')).toString().split("\n");
+    // the difference of return "/n" in MAC and "/r/n" cause a bug here, resulting in data error during query
+    //join both admin and bot lists
     userAdminBot = botUser.concat(adminUser).sort();
 }
 
