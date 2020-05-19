@@ -8,13 +8,13 @@ router.get('', (req, res, next) => {
 });
 
 
-router.get('/revnumbers', controller.byRevNumbers); 
-router.get('/history', controller.byArticleHistory); 
-router.get('/regusers', controller.byRegUsers); 
-router.get('/anonusersdata', controller.anonUserByYear); 
-router.get('/botusersdata', controller.botUserByYear); 
-router.get('/adminusersdata', controller.adminUserByYear); 
-router.get('/regusersdata', controller.regUserByYear); 
-router.get('/graphdata', controller.graphData); 
+router.get('/revnumbers',userCheck, controller.byRevNumbers); 
+router.get('/history',userCheck, controller.byArticleHistory); 
+router.get('/regusers',userCheck, controller.byRegUsers); 
+router.get('/anonusersdata',userCheck, controller.anonUserByYear); 
+router.get('/botusersdata',userCheck, controller.botUserByYear); 
+router.get('/adminusersdata',userCheck, controller.adminUserByYear); 
+router.get('/regusersdata',userCheck, controller.regUserByYear); 
+router.get('/graphdata',userCheck, controller.graphData); 
 
 module.exports = router;

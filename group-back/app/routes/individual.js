@@ -7,11 +7,11 @@ router.get('', (req, res, next) => {
   res.status(200).end("This is the Individual Analytics route root path!");
 });
 
-router.get('/getlist', controller.articleList); 
-router.get('/checkdateandupdate', controller.checkDateAndUpdate); 
-router.get('/reguserbyrevnumber', controller.regUserByRevNumber); 
-router.get('/getredditnews', controller.getNewsReddit); 
-router.get('/graphdata', controller.graphData); 
-router.get('/topusergraphdata', controller.topUserGraph); 
+router.get('/getlist',userCheck, controller.articleList); 
+router.get('/checkdateandupdate',userCheck, controller.checkDateAndUpdate); 
+router.get('/reguserbyrevnumber',userCheck, controller.regUserByRevNumber); 
+router.get('/getredditnews',userCheck, controller.getNewsReddit); 
+router.get('/graphdata',userCheck, controller.graphData); 
+router.get('/topusergraphdata',userCheck, controller.topUserGraph); 
 
 module.exports = router;

@@ -33,12 +33,6 @@ else
     userAdminBot = botUser.concat(adminUser).sort();
 }
 
-/*************
- * 
- * Liverpool F.C chekc and update bug
- * 
- * *********/
-
 module.exports.articleList = function (req, res) {
     const getListandCount = [
         {
@@ -97,9 +91,10 @@ module.exports.checkDateAndUpdate = function (req, res) {
     ]
     Revinfo.aggregate(maxDateAndCountQuery)
     .then(result=>{
+ 
         timeElap=calculateTime(currentTime, result[0].lastRev);    //calculate how long it has been since the latest revision record
         lastRevDate=result[0].lastRev;         //record for new Wiki API request to determine up to which date to download
-       
+        
         //check if the records are considered as expired, >24hrs
         if(timeElap>=60*60*24){
 
@@ -134,15 +129,7 @@ module.exports.checkDateAndUpdate = function (req, res) {
         //Due to inconsistent type of timestamp stored in DB, string from original and date from new download,
         //there will be a bug here to operate with expected Date object. ************
         try {
-            if (typeof articleLastRevDate === "object") {
-                //console.log(typeof articleLastRevDate);
                 lstRevDateInUTC = articleLastRevDate.toUTCString();  
-            }
-         
-            else if (typeof articleLastRevDate === "string"){
-                //console.log(typeof articleLastRevDate);
-                lstRevDateInUTC = articleLastRevDate; 
-            }
         } catch(error) {
             console.error(error);
         }
@@ -206,9 +193,11 @@ module.exports.checkDateAndUpdate = function (req, res) {
 module.exports.regUserByRevNumber = function (req, res) {
 
     var title = req.query.title;
-    var startYear = req.query.stryr; 
-    var endYear = (Number(req.query.endyr)+1).toString();
+    var startYear = req.query.stryr + "-01-01T00:00:00Z"
+    var endYear = (Number(req.query.endyr)+1).toString()+"-01-01T00:00:00Z";
     
+    console.log(title+" "+startYear+" "+endYear)
+
     const regUserByRevNumber = [
         {
             "$match" : {
@@ -228,12 +217,12 @@ module.exports.regUserByRevNumber = function (req, res) {
                     },
                     { 
                         "timestamp" : { 
-                            "$gt" : startYear
+                            "$gte" : new Date(startYear)
                         }
                     }, 
                     { 
                         "timestamp" : { 
-                            "$lt" : endYear
+                            "$lt" : new Date(endYear)
                         }
                     }
                 ]
@@ -331,11 +320,11 @@ module.exports.graphData = function (req, res) {
     
     var graphData = {};
     var article = req.query.title;
-    var startYear = req.query.stryr; 
-    var endYear = (Number(req.query.endyr)+1).toString();
-    
+    var startYear = req.query.stryr + "-01-01T00:00:00Z"
+    var endYear = (Number(req.query.endyr)+1).toString()+"-01-01T00:00:00Z";
+
     //query for total count of revisions by anonymous users in each year
-    const queryAnonUser = [
+    const queryAnonUser = [ 
         { 
             "$match" : { 
                 "$and" : [
@@ -347,22 +336,15 @@ module.exports.graphData = function (req, res) {
                     }, 
                     { 
                         "timestamp" : { 
-                            "$gt" : startYear
+                            "$gte" : new Date(startYear)
                         }
                     }, 
                     { 
                         "timestamp" : { 
-                            "$lt" : endYear
+                            "$lt" : new Date(endYear)
                         }
                     }
                 ]
-            }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
-                    "$toDate" : "$timestamp"
-                }
             }
         }, 
         { 
@@ -397,22 +379,15 @@ module.exports.graphData = function (req, res) {
                     }, 
                     { 
                         "timestamp" : { 
-                            "$gt" : startYear
+                            "$gte" : new Date(startYear)
                         }
                     }, 
                     { 
                         "timestamp" : { 
-                            "$lt" : endYear
+                            "$lt" : new Date(endYear)
                         }
                     }
                 ]
-            }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
-                    "$toDate" : "$timestamp"
-                }
             }
         }, 
         { 
@@ -447,22 +422,15 @@ module.exports.graphData = function (req, res) {
                     }, 
                     { 
                         "timestamp" : { 
-                            "$gt" : startYear
+                            "$gte" : new Date(startYear)
                         }
                     }, 
                     { 
                         "timestamp" : { 
-                            "$lt" : endYear
+                            "$lt" : new Date(endYear)
                         }
                     }
                 ]
-            }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
-                    "$toDate" : "$timestamp"
-                }
             }
         }, 
         { 
@@ -497,22 +465,15 @@ module.exports.graphData = function (req, res) {
                 }, 
                 { 
                     "timestamp" : { 
-                        "$gt" : startYear
+                        "$gte" : new Date(startYear)
                     }
                 }, 
                 { 
                     "timestamp" : { 
-                        "$lt" : endYear
+                        "$lt" : new Date(endYear)
                     }
                 }
             ]
-        }
-    },
-    {
-        "$addFields" : {
-            "timestamp" : {
-                "$toDate" : "$timestamp"
-            }
         }
     },
     {
@@ -584,11 +545,9 @@ module.exports.graphData = function (req, res) {
 
 module.exports.topUserGraph = function (req, res) {
 
-    //need to 
-
     var article = req.query.title || "Australia";
-    var startYear = req.query.stryr || "2002-01-01T00:00:00Z"; 
-    var endYear = req.query.endyr || "2022-01-01T00:00:00Z"; 
+    var startYear = req.query.stryr + "-01-01T00:00:00Z";
+    var endYear = (Number(req.query.endyr)+1).toString()+"-01-01T00:00:00Z";
     var topUser = req.query.topuser || "PDH"; 
     
     //query for total count of revisions by anonymous users in each year
@@ -604,22 +563,15 @@ module.exports.topUserGraph = function (req, res) {
                     }, 
                     { 
                         "timestamp" : { 
-                            "$gt" : startYear
+                            "$gte" : new Date(startYear)
                         }
                     }, 
                     { 
                         "timestamp" : { 
-                            "$lt" : endYear
+                            "$lt" : new Date(endYear)
                         }
                     }
                 ]
-            }
-        }, 
-        { 
-            "$addFields" : { 
-                "timestamp" : { 
-                    "$toDate" : "$timestamp"
-                }
             }
         }, 
         { 

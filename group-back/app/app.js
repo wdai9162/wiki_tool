@@ -12,8 +12,8 @@ var individualRouter = require('./routes/individual');
 var authorRouter = require('./routes/author')
 
 const mongoose = require ('mongoose');
-const timechecker = require ('./middleware/timestamp-checker');
 const Revinfo = require ('./model/revinfo'); 
+const timechecker = require ('./middleware/timestamp-checker');
 
 var app = express();
 
@@ -25,19 +25,19 @@ mongoose.connect(mongoDB).then(() => {
   console.log(err)
 })
 
-//perform initial check on collection timestamp 
+//perform checks on Timestamp field every 600 seconds
 timechecker(Revinfo);
+setInterval(myTimer, 600000);
+function myTimer() {
+  timechecker(Revinfo);
+}
 
-
+//middlewares to fix CROS issue during development
 app.use((req,res,next) => {
-  //console.log(req);
-  //console.log(res);
   res.setHeader('Access-Control-Allow-Origin', "*");
   res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Authorization");
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS");
   next();
-
-
 })
 
 // view engine setup

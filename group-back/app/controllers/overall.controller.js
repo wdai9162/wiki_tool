@@ -202,13 +202,13 @@ module.exports.anonUserByYear = function (req, res) {
                 "anon" : true
             }
         },
-        {
+        /*{
             "$addFields" : {
                 "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        },
+        },*/
         {
             "$group" : {
                 "_id" : {
@@ -257,13 +257,13 @@ module.exports.botUserByYear = function (req, res) {
                 }
             }
         },
-        {
+        /*{
             "$addFields" : {
                 "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        },
+        },*/
         {
             "$group" : {
                 "_id" : {
@@ -312,13 +312,13 @@ module.exports.adminUserByYear = function (req, res) {
                 }
             }
         },
-        {
+        /*{
             "$addFields" : {
                 "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        },
+        },*/
         {
             "$group" : {
                 "_id" : {
@@ -376,13 +376,13 @@ module.exports.regUserByYear = function (req, res) {
                 ]
             }
         },
-        {
+        /*{
             "$addFields" : {
                 "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        },
+        },*/
         {
             "$group" : {
                 "_id" : {
@@ -432,13 +432,13 @@ module.exports.graphData = function (req, res) {
                 "anon" : true
             }
         },
-        {
+        /*{
             "$addFields" : {
                 "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        },
+        },*/
         {
             "$group" : {
                 "_id" : {
@@ -465,13 +465,13 @@ module.exports.graphData = function (req, res) {
                 }
             }
         },
-        {
+        /*{
             "$addFields" : {
                 "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        },
+        },*/
         {
             "$group" : {
                 "_id" : {
@@ -498,13 +498,13 @@ module.exports.graphData = function (req, res) {
                 }
             }
         },
-        {
+        /*{
             "$addFields" : {
                 "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        },
+        },*/
         {
             "$group" : {
                 "_id" : {
@@ -540,13 +540,13 @@ module.exports.graphData = function (req, res) {
                 ]
             }
         },
-        {
+        /*{
             "$addFields" : {
                 "timestamp" : {
                     "$toDate" : "$timestamp"
                 }
             }
-        },
+        },*/
         {
             "$group" : {
                 "_id" : {
