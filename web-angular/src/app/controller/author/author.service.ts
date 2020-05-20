@@ -21,7 +21,8 @@ export class AuthorService {
   async postData(url, data) {
     // tslint:disable-next-line:one-variable-per-declaration
     // @ts-ignore
-    const request = await fetch(url, { body: JSON.stringify(data), method: 'POST', headers: {'Content-Type': 'application/json'}});
+    // tslint:disable-next-line:max-line-length
+    const request = await fetch(url, { body: JSON.stringify(data), method: 'POST', headers: {'Content-Type': 'application/json', authorization: this.ls.getObject('token')}});
     // console.log(request);
     return await request.json();
   }

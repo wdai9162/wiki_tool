@@ -1,0 +1,941 @@
+commit 6b292e3e14ee166d5974a3802a33e942f0bb06db
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Fri May 15 00:11:27 2020 +1000
+
+    already finish requirement
+
+commit bc367d860405ba7ccde520f83495edfb51d32ccc
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu May 14 22:48:44 2020 +1000
+
+    requirement fix
+
+commit 18fcc892653bd4a518f0d612f6d33bdacd26c006
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed May 13 13:43:28 2020 +1000
+
+    requirements document change
+
+commit d87e8db1636ac97531105cf873aa79468b88491e
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed May 13 13:24:21 2020 +1000
+
+    fix bug on individual
+
+commit c478983d85c4d69673a221f7913e308f66293693
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed May 13 13:06:33 2020 +1000
+
+    add graph description
+
+commit 17bf25b350355450153247572d70a1a7e03766dd
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed May 13 00:27:02 2020 +1000
+
+    Update README.md
+
+commit 25a4670ef87c3e3f7b1df965e32ed185dec5f632
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed May 13 00:21:59 2020 +1000
+
+    functionality check
+
+commit 50544495e00f219725e72e3f87045afaead16b61
+Merge: 7cbede6 55ce568
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed May 13 00:20:44 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 7cbede6190f9d41b274b64d519d91c0efbc36f56
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed May 13 00:20:12 2020 +1000
+
+    font update
+
+commit 55ce56818e31410c8c8293209309955f2aa72c0d
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed May 13 00:19:15 2020 +1000
+
+    Update Project Requirement
+    
+    functionality check
+
+commit dadb4bc18247cd9ac28780248f12b3fe203973de
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Tue May 12 23:38:29 2020 +1000
+
+    landing page descripiton update
+
+commit 257612148efefec4f8b8b85c1a30b82e2cfe6257
+Merge: 54b9962 201fb1a
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue May 12 19:14:42 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 54b9962d33ddedc33f1d01f41c41aa1969c48ec7
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue May 12 19:14:24 2020 +1000
+
+    get rid of the data of anon user in author searching
+
+commit 201fb1a0e4362e674af36d2d08f2239395cffcc3
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Mon May 11 11:42:14 2020 +1000
+
+    Completed Introduction.
+
+commit cf2273d0a9c6c8f2eb31e2051b6748b76c409b96
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Mon May 11 09:47:22 2020 +1000
+
+    Added Introduction.
+
+commit 954c5f6de86b57f72f796aebc4497ed4a0628da2
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun May 10 22:37:33 2020 +1000
+
+    fix bugs in web-angular for timestamp search
+
+commit f014a84191e53d474e035c0be1e28e14a3be0dca
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sun May 10 19:58:14 2020 +1000
+
+    Added Technical Report
+
+commit 758cdd5f4d086f540d3c8f1e85e17dd7291d2533
+Merge: 4c4a9f1 7053239
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sun May 10 15:21:56 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 7053239e53c67331e90dfc4eaf489cc4fab90392
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun May 10 13:13:17 2020 +1000
+
+    console.log delete
+
+commit f9ca63f8165dda7ee9f78c503fef541cd19f8242
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun May 10 13:08:55 2020 +1000
+
+    upgrade the name finding and Titlenumbersearch in author
+
+commit 60a3e22fa5555fa17a7120a6667762ddd1e9cd99
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun May 10 12:42:21 2020 +1000
+
+    finished all
+
+commit 4c4a9f1a2088c456058f43f641b0253fb392e316
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sun May 10 06:34:19 2020 +1000
+
+    Modified the return data structure of the interface used to return the article title and the number of changes based on the author name.
+
+commit 3ebcf4b19fa34df76e599ca67f1a84de2931b67d
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun May 10 00:51:42 2020 +1000
+
+    finish all
+
+commit 84bfc17f7fec8727857a52790cb7bd0d50053c6c
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat May 9 17:11:12 2020 +1000
+
+    finish login introduction
+
+commit 70e50714d4875da9176643983318cd613864fb61
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat May 9 16:57:53 2020 +1000
+
+    fix buged &
+
+commit 3e30528758f707034b11cd1609b61dd98273aedd
+Merge: 40ecd41 212cae0
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat May 9 16:29:18 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 40ecd416f6e5c55fa45752d52369e688f35f8fd2
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat May 9 16:29:07 2020 +1000
+
+    individual api bug fix
+
+commit 212cae0ec0fda53303d3f8e2255b85af78c752c3
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat May 9 16:17:52 2020 +1000
+
+    withdraw hide introduction after login
+
+commit 1913ac8d189f47c5e71a3f8953b34743e5eff09c
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat May 9 16:01:08 2020 +1000
+
+    static finished
+
+commit 58631f4d2c3b42d071a01fa27b866e7d54ab255e
+Merge: 0f799d1 959aa3b
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sat May 9 15:20:15 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 0f799d141da8d4b02c65aea43288c670076fb6ed
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sat May 9 15:19:59 2020 +1000
+
+    Changed the returned data of the interface
+
+commit 959aa3bf71edfe548210c63b21bd1870e93920d8
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat May 9 15:00:39 2020 +1000
+
+    finish all function nearly
+
+commit e11e831f3f25d822ee573005f13c892f76a05c48
+Merge: a2d5aa1 7364ffc
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sat May 9 14:49:43 2020 +1000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit a2d5aa1b654b2a56cdfd86138ebd90453c9a6e12
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sat May 9 14:44:31 2020 +1000
+
+    Fixed interface bugs
+
+commit 7364ffcecf7c6f44d8905dc706db102cb6339146
+Merge: 7345719 e2aa205
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat May 9 13:57:15 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 7345719236081367904b65a1ef4f279f64bb9c4b
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat May 9 13:57:03 2020 +1000
+
+    bug fix and user experience update
+
+commit e2aa2052cffb32fd4596956b1be7967424557dda
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sat May 9 13:27:11 2020 +1000
+
+    New interface that returns the timestamp of all revisions based on the article name.
+
+commit ad6e1ad6fb4e8bb36252810b2e7853d9ba8a6311
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sat May 9 04:01:41 2020 +1000
+
+    Three new interfaces are added, which respectively return all author names, return relevant articles and the number of articles according to author names.
+
+commit 3aafc907ba73c8912a71902e209c3ed98c583086
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Fri May 8 12:13:43 2020 +1000
+
+    land individual has finished and % of the pie in individual has been added
+
+commit 74daf71e8f336af31a9d26fc16a81240cebbb642
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Fri May 8 11:59:22 2020 +1000
+
+    individual finish
+
+commit bd3786935d5c14b6e554eb0426f2c02f0671f0a4
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu May 7 20:51:01 2020 +1000
+
+    bug of messege box in individual has been repaired
+
+commit 6a27c4675236d698aed3d6647a13f5cbb5fc87ab
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu May 7 20:35:21 2020 +1000
+
+    finish two grapsh of individual
+
+commit a2f63b0db3af784beb8c348775fd5cccafc5ed49
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu May 7 19:06:08 2020 +1000
+
+    single user individual finish
+
+commit 492b4422a1ca54c8591e628217d4094601ead320
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu May 7 17:17:53 2020 +1000
+
+    author user search finish
+
+commit 922ce1e96398d9345773389a8113fd2a545105bb
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu May 7 00:49:07 2020 +1000
+
+    individual API update,  /graphdata and /topusergraphdata now available
+
+commit c4509c2d643f49549458bf9ec21cad43374410cc
+Merge: 0675384 19bb53a
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Thu May 7 00:21:26 2020 +1000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 19bb53a92b5c374378c777e34cfcb2c438ed6d92
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu May 7 00:22:20 2020 +1000
+
+    finish individual year get and set and message box
+
+commit 0675384ecf70f51066aef12100f518cd8ae93b44
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Thu May 7 00:21:10 2020 +1000
+
+    Added an interface for querying author names in the author module
+
+commit 9cc066115e93df4658601b461a7641c47aab4420
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed May 6 22:36:42 2020 +1000
+
+    individual checkdate and redditnews API bug fix
+
+commit 3db89dd5a54ee227d23a85830fc9a20a2a0d8cc4
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed May 6 13:01:24 2020 +1000
+
+    fixed image width  bug for land and username bug has fixed
+
+commit 20ea8c0b34fab03c734a331b58e8fef51f59e097
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue May 5 21:35:20 2020 +1000
+
+    author function finish
+
+commit b6d31123549e33f0847823c36392c21feabb8304
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue May 5 01:38:59 2020 +1000
+
+    uploadagein
+
+commit 4938f2cecc451737bab73d4386c86122555ab84e
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Mon May 4 23:36:22 2020 +1000
+
+    reset finished totally
+
+commit 33026bf39fadc29b41fe3a1a26466efb2a1323b5
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Mon May 4 22:21:06 2020 +1000
+
+    Code comments for the interface have been added
+
+commit 43a040b44e1ac91242eeb101d36ce78edc4a8258
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Mon May 4 22:01:14 2020 +1000
+
+    Complete the final interface of reset password
+
+commit 951d45af970efe0b3c90662e69d7afc8e0e0b5c9
+Merge: aec0ff0 4cdec38
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Mon May 4 15:10:58 2020 +1000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit aec0ff0f596a7f55281a857097884b6f3075bbed
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Mon May 4 15:10:42 2020 +1000
+
+    Change the return value of both interfaces
+
+commit 4cdec38cdfbc8c787980912455d917ce42f837da
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Mon May 4 14:13:02 2020 +1000
+
+    access reset-service finish in web-angular
+
+commit 1b73b695fad31bf5342dae7fdd97dde6ea214660
+Merge: e37c0a9 8c014fd
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Mon May 4 12:47:02 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit e37c0a92a2f61dd679dede52a0b1a39ef07ef51c
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Mon May 4 12:43:41 2020 +1000
+
+    New two interfaces for querying the existence of users and verifying password problems in the password update process
+
+commit 8c014fd48a35c0f10e4ca8e0bdbe99677e3cc4bd
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Mon May 4 00:24:19 2020 +1000
+
+    combine individual resful api
+
+commit a36ab4951905aace5a28ab9deb8e1ad1ecbed445
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sun May 3 22:49:44 2020 +1000
+
+    Individual module API update, /reguserbyrevnumber and /getredditnews available
+
+commit a1acaa550f94a741356379de5748442f93089852
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun May 3 22:47:12 2020 +1000
+
+    recreate droplist in individual
+
+commit 6ca6456b27a7c60de346f1ed9a0aee1eab77aa1c
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun May 3 21:22:08 2020 +1000
+
+    static overall and intro ui finish totally, text is need to be written
+
+commit 04f38ae466d832156553fde083fafa32df0ace90
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun May 3 21:00:26 2020 +1000
+
+    static overall finish
+
+commit 41014ba1a3911858e1ed5e4978ee8a213aa6c168
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun May 3 18:24:10 2020 +1000
+
+    some static content provide in index page
+
+commit 29814b05a1f19e36d79c831cbc2874919cc75a17
+Merge: 9f63e21 e4a0964
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sun May 3 18:08:43 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 9f63e21a2bcd5edf0040ffaf4674a3f6a8b26186
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sun May 3 18:08:29 2020 +1000
+
+    individual function API update, checkDate and getlist available
+
+commit e4a0964cded85428d0c32accd3873d14fd8541d8
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat May 2 23:53:28 2020 +1000
+
+    no problem in reading file but lack of data name
+
+commit 771bef0b035afcb64a33f52290f7a5ca0c7675f2
+Merge: 38072a4 fcfdd51
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat May 2 23:20:23 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 38072a4d1ab8dd3c3a7ae485817549d9c8b013d3
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat May 2 23:13:47 2020 +1000
+
+    Individual route and API updated
+
+commit fcfdd51b4fd26f0505164b9b809a62badf6bca6e
+Author: qzhu2947 <qzhu2947@uni.sydney.edu.au>
+Date:   Sat May 2 22:23:52 2020 +1000
+
+    Fixed an error where the Mac OS system could not read the bot.txt/admin.txt file.
+
+commit 6023e42b1b95307d2f8bfedcd53c679330b2f67e
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat May 2 22:04:28 2020 +1000
+
+    /n bug fix
+
+commit 5310aaaae1f63e88cdd677cebe1629ebb4a2d945
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Fri May 1 11:58:18 2020 +1000
+
+    strong individual number
+
+commit b84c595257ab20d68cd0cb35aed3c00022f32f0d
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Fri May 1 11:53:43 2020 +1000
+
+    overall finish
+
+commit 9739ddae64e55e9a73db5cfa048bbff96ca1fca0
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Fri May 1 00:17:27 2020 +1000
+
+    finish pie
+
+commit 68ebf8096f6299db6c3772288b12a96cc936850e
+Merge: 1077b41 3de9dce
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 30 22:55:01 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 1077b41d09ae4839b81e5c950f36871d77ed53ab
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 30 22:51:28 2020 +1000
+
+    overall graph data now available in single api call /graphdata
+
+commit 3de9dce5afa10c56302cbe7df6849a5ebb513d8b
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 30 22:12:06 2020 +1000
+
+    individual ui change into tab
+
+commit a8c76d7cec6bce8a31d6b45bfb1b357bcece0585
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 30 22:10:03 2020 +1000
+
+    individual ui change into tab
+
+commit 3641091a23325745e502caace8d88d6245f2d6d3
+Merge: 292b386 af8d81a
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 30 21:19:44 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 292b3861d44ed2db33dec4ba56e98d841e449b5b
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 30 21:19:31 2020 +1000
+
+    Overall Graph data API endpoint now available
+
+commit af8d81a2d1a409b6bd7f58173130966c1b46e72f
+Merge: ee443a4 3ce6ccc
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 30 21:05:35 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit ee443a4733791d1ad42ea8c6cc9bdd1ca08ced6c
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 30 21:04:55 2020 +1000
+
+    individual ui finish
+
+commit 81d9a83d253d0719468ed222e8e09f25e3a30be6
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 30 17:55:51 2020 +1000
+
+    combine overall model in service
+
+commit 3ce6ccc898cab0f675012b2a694bf45b5cc6f88d
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 30 17:55:33 2020 +1000
+
+    Update README.md
+
+commit 9da851f857dd3cb7cfeeb606e0699cb938445c9a
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 30 14:24:54 2020 +1000
+
+    fix bug of the button signup in login page
+
+commit 69092f3e3013c66e05a179bbc07c08a3cd2d9fe9
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Apr 29 22:05:07 2020 +1000
+
+    message for resigster
+
+commit f576f6dc8940e08d16fd09790ac3f977c32640d3
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Apr 29 21:53:02 2020 +1000
+
+    finish resigster
+
+commit 93f4867daa43e8928b170ace3497c340d055ad3b
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Apr 29 18:46:41 2020 +1000
+
+    some bug fix and part of indi login
+
+commit 9414e65c526fd1c2ab25552b775b46ad0ca98658
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Apr 29 16:55:45 2020 +1000
+
+    error fix and add some item for individual
+
+commit 06af734b1679f2474bf59243af2c82ada1875057
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue Apr 28 22:08:08 2020 +1000
+
+    overall line&bar finish
+
+commit 286ec6938d770c3a214c11e2d80766ba69333452
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue Apr 28 21:52:58 2020 +1000
+
+    login no bugs
+
+commit 67d7bef49162450a57d2df2a8ac56e5488c9fadb
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue Apr 28 20:58:54 2020 +1000
+
+    fix bugs
+
+commit d90ccbc23f6cbaa44756675abd63b9ae3d289a42
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue Apr 28 20:29:51 2020 +1000
+
+    Update README.md
+
+commit f25c7bf274512a59bf6b70fe098f29c68e1beeaf
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun Apr 26 20:40:06 2020 +1000
+
+    finish token already both in back and front
+
+commit 05867907aeebcf7d0e57878935640e56069f1ffe
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun Apr 26 20:05:09 2020 +1000
+
+    login cookie finish and percentage of pi
+
+commit 58009ebb372a62c7c0cdf146584f787cad4f811a
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat Apr 25 17:34:16 2020 +1000
+
+    login authentication update JWT token added
+
+commit 51ed3a6ab63cb2a7a2af6b611482b1f485f5cd63
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat Apr 25 17:10:06 2020 +1000
+
+    user authentication update
+
+commit c48ae10709e836f3341fb4c3ebb2f92592adc135
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat Apr 25 17:08:03 2020 +1000
+
+    backend token and authentication update
+
+commit 31f32613b6a35289aab7174a01670a545722553c
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sat Apr 25 10:53:48 2020 +1000
+
+    backend user model update
+
+commit ccd955adffbf70f9cbf68b346db7b84599a6f6e3
+Merge: 2a3b18b cf67976
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 23:48:53 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 2a3b18b0f2d88e3ce79689411e3a62c073deee5f
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 23:48:37 2020 +1000
+
+    user login update
+
+commit cf6797684754a409f8f84bd4e49f8332a1fdb021
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 23:43:20 2020 +1000
+
+    fix some bugs
+
+commit d7c41bd1c8528a98cf841ccce549e71915310598
+Merge: 324a396 3f1268b
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 23:40:45 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 324a396e7f8be5163af2ba4bb34914fab1166bca
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 23:40:29 2020 +1000
+
+    user model update
+
+commit 3f1268bfe49b81f43c0be926b3a5cbb8e6d7e8ba
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 23:39:16 2020 +1000
+
+    finish login and select number of item after login
+
+commit f71aa35b95a222281a23d36cc1c46391205c5ed0
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 22:09:08 2020 +1000
+
+    login updated
+
+commit 41739a07619040060243e30e6d1c8c89d404d003
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 21:54:05 2020 +1000
+
+    signup updated
+
+commit 9736e556f31bf890b39a9436e799c73ad6b41b23
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 21:22:52 2020 +1000
+
+    login api updated
+
+commit 90c8b3e21cf6f1763cfa8ed662a56a7618b742be
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 21:21:46 2020 +1000
+
+    login module updated
+
+commit 9f0e2386a150d64a84fc1c472f8ce2c8e3f173f5
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 20:09:58 2020 +1000
+
+    query number can be set in overall
+
+commit fad73c4f1908c278becace243ce52f7a1e9a4ca6
+Merge: d82d91e 1d66153
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 19:33:59 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit d82d91e09430d767028c6cf457979fd646da0f2e
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 19:33:44 2020 +1000
+
+    MVC back
+
+commit 1d6615335cda74198a09de2dcb162a0d36fd4759
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 17:51:09 2020 +1000
+
+    user update, yet to be finished
+
+commit f93acafd0e3f9c7efc8763c3519dafa1337c6239
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 10:50:44 2020 +1000
+
+    remove unuse structure
+
+commit 50d4c36f587f64b465d93252cbe1b82caf3e63e9
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 10:39:57 2020 +1000
+
+    remove the wrong modules
+
+commit ef2f1ee092477c855920a2d3af54c586741618b9
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 10:36:18 2020 +1000
+
+    finish the overall-login text but without query number
+
+commit c18fe5963a2d90f5c4a0df8c720f0b6ffa509f79
+Merge: 5c27512 7d25b76
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 00:21:50 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 5c27512c95fd90645967e9ecdc2b2b47bc6284fd
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Thu Apr 23 00:21:29 2020 +1000
+
+    restruct the file structure
+
+commit 7d25b76f1b3cca5d598e8569c05e323394f73313
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Thu Apr 23 00:10:36 2020 +1000
+
+    overall stats API update, first three are available now
+
+commit cc118321649676683931554aedece1d04963abc5
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Apr 22 15:56:10 2020 +1000
+
+    update overall and combine front and back
+
+commit 3d64d7d22f1a606e48956ef68b95e7d9da7dfc63
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Apr 22 15:53:22 2020 +1000
+
+    the first time combine the back-end and fornt webpage data with async
+
+commit cc49049c2eab764b27424c3ef4db18708ef0a7b8
+Merge: 579da1e f3e333d
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed Apr 22 14:27:06 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 579da1e6f05a552fadaffe2d1b13c9222dd7c5ce
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed Apr 22 14:26:03 2020 +1000
+
+    backend folder structure update, overall routes and api update
+
+commit f3e333ded2c66e61c09ce6a693f1a945087a1282
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun Apr 19 22:18:36 2020 +1000
+
+    overall after login
+
+commit 72b5d4e8540bb884ee3ace04a11a71853523a94a
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun Apr 19 18:02:46 2020 +1000
+
+    mvc depart finish
+
+commit 90b92f651cc7724040ab40e698e6865227ee2690
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Fri Apr 17 20:16:25 2020 +1000
+
+    data import update
+
+commit 782eb946ebde711f7e9e43bb6a333b8e0b2fef2a
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Apr 15 20:59:47 2020 +1000
+
+    logout finish in web-angular and reset function
+
+commit f250a18e90357f93550e8852c8033dbd7bcc8c4e
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Apr 15 15:43:49 2020 +1000
+
+    reset complement and register have completed in web angular
+
+commit 5294bb9187127ec98f2802f16ce9f9604a664ef0
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue Apr 14 18:21:03 2020 +1000
+
+    ngswitch achieve
+
+commit c9cdfc47346e76394b0f3d45d52207bac12f94bf
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue Apr 14 18:05:18 2020 +1000
+
+    global variable controller add
+
+commit eabcc44a3bcbb9e4903de335cb795a2ae9cd4a55
+Merge: 0c51010 2d75081
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue Apr 14 16:22:36 2020 +1000
+
+    drawer and add fetch
+
+commit 2d750813691f587b48d60bea2b5f3b12abf34e1e
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue Apr 14 16:11:28 2020 +1000
+
+    添加fetch，功能待完善
+
+commit 0c510107b256a1c0e02903dbddfd108b50caddd1
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Tue Apr 14 14:33:58 2020 +1000
+
+    save before switch checkout
+
+commit 99f9d2d1f369465dfbd4e65aa1e85a3d0bc45f0d
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Tue Apr 14 00:22:02 2020 +1000
+
+    app-routing module added; user login and signup pages consolidated; backend user route/model added to support on testing new user;
+
+commit e5f8d5eea4f9a61a56139a3c03515cda55bf7c47
+Merge: 5cb7092 7494939
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sun Apr 12 21:48:33 2020 +1000
+
+    Merge branch 'master' of https://github.sydney.edu.au/COMP5347-2020/COMP5347Group6
+
+commit 7494939a9bfad8e9cf847d25a52b644f3ee90a52
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun Apr 12 20:01:48 2020 +1000
+
+    删除bootstrap相关内容
+
+commit a49ea615abf6f489aaae04a6c946770462aba065
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun Apr 12 19:58:02 2020 +1000
+
+    扁平化操作设计
+
+commit 5cb709218264876ad8c191cc126db234d0d9dffa
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Sun Apr 12 19:15:05 2020 +1000
+
+    "nan" dependency added; Angular Ivy disabled;
+
+commit 31ecb2f68a91df3ad67f70a299f70f431d0bf7ab
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sun Apr 12 15:32:07 2020 +1000
+
+    build landpage route and example of chart
+
+commit 74b21f433a752a451f7a2d5c04655d7d8cd91c48
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat Apr 11 22:13:33 2020 +1000
+
+    contain route and login init page with boostarp demo
+
+commit 17a61e9fc46b1119966f042ec39938d89b44ce96
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat Apr 11 00:13:42 2020 +1000
+
+    数据库初始化模块
+
+commit 55aac7e94814b54c9ac1c8f27f9702d02f6622f3
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Fri Apr 10 23:25:18 2020 +1000
+
+    forn-angular demo create
+
+commit d2ca6e2d3bb3c7fc04dd6e535b5890f66e74b177
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed Apr 8 22:04:53 2020 +1000
+
+    Prototype Created
+
+commit 2080e8ef0a5ef0eeb9614ecff211ad252b333556
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed Apr 8 22:03:31 2020 +1000
+
+    Delete WebApp Assignment 2.docx
+
+commit dd097a24550357342680719c33d2cd7ffecd29cd
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed Apr 8 22:03:15 2020 +1000
+
+    Update Project Requirement
+
+commit 53da3813be64ce3cdee7651aa9165a1d01184bc1
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Sat Apr 4 22:07:15 2020 +1100
+
+    restful project(express)generate
+
+commit 3c1a7c88a8582ee025b059f87546862bc9aa8646
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed Apr 1 22:41:32 2020 +1100
+
+    Project Requirement txt uploaded
+
+commit 26b584d26d137c90996df3d38e965750c201404c
+Author: wdai9162 <wdai9162@uni.sydney.edu.au>
+Date:   Wed Apr 1 22:38:49 2020 +1100
+
+    Project requirement uploaded
+
+commit 5678818527c2f7a312a4e8d447e3fc31955bb1e9
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Mar 25 15:52:56 2020 +1100
+
+    Update README.md
+
+commit e3a5b55041cf0c9371c07a6c3318f4ec28c0cf65
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Mar 25 15:46:18 2020 +1100
+
+    Update README.md
+
+commit b4d2ed3a0a613da9b9b5f5e1c35a0f4c01b51594
+Author: sliu3017 <sliu3017@uni.sydney.edu.au>
+Date:   Wed Mar 25 15:43:57 2020 +1100
+
+    Initial commit
