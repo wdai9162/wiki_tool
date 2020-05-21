@@ -43,7 +43,7 @@ module.exports.login = function (req, res) {
         var token = jwt.sign(
             { user: user },
             'thisisgroup6wikiprojectforcomp5347webapplicationusyd',
-            { expiresIn: '1h'});
+            { expiresIn: 1800}); //token expire in 30mins 
 
         //return result if not password check is true
         return res.status(200).json({

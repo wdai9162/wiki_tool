@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require ("mongoose-unique-validator")
 
-//schema needs more work on to meet project requirement.
 const userSchema = mongoose.Schema({
     
     firstname: { type: String, required: true, trim: true },
