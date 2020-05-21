@@ -100,4 +100,5 @@ Shanzheng Liu & David Dai & Qizhen Zhu
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-
+Basem Fathi Suleiman <basem.suleiman@sydney.edu.au> (he/him)
+University of Sydney
