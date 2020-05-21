@@ -20,11 +20,11 @@ Data 1
       	password (hashing must be implemented) 1
       	reset password question/answer 1
       	account to be maintained in DB  1
-      	data validation required!! ************************************** 1
+      	data validation required!!  1
     o	Login
       	Login by email and password 1
       	To enable analytic functionality 1
-      	Session must be managed ************************************1
+      	Session must be managed 1
     o	Reset Password 
       	By answer password questions 1 
     o	Logout 1 
@@ -53,8 +53,8 @@ Data 1
     o	check if the history of that article in the database is up to date. (less than one day old as up to date) 1 
     
     ****************************
-    known bug:   1. "Australia" or maybe other can attemp to download and save duplicated date,gets error during moogose save
-                 2. "Evolution" 2010 - 2020 does not graph for somereason 
+    known bug:   1. "Australia" or maybe other can attemp to download and save duplicated date,gets error during moogose save 1
+                 2. "Evolution" 2010 - 2020 does not graph for somereason 1
     ****************************
     o	need to query MediaWiki API to pull all possible new revisions made after last update. 1
     o	need to confirm success of downloading and numbers of revs. 1
