@@ -85,6 +85,7 @@ Explain how to run the automated tests for this system
 ## Contributing
 
 Front-end development: Shanzheng Liu
+
 Back-end development: David Dai & Qizhen Zhu
 
 ## Versioning
@@ -101,4 +102,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 Basem Fathi Suleiman <basem.suleiman@sydney.edu.au> (he/him)
+
 University of Sydney
