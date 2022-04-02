@@ -18,7 +18,7 @@ const timechecker = require ('./middleware/timestamp-checker');
 var app = express();
 
 //establish connection with database 
-const mongoDB = "mongodb+srv://admin:Welcome1@cluster0-yc3oa.mongodb.net/node-angular?retryWrites=true&w=majority";
+const mongoDB = "mongodb+srv://<username>:<password>@cluster0-yc3oa.mongodb.net/node-angular?retryWrites=true&w=majority";
 mongoose.connect(mongoDB).then(() => {
   console.log('Connected to mongoDB Atlas Database!');
 }).catch((err) => {
